@@ -10,4 +10,12 @@ class User {
         this.#email = email;
         this.#password = password
     }
+
+    
 }
+
+create(data)
+findById(id)
+update(id, data)
+delete(id)
+findByEmail(email)

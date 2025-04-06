@@ -1,0 +1,5 @@
+criar(req, res)
+login(req, res)
+buscarPorId(req, res)
+atualizar(req, res)
+remover(req, res)
