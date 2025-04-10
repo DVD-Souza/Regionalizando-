@@ -41,7 +41,6 @@ body {
 }
 
 .botoes{
-    position: relative;
     display:flex;
     flex-direction: row;
     gap:10px;
@@ -59,7 +58,7 @@ button{
     font-weight: bold;
     font-family: "Roboto Serif";
     border-radius: 45px;
-    border-color: none;
+    border: none;
     background-color: #A66D03;
 }
 
