@@ -1,11 +1,19 @@
+//conecta o codigo com as dependencias.
 const express = require('express');
+//configura o uso de um roteador.
 const router = express.Router();
-const UserController = require('../controllers/UserController');
+//conecta ao controlador de usuário.
+const userController = require('../controller/user.controller');
 
-router.post('/', UserController.create);
-router.post('/login', UserController.login);
-router.get('/:id', UserController.getById);
-router.put('/:id', UserController.update);
-router.delete('/:id', UserController.delete);
+//Rotas implemetadas.
+router.post('/', userController.criar);
+router.put('/:id', userController.atualizar);
+router.delete('/:id', userController.remover);
 
+
+////O codigo abaixo segue em construção, manutenção ou correção.
+router.post('/login', UsuarioController.login);
+router.get('/:id', UsuarioController.buscarPorId);
+
+//exporta o modulo como uma rota.
 module.exports = router;

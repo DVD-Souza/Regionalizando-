@@ -1,0 +1,6 @@
+criar(req, res)
+listar(req, res)
+buscarPorId(req, res)
+listarPorPalavra(req, res)
+atualizar(req, res)
+remover(req, res)

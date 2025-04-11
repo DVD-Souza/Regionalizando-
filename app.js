@@ -1,21 +1,21 @@
-// server.js
+//Conecta com a bliblioteca express
 const express = require('express');
+//conecta as rotas do usuario
+const userRoutes = require('./routes/user.routes');
+
+//configuração da conexão.
 const app = express();
-const bodyParser = require('body-parser');
+const PORT = 3000;
 
-// Middleware
-app.use(bodyParser.json());
+// Middleware para processar JSON
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-// Routes
-app.use('/users', require('./routes/user.routes'));
-app.use('/words', require('./routes/word.routes'));
-app.use('/meanings', require('./routes/meaning.routes'));
-app.use('/interactions', require('./routes/interaction.routes'));
-app.use('/locations', require('./routes/location.routes'));
-app.use('/meaning-logs', require('./routes/meaningLog.routes'));
-app.use('/update-logs', require('./routes/updateLog.routes'));
+//rotas
+app.use('/regionalizando', userRoutes);
 
-// Server
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+// Iniciar servidor
+app.listen(PORT, () => {
+    console.log(`Servidor rodando na porta ${PORT}`);
+});
 
