@@ -1,12 +1,14 @@
 const express = require('express');
-const router = express.Router();
+const app = express();
+const bodyParser = require('body-parser');
 
-router.use('/User', require('./user.routes'));
-router.use('/palavra', require('./palavra.routes'));
-router.use('/sig', require('./sig.routes'));
-router.use('/interacoes', require('./interacoes.routes'));
-router.use('/log.att', require('./log.att.routes'));
-router.use('/log.sig', require('./log.sig.routes'));
-router.use('/localidade', require('./localidade.routes'));
+// Routes
+app.use('/users', require('./routes/user.routes'));
+app.use('/words', require('./routes/word.routes'));
+app.use('/meanings', require('./routes/meaning.routes'));
+app.use('/interactions', require('./routes/interaction.routes'));
+app.use('/locations', require('./routes/location.routes'));
+app.use('/meaning-logs', require('./routes/meaningLog.routes'));
+app.use('/update-logs', require('./routes/updateLog.routes'));
 
-module.exports = router;
+
