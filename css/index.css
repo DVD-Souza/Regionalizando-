@@ -12,8 +12,6 @@
     --quartenary:#A66D03;
     --quintenary:#8C4E03;
     --branco:#f8f8f8;
-
-    --container_filtro_tamanho:315vh;
 }
 
 body {
@@ -69,6 +67,9 @@ body {
         border-radius: 45px;
         border: none;
         background-color: #A66D03;
+    }
+    .botoes_header:hover{
+        background-color: #A35D00;
     }
 }
 
@@ -312,7 +313,6 @@ margin-left: 5px;
     padding-right: 30px;
 }
 .likeimagem:hover{
-    background-color: #e6c200;
     border: 2px solid #000;
 }
 
@@ -330,7 +330,6 @@ margin-left: 5px;
     padding-right: 30px;
 }
 .dislikeimagem:hover{
-    background-color: #e6c200;
     border: 2px solid #000;
 }
 .contarLikes{

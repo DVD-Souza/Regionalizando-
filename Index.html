@@ -16,7 +16,7 @@
                 <p id="textoLogo2">Dicionário Informal Regional</p>
             </div>
             <div class="botoes">
-            <button type="button" class="botoes_header" id="botaoLogin" onclick="mostrarMensagem()">Login  <img id="userImage" src="./assets/User.png"> </button>
+            <button type="button" class="botoes_header" id="botaoLogin" onclick="telaLogin()">Login  <img id="userImage" src="./assets/User.png"> </button>
             <button type="button" class="botoes_header" id="botaoPerfil" onclick="mostrarMensagem()">Menu  <img id="menuImage" src="./assets/Hamburguer.png" alt="3 tracinhos menu"> </button>
             </div>
         </div>
@@ -172,6 +172,9 @@
 <script>
     function mostrarMensagem() {
         alert("Você clicou no botão!");
+    }
+    function telaLogin(){
+        window.location.href = "login.html";
     }
 </script>
 

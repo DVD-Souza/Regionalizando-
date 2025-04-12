@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/login.css">
+    <title>Login</title>
+</head>
+
+<body>
+    <div class="background">
+        <div id="invisivel">
+            <h1 class="mensagem_login">Login</h1>
+            <form action="" method="post">
+                <div>
+                    <img src="./assets/email.png" alt="Imagem usuario">
+                    <label class="labels" for="usuario">Email*</label></br>
+                    <input type="email" name="" id="inputemail" class="inputs">
+                </div>
+                <div>
+                    <img src="./assets/chave.png" alt="Imagem usuario">
+                    <label class="labels" for="usuario">Senha*</label></br>
+                    <input type="password" name="senha" id="inputsenha" class="inputs">
+                    <button type="button" class="icone_olho_fechado" id="iconeolho" onclick="olhoAtual()">
+                        <img id="olho" src="./assets/olhofechado.png" title="Aperte para mostrar a senha" alt="Ícone olho fechado">
+                    </button>
+                    <button class="jatemconta" onclick="telaLogin()">Esqueceu a senha?</button>
+                </div>
+                <button type="submit" class="enviar" id="enviar">Enviar</button>
+            </form>
+            
+            <div class="container_naotemconta">
+                <span class="naotemconta">
+                    Não tem uma conta?
+                </span>
+                <button id="seregistre" onclick="paginaRegistro()">
+                    <span class="naotemconta" id="registre">
+                        Registre-se
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    function telaLogin(){
+        window.location.href = "login.html"
+    }
+
+    function olhoAtual() {
+    const olho = document.getElementById("olho");
+
+        if (olho.src.includes("olhofechado.png")) {
+            olho.src = "./assets/olho.png";
+            mudarVisibilidade();
+        } else {
+            olho.src = "./assets/olhofechado.png";
+            mudarVisibilidade();
+        }  
+    }
+
+    function olhoAtual1(){
+        const olho1 = document.getElementById("olho1"); 
+
+        if (olho1.src.includes("olhofechado.png")){
+        olho1.src = "./assets/olho.png";
+        mudarVisibilidade1();
+        } else {
+        olho1.src = "./assets/olhofechado.png";
+        mudarVisibilidade1();
+        }
+    }
+
+
+
+    function mudarVisibilidade(){
+        const senha = document.getElementById("inputsenha")
+        if (senha.type === "password") {
+        senha.type = "text";
+    } else {
+        senha.type = "password";      
+    }
+    }
+
+    function mudarVisibilidade1(){
+        const confirmarSenha = document.getElementById("inputconfirmarsenha");
+        if(confirmarSenha.type === "password"){
+            confirmarSenha.type = "text"; // Torna a senha visível
+        }
+        else{
+        confirmarSenha.type = "password";
+        }
+    }
+
+    function paginaRegistro(){
+        window.location.href = "Registro.html";
+    }
+</script>
+
+</html>
