@@ -2,6 +2,9 @@
 const express = require('express');
 //conecta as rotas do usuario
 const userRoutes = require('./routes/user.routes');
+//solicitar as variaveis de ambiente.
+require('dotenv').config();
+
 
 //configuração da conexão.
 const app = express();

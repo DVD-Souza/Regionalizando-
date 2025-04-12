@@ -37,7 +37,7 @@ class User {
     static async create(newuser){
         const query = 'INSERT INTO users (name, email, password) VALUES (?, ?, ?)';
         const hashedPassword = await bcrypt.hash(newuser.password, 10);
-        await db.execute(query, [newuser.name, newuser.email, newuser.password]); 
+        await db.execute(query, [newuser.name, newuser.email, hashedPassword]); 
     };
     
     //método para atualizar um objeto usuário dentro do banco de dados.
@@ -51,10 +51,19 @@ class User {
         await db.execute('DELETE FROM users WHERE id = ?', [id]);
     };
 
-    //O codigo abaixo segue em construção, manutenção ou correção.
-    static async findById(id){}
-    static async findByEmail(email){}
+    //método para buscar um usuário pelo email, permitindo realizar o login se existir um usuário.
+    static async findByEmail(email) {
+        const query = 'SELECT * FROM users WHERE email = ?';
+        const [rows] = await db.execute(query, [email]);
+        return rows[0]; // Retorna o primeiro resultado da busca
+    } 
 
+    //método para buscar usuário com base no nome.
+    static async findByName(name) {
+        const query = 'SELECT * FROM users WHERE name LIKE ?';
+        const [rows] = await db.execute(query, [`%${name}%`]); // Usa LIKE para buscas parciais
+        return rows; // Retorna todos os usuários que correspondem ao nome
+    }       
 }
 
 //Exporta a classe User, tornando disponivel(além dos metodos) para as outras classes.
