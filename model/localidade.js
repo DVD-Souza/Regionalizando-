@@ -1,2 +1,0 @@
-findAll()
-create(data)
