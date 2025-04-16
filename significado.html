@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/significado.css">
     <title>Regionalizando: Seu dicionário informal gerional</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
@@ -27,13 +27,18 @@
             
         </div>
     </div>
+    <div class="texto_addcomentario">
+    <p id="Titulo" >"Nome Significado"</p>
+    <button class="addcomentario">Adicionar Comentario</button>
+
+    </div>
     <div class="container_significados_filtros">
         <div class="container_significados">
             <div class="palavra">
-                <button class="nomesignificado" onclick="telaSignificado()"> "Nome Significado" </button>
+                <button class="nomesignificado"> "Nome Significado" </button>
                 <p class="tiposignificado"> "Tipo Significado"</p>
                 <p class="descricaosignificado"> "Descrição significado"</p>
-                <p class="criadorsignificado"> Significado de "Palavra" por <a class="nomeusuario">"Usuário"</a> em "Data"</p>
+                <p> Significado de "Palavra" por <a class="nomeusuario">"Usuário"</a> em "Data"</p>
                 <div class="likedislike">
                     <div class="likeimagem">
                         <img src="/assets/Like.png" alt="Imagem Like">
@@ -47,7 +52,7 @@
                 <p class="regiaonome"> "Região" </p>
             </div>
             <div class="palavra1">
-                <button class="nomesignificado" onclick="telaSignificado()"> "Nome Significado" </button>
+                <button class="nomesignificado"> "Nome Significado" </button>
                 <p class="tiposignificado"> "Tipo Significado"</p>
                 <p class="descricaosignificado"> "Descrição significado"</p>
                 <p> Significado de "Palavra" por <a class="nomeusuario">"Usuário"</a> em "Data"</p>
@@ -64,7 +69,7 @@
                 <p class="regiaonome"> "Região" </p>
             </div>
             <div class="palavra">
-                <button class="nomesignificado" onclick="telaSignificado()"> "Nome Significado" </button>
+                <button class="nomesignificado"> "Nome Significado" </button>
                 <p class="tiposignificado"> "Tipo Significado"</p>
                 <p class="descricaosignificado"> "Descrição significado"</p>
                 <p> Significado de "Palavra" por <a class="nomeusuario">"Usuário"</a> em "Data"</p>
@@ -81,7 +86,7 @@
                 <p class="regiaonome"> "Região" </p>
             </div>
             <div class="palavra1">
-                <button class="nomesignificado" onclick="telaSignificado()"> "Nome Significado" </button>
+                <button class="nomesignificado"> "Nome Significado" </button>
                 <p class="tiposignificado"> "Tipo Significado"</p>
                 <p class="descricaosignificado"> "Descrição significado"</p>
                 <p> Significado de "Palavra" por <a class="nomeusuario">"Usuário"</a> em "Data"</p>
@@ -98,7 +103,7 @@
                 <p class="regiaonome"> "Região" </p>
             </div>
             <div class="palavra">
-                <button class="nomesignificado" onclick="telaSignificado()"> "Nome Significado" </button>
+                <button class="nomesignificado"> "Nome Significado" </button>
                 <p class="tiposignificado"> "Tipo Significado"</p>
                 <p class="descricaosignificado"> "Descrição significado"</p>
                 <p> Significado de "Palavra" por <a class="nomeusuario">"Usuário"</a> em "Data"</p>
@@ -116,7 +121,7 @@
             </div>
 
             <div class="palavra1">
-                <button class="nomesignificado" onclick="telaSignificado()"> "Nome Significado" </button>
+                <button class="nomesignificado"> "Nome Significado" </button>
                 <p class="tiposignificado"> "Tipo Significado"</p>
                 <p class="descricaosignificado"> "Descrição significado"</p>
                 <p> Significado de "Palavra" por <a class="nomeusuario">"Usuário"</a> em "Data"</p>
@@ -137,33 +142,7 @@
             </div>
         </div>
 
-        <div class="container_filtros">
-            <div class="filtros">
-                <form action="" method="get">
-                    <h3>Filtros:</h3>
-                    <div class="campos_filtros">
-                        <label for="regiao">Região:</label>
-                        <select id="regiao" name="regiao">
-                            <option value="todas">Todas</option>
-                            <option value="norte">Norte</option>
-                            <option value="nordeste">Nordeste</option>
-                            <option value="centro_oeste">Centro Oeste</option>
-                            <option value="sudeste">Sudeste</option>
-                            <option value="sul">Sul</option>
-                        </select>
-                    </div><br/>
-                    <div class="campos_filtros">
-                        <label for="tipo">Tipo:</label>
-                        <select id="tipo" name="tipo">
-                            <option value="todos">Todos</option>
-                            <option value="expressao">Expressão</option>
-                            <option value="palavra">Palavra</option>
-                        </select>
-                    </div><br/>
-                    <button type="submit">Aplicar</button>
-                </form>
-            </div>
-        </div>
+      
     </div>
 
 </body>
@@ -176,10 +155,25 @@
     function telaLogin(){
         window.location.href = "login.html";
     }
+</script>
 
-    function telaSignificado(){
-        window.location.href = "significado.html";
+<script>
+    function mostrarMensagem() {
+        alert("Você clicou no botão!");
     }
+
+    function telaLogin(){
+        window.location.href = "login.html";
+    }
+
+    window.onload = function () {
+        const botoes = document.querySelectorAll('.nomesignificado');
+        const total = botoes.length;
+
+        botoes.forEach((botao, index) => {
+            botao.textContent = `${index + 1}. Nome Significado`;
+        });
+    };
 </script>
 
 
