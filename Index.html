@@ -4,31 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/index.css">
-    <title>Regionalizando: Seu dicionário informal gerional</title>
+    <title>Regionalizando: Seu dicionário informal regional</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-    <div>
-        <div class="container_logo_botoes">
+
+    <div class="container_logo_botoes">
         <img id="imagemLogo" src="./assets/Regionalizando_logo 1.png" alt="Logo Regionalizando">
+        
         <div class="container_texto_logo">
-                <p id="textoLogo1"> Regionalizando </p>
-                <p id="textoLogo2">Dicionário Informal Regional</p>
-            </div>
-            <div class="botoes">
-            <button type="button" class="botoes_header" id="botaoLogin" onclick="telaLogin()">Login  <img id="userImage" src="./assets/User.png"> </button>
-            <button type="button" class="botoes_header" id="botaoPerfil" onclick="mostrarMensagem()">Menu  <img id="menuImage" src="./assets/Hamburguer.png" alt="3 tracinhos menu"> </button>
-            </div>
+            <p id="textoLogo1"> Regionalizando </p>
+            <p id="textoLogo2">Dicionário Informal Regional</p>
         </div>
-        <div class="container_pesquisa_add" id="barraDePesquisa">
-            <input class="input_buscar" placeholder="Procure um termo" type="text" name="buscar" id="buscar">
-            <img id="buscarimg" src="/assets/Vector.png" alt="imagem lupa">
-            <img id="maisimg" src="/assets/Add@2x.png" alt="Imagem mais">
-            
+
+        <div class="botoes">
+            <button type="button" class="botoes_header" id="botaoLogin" onclick="telaLogin()">
+                Login  
+                <img id="userImage" src="./assets/User.png"> 
+            </button>
+            <button type="button" class="botoes_header" id="botaoPerfil" onclick="mostrarMensagem()">
+                Menu  
+                <img id="menuImage" src="./assets/Hamburguer.png" alt="3 tracinhos menu"> 
+            </button>
         </div>
     </div>
+
+    <div class="container_pesquisa_add" id="barraDePesquisa">
+        <input class="input_buscar" placeholder="Procure um termo" type="text" name="buscar" id="buscar">
+        <img id="buscarimg" src="/assets/Vector.png" alt="imagem lupa">
+        <img id="maisimg" src="/assets/Add@2x.png" alt="Imagem mais">
+    </div>
+
     <div class="container_significados_filtros">
+
         <div class="container_significados">
+
             <div class="palavra">
                 <button class="nomesignificado" onclick="telaSignificado()"> "Nome Significado" </button>
                 <p class="tiposignificado"> "Tipo Significado"</p>
@@ -46,6 +56,7 @@
                 </div>
                 <p class="regiaonome"> "Região" </p>
             </div>
+
             <div class="palavra1">
                 <button class="nomesignificado" onclick="telaSignificado()"> "Nome Significado" </button>
                 <p class="tiposignificado"> "Tipo Significado"</p>
@@ -63,6 +74,7 @@
                 </div>
                 <p class="regiaonome"> "Região" </p>
             </div>
+
             <div class="palavra">
                 <button class="nomesignificado" onclick="telaSignificado()"> "Nome Significado" </button>
                 <p class="tiposignificado"> "Tipo Significado"</p>
@@ -80,6 +92,7 @@
                 </div>
                 <p class="regiaonome"> "Região" </p>
             </div>
+
             <div class="palavra1">
                 <button class="nomesignificado" onclick="telaSignificado()"> "Nome Significado" </button>
                 <p class="tiposignificado"> "Tipo Significado"</p>
@@ -97,6 +110,7 @@
                 </div>
                 <p class="regiaonome"> "Região" </p>
             </div>
+
             <div class="palavra">
                 <button class="nomesignificado" onclick="telaSignificado()"> "Nome Significado" </button>
                 <p class="tiposignificado"> "Tipo Significado"</p>
@@ -138,9 +152,13 @@
         </div>
 
         <div class="container_filtros">
+
             <div class="filtros">
+
+                <h3>Filtros:</h3>
+
                 <form action="" method="get">
-                    <h3>Filtros:</h3>
+
                     <div class="campos_filtros">
                         <label for="regiao">Região:</label>
                         <select id="regiao" name="regiao">
@@ -151,16 +169,27 @@
                             <option value="sudeste">Sudeste</option>
                             <option value="sul">Sul</option>
                         </select>
-                    </div><br/>
+                    </div>
+
                     <div class="campos_filtros">
                         <label for="tipo">Tipo:</label>
                         <select id="tipo" name="tipo">
-                            <option value="todos">Todos</option>
-                            <option value="expressao">Expressão</option>
-                            <option value="palavra">Palavra</option>
+                            <option value="Todos">Todos</option>
+                            <option value="Substantivo">Substantivo</option>
+                            <option value="Adjetivo">Adjetivo</option>
+                            <option value="Artigo">Artigo</option>
+                            <option value="Pronome">Pronome</option>
+                            <option value="Numeral">Numeral</option>
+                            <option value="Verbo">Verbo</option>
+                            <option value="Advérbio">Advérbio</option>
+                            <option value="Preposição">Preposição</option>
+                            <option value="Conjunção">Conjunção</option>
+                            <option value="Interjeição">Interjeição</option>
                         </select>
-                    </div><br/>
+                    </div>
+
                     <button type="submit">Aplicar</button>
+
                 </form>
             </div>
         </div>

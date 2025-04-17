@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
-
+@import url('https://fonts.cdnfonts.com/css/source-serif-pro');
+/* font-family: 'Source Serif Pro', sans-serif; */
 
 * {
     margin: 0;
@@ -34,7 +34,7 @@ body {
     & #textoLogo1{
     color: #F2D027;
     font-size: 64px;
-    font-family: "Roboto Serif";
+    font-family: 'Source Serif Pro', sans-serif;
     font-weight: bold;
     margin-top: 20px;
     }
@@ -45,14 +45,16 @@ body {
     font-size: 24px;
     left: 140px;
     top:85px;
+    font-family: 'Source Serif Pro', sans-serif;
     }
 }
 
 .botoes{
     display:flex;
     flex-direction: row;
+    align-items: center;
     gap:10px;
-    margin:30px;
+    margin:0% 5%;
 
     & .botoes_header{
         display:flex;
@@ -63,13 +65,15 @@ body {
         color: #F2B705;
         font-size: 32px;
         font-weight: bold;
-        font-family: "Roboto Serif";
+        font-family: 'Source Serif Pro', sans-serif;
         border-radius: 45px;
         border: none;
         background-color: #A66D03;
     }
-    .botoes_header:hover{
+
+    & .botoes_header:hover{
         background-color: #A35D00;
+        cursor: pointer;
     }
 }
 
@@ -83,43 +87,47 @@ margin-left: 5px;
 
 #buscarimg{
     position: absolute;
-    left: 9%;
-    transform: translateX(-9%);
+    left: 4%;
     width: 30px;
-    height: auto;
-    pointer-events: none;
+
 }
+
 #maisimg{
     width: 60px;
     height: auto;
-    margin-left: 2%;
+    transition: transform 0.3s ease;
+}
+
+#maisimg:hover{
+    transform: scale(1.1);
+    cursor: pointer;
 }
 
 .container_pesquisa_add{
     position: relative;
     display: flex;
-    justify-self: center;
     align-items: center;
-    background-color: #F2D027;
+    justify-content: space-between;
+    gap: 3%;
+    background-color: var(--primary);
     border-radius: 50px;
-    padding: 20px 0px 20px 0px;
     height: 75px;
     width: 90%;
-    padding-left: 7%;
+    padding:0% 2% 0% 2%;
+    margin: 0% 5%;
 }
 
 .input_buscar{
-    position: static;
     border-radius:0 50px 50px 0;
-    justify-self: center;
-    width: 90%;
+    width: 100%;
     height: 50px;
     text-align: left;
-    font-family: "Roboto Serif";
+    font-family: 'Source Serif Pro', sans-serif;
     border-radius: 100px;
-    border-color: black;
+    border:2px solid black;
     padding-left: 80px;
     font-size: 30px;
+    outline: none;
 }
 
 .container_significados_filtros{
@@ -147,40 +155,42 @@ margin-left: 5px;
         height: auto;
         background-color: var(--quartenary);
         border-radius: 15px;
-        position: relative;
+        
 
         & .filtros{
             background-color: var(--quartenary); 
             border-radius: 15px;
-            padding: 15px;
+            padding: 6%;
             color: var(--branco);
-            font-family: "Roboto Serif";
             width: 100%;
             height: 300px;
             border-top:5px rgba(0,0,0,0.5) solid;
             border-bottom:5px rgba(0,0,0,0.5) solid;
             position: sticky;
             top: 0;
+
+            & h3 {
+                font-size: 48px;
+                font-weight: bold;
+                margin-bottom: 16px;
+                font-family: 'Source Serif Pro', sans-serif;
+            }
             
             & form{
                 display: flex;
                 flex-direction: column;
-                height: 100%;
+                height: 78%;
+                gap: 3%;
                 position: relative;
 
-                & h3 {
-                    font-size: 48px;
-                    font-weight: bold;
-                    margin-bottom: 16px;
-                }
-                
                 & .campos_filtros{
                     display: flex;
                     justify-content: space-between;
+                    align-items: center;
 
                     & label{
-                        font-size: 24px;
-                        width: 20%;
+                        font-size: 16px;
+                        font-family: 'Source Serif Pro', sans-serif;
                     }
                     
                     & select{
@@ -189,7 +199,7 @@ margin-left: 5px;
                         border: none;
                         padding: 6px;
                         border-radius: 4px;
-                        font-weight: bold;
+                        font-family: 'Source Serif Pro', sans-serif;
                         cursor: pointer;
                         font-size: 16px;
                         width: 60%;
@@ -205,12 +215,14 @@ margin-left: 5px;
                     & option{
                         background-color: #FFD700;
                         color: #4B2E00;
-                        font-weight: bold;
+                        font-family: 'Source Serif Pro', sans-serif;
                         font-size: 16px;
                     }
                 }
-                
+
                 & button{
+                    position: absolute;
+                    bottom: 7%;
                     width: 100%;
                     background-color: #FFD700; 
                     color: black;
@@ -219,10 +231,7 @@ margin-left: 5px;
                     padding: 8px;
                     font-weight: bold;
                     cursor: pointer;
-                    align-items: center;
-                    justify-content: center;
-                    position: absolute;
-                    bottom: 0;
+                    font-family: 'Source Serif Pro', sans-serif;
                 }
                 
                 & button:hover {
@@ -243,7 +252,17 @@ margin-left: 5px;
     align-self: center;
     justify-self: center;
     border-radius: 15px;
+    font-family: 'Source Serif Pro', sans-serif;
+
+        & button{
+            font-family: 'Source Serif Pro', sans-serif;
+        }
+
+        & button:hover{
+            cursor: pointer;
+        }
 }
+
 .palavra1{
     display: flex;
     padding-left: 100px;
@@ -254,6 +273,15 @@ margin-left: 5px;
     align-self: center;
     justify-self: center;
     border-radius: 15px;
+    font-family: 'Source Serif Pro', sans-serif;
+
+        & button{
+            font-family: 'Source Serif Pro', sans-serif;
+        }
+
+        & button:hover{
+            cursor: pointer;
+        }
 }
 
 .nomesignificado{
@@ -357,14 +385,19 @@ margin-left: 5px;
 
     & button{
         padding: 20px 60px 20px 60px;
-        font-family: Source Serif Pro;
+        font-family: 'Source Serif Pro', sans-serif;
         font-weight: bold;
         font-size: 32px;
         background-color: var(--quartenary);
         border-radius: 15px;
         border: none;
         margin-bottom: 40px;
-
     }
+
+    & button:hover{
+        background-color: var(--terciary);
+        color: var(--branco);
+        cursor: pointer;
+        }
 }
 
