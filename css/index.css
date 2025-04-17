@@ -17,6 +17,9 @@
 body {
     background-color: var(--quintenary);
 }
+button:hover{
+    cursor: pointer;
+}
 
 .container_logo_botoes {
     display:flex;
@@ -320,6 +323,9 @@ margin-left: 5px;
 .nomeusuario{
     color: white;
     font: Source Serif Pro;
+    background-color: transparent;
+    border: none;
+    font-size: 18px;
 }
 .likedislike{
     width: 200px;
