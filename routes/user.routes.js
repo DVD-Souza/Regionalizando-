@@ -5,14 +5,14 @@ const router = express.Router();
 //conecta ao controlador de usuário.
 const userController = require('../controller/user.controller');
 //Solicita a utilização do middleware
-const authMiddleware = require('../middlewares/auth');
+const { protect } = require('../middleware/auth'); // Middleware de autenticação
 
 //Rotas implemetadas.
-router.post('/', userController.create);
-router.put('/:id', authMiddleware, userController.update);
-router.delete('/:id', authMiddleware, userController.remove);
-router.post('/login', userController.login);
-router.get('/:id', userController.findByName);
+router.post('/cadastro', userController.create);
+router.put('/user/:id', protect, userController.update);
+router.delete('/user/:id', protect, userController.remove);
+router.post('/user/login', userController.login);
+router.get('/user/:name', userController.findByName);
 
 //exporta o modulo como uma rota.
 module.exports = router;
