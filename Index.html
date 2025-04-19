@@ -32,7 +32,9 @@
     <div class="container_pesquisa_add" id="barraDePesquisa">
         <input class="input_buscar" placeholder="Procure um termo" type="text" name="buscar" id="buscar">
         <img id="buscarimg" src="/assets/Vector.png" alt="imagem lupa">
-        <img id="maisimg" src="/assets/Add@2x.png" alt="Imagem mais">
+        <button type="button" class="adicionarTermo" onclick="telaAdicionar()"> 
+            <img id="maisimg" src="/assets/Add@2x.png" alt="Imagem mais"> 
+        </button>
     </div>
 
     <div class="container_significados_filtros">
@@ -211,6 +213,9 @@
     }
     function telaPerfil(){
         window.location.href = "perfil.html";
+    }
+    function telaAdicionar(){
+        window.location.href = "adicionar.html";
     }
 </script>
 

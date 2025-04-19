@@ -1,0 +1,290 @@
+@import url('https://fonts.cdnfonts.com/css/source-serif-pro');
+/* font-family: 'Source Serif Pro', sans-serif; */
+@import url('https://fonts.cdnfonts.com/css/roboto');
+/* font-family: 'Roboto', sans-serif;
+font-family: 'Roboto Thin', sans-serif;
+font-family: 'Roboto Light', sans-serif;
+font-family: 'Roboto Medium', sans-serif;
+font-family: 'Roboto Black', sans-serif; */
+@import url('https://fonts.cdnfonts.com/css/roboto-serif');
+/* font-family: 'Roboto Serif', sans-serif; */
+                                                                           
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    --primary: #F2D027;
+    --secondary: #F2B705;
+    --terciary: #D98E04;
+    --quartenary:#A66D03;
+    --quintenary:#8C4E03;
+    --branco:#f8f8f8;
+}
+
+body {
+    background-color: var(--quintenary);
+}
+
+button:hover{
+    cursor: pointer;
+}
+
+.container_logo_botoes {
+    display:flex;
+}
+
+#imagemLogo{
+    margin-left: 5%;
+    margin-top: 0.5%;
+}
+
+.container_texto_logo{
+    position: relative;
+    width: 100%;
+
+    & #textoLogo1{
+    color: #F2D027;
+    font-size: 64px;
+    font-family: 'Source Serif Pro', sans-serif;                                      
+    font-weight: bold;
+    margin-top: 20px;
+    }
+
+    & #textoLogo2{
+    position: absolute;
+    color: #F2B705;
+    font-size: 24px;
+    font-family: 'Source Serif Pro', sans-serif;                          
+    left: 140px;
+    top:85px;
+    }
+}
+
+.background{
+    background-color: var(--quartenary);
+    height: auto;
+    border-radius: 15px;
+    padding-left: 4vw;
+    padding-top: 30px;
+    padding-right: 4vw;
+    padding-bottom: 50px;
+    margin:5%;
+
+    & form{
+        width: 100%;
+    }
+}
+
+.titulo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: underline;
+    color: black;
+    font-size: 36px;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 5%;
+}
+
+h3{
+    font-size: 20px;
+    color: white;
+    font-family: 'Roboto Serif', sans-serif;
+    font-weight: lighter;
+    margin-bottom: 2%;
+}
+
+.informacao{
+    font-size: 20px;
+    color: white;
+    font-family: 'Roboto Serif', sans-serif;
+    font-weight: lighter;
+}
+
+.escreverTermo{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 2%;
+    margin: 2% 0% 2% 0%;
+    font-family: 'Roboto Serif', sans-serif;
+    font-weight: bolder;
+    font-size: 45px;
+    border-radius: 15px;
+    border: 1px solid black;
+    border-bottom: 3px solid black;
+}
+
+.escreverTermo:hover{
+    cursor: pointer;
+}
+
+.escreverTermo:focus{
+    outline: none;
+    cursor: default;
+}
+
+.escreverSignificado{
+    width: 100%;
+    padding: 2%;
+    margin: 2% 0% 2% 0%;
+    font-family: 'Roboto Serif', sans-serif;
+    font-weight: bolder;
+    font-size: 45px;
+    border-radius: 15px;
+    border: 1px solid black;
+    border-bottom: 3px solid black;
+    resize: none;
+}
+
+.escreverSignificado:hover{
+    cursor: pointer;
+}
+
+.escreverSignificado:focus{
+    outline: none;
+    cursor: text;
+}
+
+.atencao{
+    color: black;
+    font-weight: 900;
+    font-size: 20px;
+    font-family: 'Roboto Serif', sans-serif;
+    margin-bottom: 5px;
+}
+
+.classeGramatical{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: auto;
+}
+
+select{
+    align-self: center;
+    background-color: #A35D00; 
+    color: black;
+    border: none;
+    padding: 6px;
+    border-radius: 4px;
+    font-family: 'Source Serif Pro', sans-serif;
+    cursor: pointer;
+    font-size: 16px;
+    width: 20%;
+    outline: none;
+    border: 1px solid black;
+    font-weight: bold;
+}
+
+select:after{
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: black;
+}
+
+option{
+    background-color: var(--quintenary);
+    color:black;
+    font-family: 'Source Serif Pro', sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.label_classe_regiao{
+    display: flex;
+    align-items: center;
+    font-size: 34.5px;
+    color: white;
+    font-family: 'Roboto Serif', sans-serif;
+    font-weight: lighter;
+}
+
+.classe_regiao{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container_classe_regiao{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.termos{
+    display: flex;
+    justify-content: center;
+    font-size: 18px;
+    margin-top: 5%;
+    margin-bottom: 5px;
+}
+
+.enviar{
+    display: flex;
+    background-color: var(--primary);
+    justify-self: center;
+    justify-content: center;
+    width: 90%;
+    padding-left: 50px;
+    padding-right: 50px;
+    border-radius: 15px;
+    border: 1px solid black;
+    border-bottom: 3px solid black;
+    font-size: 48px;
+    font-weight: bold;
+    font-family: 'Source Serif Pro', sans-serif;
+
+}
+
+.enviar:hover{
+    cursor: pointer;
+    background-color: var(--secondary);
+    border: 1px solid var(--branco);
+    border-bottom: 3px solid var(--branco);
+    color: var(--branco);
+
+}
+
+.enviar:focus{
+    cursor: default;
+    outline: none;
+}
+
+a{
+    color: black;
+    text-decoration: underline;
+}
+
+.termos p{
+    color: white;
+}
+
+
+.botoes{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 5%;
+}
+
+.button_voltar{
+    border: none;
+    background-color: transparent;
+    width: auto;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+.button_voltar:hover{
+    cursor: pointer;
+    outline: none;
+    transform: scale(1.2);
+}
+
+.img_voltar{
+    width: 70%;
+}

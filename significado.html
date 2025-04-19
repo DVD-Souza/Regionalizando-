@@ -37,7 +37,7 @@
 
     <div class="texto_addcomentario">
         <p id="Titulo" >"Nome Significado"</p>
-        <button type="button" class="addcomentario">Adicionar Comentario</button>
+        <button type="button" class="addcomentario" onclick="abrirmodal()">Adicionar Comentario</button>
     </div>
 
     <div class="container_significados">
@@ -154,6 +154,13 @@
         </div>
     </div>
 
+
+    
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <p>Este é um modal simples!</p>
+        </div>
 </body>
 
 
@@ -186,6 +193,27 @@
             botao.textContent = `${index + 1}. Nome Significado`;
         });
     };
+
+    var modal = document.getElementById("myModal");
+var btn = document.getElementById("openModalBtn");
+var span = document.getElementsByClassName("close")[0];
+
+// Quando o botão é clicado, abre o modal
+function abrirmodal() {
+  modal.style.display = "block";
+}
+
+// Quando o usuário clicar no "x", fecha o modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// Quando o usuário clicar fora do modal, ele também será fechado
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
 </script>
 
 
