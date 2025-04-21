@@ -1,22 +1,23 @@
-//Faz a ligação com a biblioteca exprees js.
+// routes/palavraRoutes.js
 const express = require('express');
-const router = express.Router(); // Cria o roteador do Express
-const palavraController = require('../controllers/palavraController'); // Importa o controller
-const { protect } = require('../middleware/auth'); // Middleware de autenticação
+const router = express.Router();
+const palavraController = require('../controllers/palavraController');
+const { protect } = require('../middleware/auth');
 
-// Rota para criar uma nova palavra (somente usuários autenticados) coms significado inicial
+// Rota para criar uma nova palavra (somente usuários autenticados)
 router.post('/palavra/criar', protect, palavraController.create);
 
-// Rota para buscar todas as palavras
-router.get('/palavra', palavraController.getAll);
+// Rota para buscar todas as palavras com paginação
+router.get('/palavra', palavraController.getSix);
 
-// Rota para buscar uma palavra por ID
-router.get('/palavra/:busca', palavraController.getById);
+// Rota para busca por parâmetros (por name, region ou type) via query string
+// Exemplo: GET /palavra/busca?name=algumNome&region=algumaRegiao
+router.get('/palavra/busca', palavraController.getByParams);
 
 // Rota para deletar uma palavra (somente o criador pode)
-router.delete('/palavra/:id', protect, palavraController.delete);
+router.delete('/palavra/:palavraId', protect, palavraController.remove);
 
 // Rota para atualizar uma palavra (somente o criador pode)
-router.put('/palavra/:id', protect, palavraController.update);
+router.put('/palavra/:palavraId', protect, palavraController.update);
 
-module.exports = router; // Exporta o roteador
+module.exports = router;
