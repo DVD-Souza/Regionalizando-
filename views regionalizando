@@ -1,0 +1,97 @@
+-- View para contagem de likes e dislikes
+CREATE VIEW vw_likes_dislikes_count AS
+SELECT 
+    u.user_id,
+    u.name,
+    m.meaning_id,
+    m.description,
+    SUM(i.likes) AS total_likes,
+    SUM(i.dislike) AS total_dislikes
+FROM interactions i
+JOIN users u ON i.user_id = u.user_id
+JOIN meaning_interactions mi ON i.interaction_id = mi.interaction_id
+JOIN meanings m ON mi.meaning_id = m.meaning_id
+GROUP BY u.user_id, u.name, m.meaning_id, m.description;
+
+-- View para alterações feitas por usuários
+CREATE VIEW vw_user_updates AS
+SELECT 
+    u.user_id,
+    u.name,
+    ul.previous_description,
+    m.description AS current_meaning,
+    ul.type,
+    ul.update_date
+FROM update_logs ul
+JOIN users u ON ul.user_id = u.user_id
+JOIN meanings m ON ul.meaning_id = m.meaning_id;
+
+-- View para elementos textuais por usuário
+CREATE VIEW vw_user_textual_elements AS
+SELECT 
+    u.user_id,
+    u.name,
+    te.element_id,
+    te.word
+FROM users u
+LEFT JOIN textual_elements te ON u.user_id = te.user_id;
+
+-- View para significados por tipo
+CREATE VIEW vw_meanings_by_type AS
+SELECT 
+    m.type,
+    m.description
+FROM meanings m
+ORDER BY m.type;
+
+-- View para significados por região
+CREATE VIEW vw_meanings_by_region AS
+SELECT 
+    l.region,
+    m.description
+FROM meanings m
+JOIN locations l ON m.location_id = l.location_id
+ORDER BY l.region;
+
+-- View para interações por significado
+CREATE VIEW vw_interactions_by_meaning AS
+SELECT 
+    m.meaning_id,
+    m.description,
+    COUNT(i.interaction_id) AS total_interactions
+FROM meaning_interactions mi
+JOIN meanings m ON mi.meaning_id = m.meaning_id
+LEFT JOIN interactions i ON mi.interaction_id = i.interaction_id
+GROUP BY m.meaning_id, m.description;
+
+-- View para significados por usuário (corrigido para usar user_id correto)
+CREATE VIEW vw_meanings_by_user AS
+SELECT 
+    u.user_id,
+    u.name,
+    COUNT(m.meaning_id) AS total_meanings
+FROM users u
+LEFT JOIN meanings m ON u.user_id = m.user_id
+GROUP BY u.user_id, u.name;
+
+-- View para quantidade de interações por significado
+CREATE VIEW vw_interaction_count_by_meaning AS
+SELECT 
+    m.meaning_id,
+    m.description,
+    COUNT(mi.interaction_id) AS total_interactions
+FROM meanings m
+LEFT JOIN meaning_interactions mi ON m.meaning_id = mi.meaning_id
+GROUP BY m.meaning_id, m.description;
+
+-- View para interações positivas (likes)
+CREATE OR REPLACE VIEW vw_positive_interactions AS
+SELECT interaction_id, user_id, likes
+FROM interactions
+WHERE likes = 1;
+
+-- View para interações negativas (dislikes)
+CREATE OR REPLACE VIEW vw_negative_interactions AS
+SELECT interaction_id, user_id, dislike
+FROM interactions
+WHERE dislike = 1;
