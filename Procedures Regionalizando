@@ -1,0 +1,76 @@
+
+DELIMITER $$
+
+CREATE PROCEDURE AddLocalidade (  /* A logica está certa, o codigo está funcional, porém, não vai ser usado */
+    IN regiao VARCHAR(100)
+)
+BEGIN
+    INSERT INTO tb_localidades (regiao)
+    VALUES (regiao);
+END$$
+
+DELIMITER ;
+
+
+
+DELIMITER $$ /* Correto Procedure para adicionar elementos na tabela interação*/
+
+CREATE PROCEDURE AddInteracao (   
+    IN user_id INT,
+    IN likes TINYINT,
+    IN deslike TINYINT
+)
+BEGIN
+    INSERT INTO tb_interacoes (user_id, likes, deslike)
+    VALUES (user_id, likes, deslike);
+END$$
+
+DELIMITER ;
+
+DELIMITER $$ /Correto Procedure para adicionar elementos na tabela elemento textual/
+
+CREATE PROCEDURE AddElementoTextual (
+    IN user_id INT,
+    IN palavra VARCHAR(100)
+)
+BEGIN
+    INSERT INTO tb_elementos_textuais (user_id, palavra)
+    VALUES (user_id, palavra);
+END$$
+
+DELIMITER ;
+
+DELIMITER $$ /* Remover elemento_txt_id e alterar o create  para seguir o lucidchart */
+
+CREATE PROCEDURE AddSignificado (
+    IN localidade_id INT,
+    IN elemento_txt_id INT,
+    IN descricao VARCHAR(500),
+    IN informacoes_adicionais VARCHAR(250),
+    IN tipo ENUM('substantivo', 'adjetivo', 'artigo', 'pronome', 'numeral', 'verbo', 'advébio', 'preposição', 'conjunção', 'interjeição', 'vazio')
+)
+BEGIN
+    INSERT INTO tb_significados (localidade_id, elemento_txt_id, descricao, informacoes_adicionais, tipo)
+    VALUES (localidade_id, elemento_txt_id, descricao, informacoes_adicionais, tipo);
+END$$
+
+
+
+
+
+
+
+DELIMITER $$
+
+CREATE PROCEDURE AddSignificado (
+    IN localidade_id INT,
+    IN descricao VARCHAR(500),
+    IN informacoes_adicionais VARCHAR(250),
+    IN tipo ENUM('substantivo', 'adjetivo', 'artigo', 'pronome', 'numeral', 'verbo', 'advérbio', 'preposição', 'conjunção', 'interjeição', 'vazio')
+)
+BEGIN
+    INSERT INTO tb_significados (localidade_id, descricao, informacoes_adicionais, tipo)
+    VALUES (localidade_id, descricao, informacoes_adicionais, tipo);
+END$$
+
+DELIMITER ;
