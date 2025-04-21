@@ -1,0 +1,8 @@
+CREATE INDEX significado_idx ON meanings(location_id);
+CREATE INDEX significado_idx_3 ON meanings(type);
+CREATE INDEX interacoes_idx ON interactions(user_id);
+CREATE INDEX logs_atlz_idx ON update_logs(user_id);
+CREATE INDEX logs_atlz_idx_2 ON update_logs(meaning_id);
+CREATE INDEX logs_atlz_idx_3 ON update_logs(update_date);
+CREATE INDEX logs_atlz_idx_4 ON update_logs(type);
+CREATE INDEX elemt_txt_idx ON textual_elements(user_id);
