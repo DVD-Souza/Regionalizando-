@@ -1,33 +1,33 @@
-// models/Palavra.js
+// models/Word.js
 const db = require('../config/db');
 
-class Palavra {
+class Word {
   constructor(id, word, addedBy) {
     this.id = id;
     this.word = word;
     this.addedBy = addedBy;
   }
 
-  // Criação da palavra e retorno do objeto com o ID gerado
+  // Word creation and return of the object with the generated ID
   static async create({ addedBy, word }) {
-    const query = 'INSERT INTO palavras (id_usuario, palavra) VALUES (?, ?)';
+    const query = 'INSERT INTO words (user_id, word) VALUES (?, ?)';
     const [result] = await db.execute(query, [addedBy, word]);
     return { id: result.insertId, addedBy, word };
   }
 
-  // Remoção da palavra
+  // Word removal
   static async remove(id) {
-    const query = 'DELETE FROM palavras WHERE id = ?';
+    const query = 'DELETE FROM words WHERE id = ?';
     const [result] = await db.execute(query, [id]);
     return result;
   }
 
-  // Busca por parâmetro (filtrando por nome, região, etc.) — adapte conforme a estrutura da tabela
+  // Search by parameter (filtering by name, region, etc.) — adapt according to table structure
   static async byParams({ name, region, type }) {
-    let query = 'SELECT * FROM palavras WHERE 1=1';
+    let query = 'SELECT * FROM words WHERE 1=1';
     const values = [];
     if (name) {
-      query += ' AND palavra LIKE ?';
+      query += ' AND word LIKE ?';
       values.push(`%${name}%`);
     }
     if (region) {
@@ -42,21 +42,21 @@ class Palavra {
     return rows;
   }
 
-  // Busca uma palavra pelo ID
+  // Find a word by ID
   static async findById(id) {
-    const query = 'SELECT * FROM palavras WHERE id = ?';
+    const query = 'SELECT * FROM words WHERE id = ?';
     const [rows] = await db.execute(query, [id]);
     return rows[0];
   }
 
-  // Atualização da palavra (campo "palavra")
+  // Word update (field "word")
   static async update(id, name) {
     if (!name) return { affectedRows: 0 };
 
-    const query = 'UPDATE palavras SET palavra = ? WHERE id = ?';
+    const query = 'UPDATE words SET word = ? WHERE id = ?';
     const [result] = await db.execute(query, [name, id]);
     return result;
   }
 }
 
-module.exports = Palavra;
+module.exports = Word;

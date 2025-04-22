@@ -1,4 +1,4 @@
-// model/User.js
+// models/User.js
 
 const db = require('../config/db');
 const bcrypt = require('bcrypt');
@@ -30,22 +30,22 @@ class User {
     return this.#password;
   }
 
-  // Método para criar um usuário
+  // Method to create a new user
   static async create(newUser) {
     const query = 'INSERT INTO users (name, email, password) VALUES (?, ?, ?)';
     const hashedPassword = await bcrypt.hash(newUser.password, 10);
     await db.execute(query, [newUser.name, newUser.email, hashedPassword]);
   }
 
-  // Método para atualizar um usuário
+  // Method to update user data
   static async update(id, { name, email, password }) {
-    // Se a senha for enviada, a re-hasheamos
+    // If password is provided, hash it again
     let hashedPassword;
     if (password) {
       hashedPassword = await bcrypt.hash(password, 10);
     }
-    
-    // Definindo os campos e valores dinamicamente
+
+    // Dynamically define fields and values
     let fields = [];
     let values = [];
 
@@ -61,32 +61,33 @@ class User {
       fields.push('password = ?');
       values.push(hashedPassword);
     }
-    // Se nenhum campo foi enviado, retorna uma resposta com affectedRows zero
+
+    // If no fields were provided, return a result with affectedRows as 0
     if (fields.length === 0) {
       return { affectedRows: 0 };
     }
-    
+
     const query = `UPDATE users SET ${fields.join(', ')} WHERE id = ?`;
     values.push(id);
     const [result] = await db.execute(query, values);
     return result;
   }
 
-  // Método para deletar um usuário
+  // Method to delete a user
   static async delete(id) {
     const query = 'DELETE FROM users WHERE id = ?';
     const [result] = await db.execute(query, [id]);
     return result;
   }
 
-  // Método para buscar um usuário pelo email (utilizado no login)
+  // Method to find a user by email (used during login)
   static async findByEmail(email) {
     const query = 'SELECT * FROM users WHERE email = ?';
     const [rows] = await db.execute(query, [email]);
-    return rows[0]; // Retorna o primeiro resultado
+    return rows[0]; // Returns the first result
   }
 
-  // Método para buscar usuários pelo nome (usa LIKE para buscas parciais)
+  // Method to search users by name (uses LIKE for partial matches)
   static async findByName(name) {
     const query = 'SELECT * FROM users WHERE name LIKE ?';
     const [rows] = await db.execute(query, [`%${name}%`]);
