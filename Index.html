@@ -10,11 +10,16 @@
 <body>
 
     <div class="container_logo_botoes">
-        <img id="imagemLogo" src="./assets/Regionalizando_logo 1.png" alt="Logo Regionalizando">
+        <div class="container_logo">
+            <button class="voltarIndex" onclick="telaIndex()"> 
+                <img id="imagemLogo" src="./assets/Regionalizando_logo 1.png" alt="Logo Regionalizando">
+            </button>
         
-        <div class="container_texto_logo">
-            <p id="textoLogo1"> Regionalizando </p>
-            <p id="textoLogo2">Dicionário Informal Regional</p>
+            <button class="voltarIndex" onclick="telaIndex()">
+                <p id="textoLogo1"> Regionalizando </p>
+                <p id="textoLogo2">Dicionário Informal Regional</p>
+            </button>
+            
         </div>
 
         <div class="botoes">
@@ -202,7 +207,7 @@
 
 <script>
     function mostrarMensagem() {
-        alert("Você clicou no botão!");
+        alert("Em Breve");
     }
     function telaLogin(){
         window.location.href = "login.html";
@@ -216,6 +221,9 @@
     }
     function telaAdicionar(){
         window.location.href = "adicionar.html";
+    }
+    function telaIndex(){
+        window.location.href = "Index.html";
     }
 </script>
 

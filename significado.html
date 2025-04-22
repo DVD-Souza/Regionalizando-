@@ -10,11 +10,15 @@
 <body>
 
     <div class="container_logo_botoes">
-        <img id="imagemLogo" src="./assets/Regionalizando_logo 1.png" alt="Logo Regionalizando">
-
-        <div class="container_texto_logo">
-            <p id="textoLogo1"> Regionalizando </p>
-            <p id="textoLogo2">Dicionário Informal Regional</p>
+        <div class="container_logo">
+            <button class="voltarIndex" onclick="telaIndex()"> 
+                <img id="imagemLogo" src="./assets/Regionalizando_logo 1.png" alt="Logo Regionalizando">
+            </button>
+        
+            <button class="voltarIndex" onclick="telaIndex()">
+                <p id="textoLogo1"> Regionalizando </p>
+                <p id="textoLogo2">Dicionário Informal Regional</p>
+            </button>
         </div>
 
         <div class="botoes">
@@ -158,8 +162,58 @@
     
     <div id="myModal" class="modal">
         <div class="modal-content">
-          <span class="close">&times;</span>
-          <p>Este é um modal simples!</p>
+            <button class="fechar" onclick="fecharModal()">X</button>
+          <div class="modal_background">
+            <h2 class="titulo">ESCREVER NOVA DEFINIÇÃO</h2>
+
+            <form action="">
+                
+                <textarea maxlength="500" cols="30" rows="5" class="escreverSignificado" name="escreverSignificado" placeholder="Comente aqui adicionando seu próprio significado." id="significado"></textarea>
+
+                <div class="container_classe_regiao">
+                    <div class="classe_regiao"> 
+                        <label for="classeGramatical" class="label_classe_regiao"> 
+                            Adicione a classe gramatical da palavra:
+                        </label> 
+                        <select id="tipo" name="classeGramatical">
+                            <option value="Todos">Todos</option>
+                            <option value="Substantivo">Substantivo</option>
+                            <option value="Adjetivo">Adjetivo</option>
+                            <option value="Artigo">Artigo</option>
+                            <option value="Pronome">Pronome</option>
+                            <option value="Numeral">Numeral</option>
+                            <option value="Verbo">Verbo</option>
+                            <option value="Advérbio">Advérbio</option>
+                            <option value="Preposição">Preposição</option>
+                            <option value="Conjunção">Conjunção</option>
+                            <option value="Interjeição">Interjeição</option>
+                        </select>
+                    </div>
+    
+                    <div class="classe_regiao">
+                        <label for="regiao" class="label_classe_regiao"> 
+                            Qual a região que utiliza essa gíria:
+                        </label>
+                        <select id="regiao" name="regiao">
+                            <option value="Todos">Todos</option>
+                            <option value="Substantivo">Nordeste</option>
+                            <option value="Substantivo">Norte</option>
+                            <option value="Substantivo">Sul</option>
+                            <option value="Substantivo">Sudeste</option>
+                            <option value="Substantivo">Centro-Oeste</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="termos">
+                    <p>Significados estão sujeitos aos nossos <a href="#" class="termosepolitica"> termos de serviço</a> e <a href="#" class="termosepolitica"> políticas de privacidade.</a></p>
+                </div>
+                  
+                  
+                <button class="enviar">Enviar</button>
+
+            </form>
+          </div>
         </div>
 </body>
 
@@ -171,6 +225,11 @@
     function telaLogin(){
         window.location.href = "login.html";
     }
+
+    function fecharModal() {
+  modal.style.display = 'none';
+}
+
 </script>
 
 <script>
@@ -183,6 +242,9 @@
     }
     function telaPerfil(){
         window.location.href = "perfil.html";
+    }
+    function telaIndex(){
+        window.location.href = "Index.html";
     }
 
     window.onload = function () {

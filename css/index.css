@@ -17,12 +17,14 @@
 body {
     background-color: var(--quintenary);
 }
+
 button:hover{
     cursor: pointer;
 }
 
 .container_logo_botoes {
     display:flex;
+    justify-content: space-between;
 }
 
 #imagemLogo{
@@ -30,26 +32,30 @@ button:hover{
     margin-top: 0.5%;
 }
 
-.container_texto_logo{
-    position: relative;
-    width: 100%;
+.container_logo{
+    display: flex;
+}
 
-    & #textoLogo1{
+#textoLogo1{
     color: #F2D027;
     font-size: 64px;
-    font-family: 'Source Serif Pro', sans-serif;
+    font-family: 'Source Serif Pro', sans-serif;                                      
     font-weight: bold;
-    margin-top: 20px;
     }
 
-    & #textoLogo2{
+#textoLogo2{
     position: absolute;
     color: #F2B705;
     font-size: 24px;
+    font-family: 'Source Serif Pro', sans-serif;                          
     left: 140px;
-    top:85px;
-    font-family: 'Source Serif Pro', sans-serif;
-    }
+    top: 90px;
+}
+
+.voltarIndex{
+    position: relative;
+    background: transparent;
+    border: none;
 }
 
 .botoes{
@@ -387,7 +393,7 @@ margin-left: 5px;
     font-weight: 600;
     font-style: italic;
     text-align: right;
-    margin-top: 190px;
+    margin-top: 170px;
     margin-right: 2%;
 }
 

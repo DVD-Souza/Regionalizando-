@@ -36,9 +36,9 @@
                 <p class="atencao"> Atenção!! </p>
                 <p class="informacao">Todas as pessoas poderão ver a definição escrita por você, então não coloque informações privadas ou de seus amigos e familiares. </p>
                 
-                <textarea cols="30" rows="3" class="escreverSignificado" name="escreverSignificado" placeholder="Escreva o significado da palavra aqui" id="significado"></textarea>
+                <textarea maxlength="500" cols="30" rows="3" class="escreverSignificado" name="escreverSignificado" placeholder="Escreva o significado da palavra aqui" id="significado"></textarea>
 
-                <textarea cols="30" rows="5" class="escreverSignificado" name="escreverSignificado" placeholder="Escreva um exemplo de como é usada essa palavra" id="significado"></textarea>
+                <textarea maxlength="500" cols="30" rows="5" class="escreverSignificado" name="escreverSignificado" placeholder="Escreva um exemplo de como é usada essa palavra" id="significado"></textarea>
 
                 <div class="container_classe_regiao">
                     <div class="classe_regiao"> 
@@ -65,7 +65,7 @@
                             Qual a região que utiliza essa gíria:
                         </label>
                         <select id="regiao" name="regiao">
-                            <option value="Todos">Centro-Oeste</option>
+                            <option value="Todos">Todos</option>
                             <option value="Substantivo">Nordeste</option>
                             <option value="Substantivo">Norte</option>
                             <option value="Substantivo">Sul</option>
@@ -93,6 +93,9 @@
     }
     function telaPrincipal(){
         window.location.href = "index.html";
+    }
+    function telaIndex(){
+        window.location.href = "Index.html";
     }
     </script>
 
