@@ -1,24 +1,16 @@
-//Conecta com a bliblioteca express
 const express = require('express');
-//conecta as rotas do usuario
-const userRoutes = require('./routes/user.routes');
-//solicitar as variaveis de ambiente.
-require('dotenv').config();
-
-
-//configuração da conexão.
 const app = express();
-const PORT = 3000;
 
-// Middleware para processar JSON
+// Middleware nativo do express (substitui body-parser)
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-//rotas
-app.use('/regionalizando', userRoutes);
+// Rotas organizadas
+app.use('/users', require('./routes/user.routes'));
+app.use('/words', require('./routes/wordRoutes'));
+app.use('/meanings', require('./routes/meaningRoutes'));
+app.use('/interactions', require('./routes/interactionRoutes'));
 
-// Iniciar servidor
-app.listen(PORT, () => {
-    console.log(`Servidor rodando na porta ${PORT}`);
-});
-
+// Inicialização do servidor
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));
