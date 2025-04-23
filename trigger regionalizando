@@ -1,0 +1,237 @@
+-- Trigger de segurança para usuários
+DELIMITER // 
+CREATE TRIGGER tr_user_security  /*Correto*/
+BEFORE INSERT ON users
+FOR EACH ROW
+BEGIN
+    -- 1. Validação do formato do email
+    IF NEW.email NOT LIKE '%_@__%.__%' THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Invalid email format. Use: user@domain.com';
+    END IF;
+    
+    -- 2. Criptografia da senha (simplificada para exemplo)
+    SET NEW.password = CONCAT(
+        '$2a$10$', -- Prefixo indicando algoritmo bcrypt com custo 10
+        SUBSTRING(SHA2(CONCAT(NEW.password, 's3cr3t_s4lt'), 256), 1, 22),
+        '$', 
+        SUBSTRING(SHA2(UUID(), 256), 1, 31)
+    );
+    
+    -- 3. Verificação de senha comprometida (lista básica)
+    IF LOWER(NEW.password) IN ('123456', 'password', 'senha123', 'admin123', 'qwerty') THEN
+        SIGNAL SQLSTATE '45001'
+        SET MESSAGE_TEXT = 'Password too common. Choose a more secure one';
+    END IF;
+    
+    -- 4. Padronização do nome (remove espaços extras e capitaliza)
+    SET NEW.name = CONCAT(
+        UPPER(SUBSTRING(TRIM(NEW.name), 1, 1)),
+        LOWER(SUBSTRING(TRIM(NEW.name), 2))
+    );
+END //
+DELIMITER ;
+
+-- Trigger para registrar criação de significados
+DELIMITER //
+CREATE TRIGGER tg_after_insert_meanings  /* Correto */
+AFTER INSERT ON meanings
+FOR EACH ROW
+BEGIN
+    -- Inserção do log com o mesmo 'type' do significado
+    INSERT INTO update_logs (
+        user_id,
+        meaning_id,
+        previous_description,
+        type,
+        update_date
+    ) VALUES (
+        NEW.user_id,
+        NEW.meaning_id,
+        NULL,              -- Inserção não tem descrição anterior
+        NEW.type,          -- Valor do ENUM do significado inserido
+        CURRENT_TIMESTAMP()
+    );
+END //
+
+DELIMITER $$
+
+CREATE TRIGGER trg_after_insert_interaction
+AFTER INSERT ON interactions
+FOR EACH ROW
+BEGIN
+    DECLARE existing_like INT DEFAULT 0;
+    DECLARE existing_dislike INT DEFAULT 0;
+    DECLARE content_id INT;
+    DECLARE new_interaction_id INT;
+
+    SET new_interaction_id = NEW.interaction_id;  -- <-- nome correto da coluna
+
+    SELECT meaning_id INTO content_id
+    FROM meaning_interactions
+    WHERE interaction_id = new_interaction_id
+    LIMIT 1;
+
+    IF content_id IS NOT NULL THEN
+        SELECT COUNT(*) INTO existing_like
+        FROM interactions i
+        JOIN meaning_interactions mi ON i.interaction_id = mi.interaction_id
+        WHERE i.user_id = NEW.user_id
+        AND mi.meaning_id = content_id
+        AND i.likes = 1
+        AND i.interaction_id != new_interaction_id;
+
+        SELECT COUNT(*) INTO existing_dislike
+        FROM interactions i
+        JOIN meaning_interactions mi ON i.interaction_id = mi.interaction_id
+        WHERE i.user_id = NEW.user_id
+        AND mi.meaning_id = content_id
+        AND i.dislike = 1
+        AND i.interaction_id != new_interaction_id;
+
+        IF NEW.likes = 1 AND existing_like > 0 THEN
+            DELETE FROM interactions WHERE interaction_id = new_interaction_id;
+        END IF;
+
+        IF NEW.dislike = 1 AND existing_dislike > 0 THEN
+            DELETE FROM interactions WHERE interaction_id = new_interaction_id;
+        END IF;
+    END IF;
+END$$
+
+DELIMITER ;
+
+
+
+DELIMITER $$
+
+CREATE TRIGGER tr_validate_count_interaction
+BEFORE INSERT ON meaning_interactions
+FOR EACH ROW
+BEGIN
+    DECLARE v_user_id_interaction INT;
+    DECLARE v_user_id_meaning INT;
+    DECLARE v_interaction_type VARCHAR(10);
+    DECLARE existing_interaction INT;
+    
+    -- 1. Verifica se a interação existe e obtém o tipo (like/dislike)
+    SELECT user_id, 
+           CASE WHEN likes = 1 THEN 'LIKE' 
+                WHEN dislike = 1 THEN 'DISLIKE' 
+                ELSE 'NONE' 
+           END INTO v_user_id_interaction, v_interaction_type
+    FROM interactions
+    WHERE interaction_id = NEW.interaction_id;
+    
+    IF v_user_id_interaction IS NULL THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Erro: Interação não encontrada';
+    END IF;
+    
+    -- 2. Verifica se o significado existe
+    SELECT user_id INTO v_user_id_meaning
+    FROM meanings
+    WHERE meaning_id = NEW.meaning_id;
+    
+    IF v_user_id_meaning IS NULL THEN
+        SIGNAL SQLSTATE '45001'
+        SET MESSAGE_TEXT = 'Erro: Significado não encontrado';
+    END IF;
+    
+    -- 3. Impede auto-interação (usuário interagindo com próprio conteúdo)
+    IF v_user_id_interaction = v_user_id_meaning THEN
+        SIGNAL SQLSTATE '45002'
+        SET MESSAGE_TEXT = 'Erro: Não pode interagir com seu próprio conteúdo';
+    END IF;
+    
+    -- 4. Verifica se já existe esta interação
+    SELECT COUNT(*) INTO existing_interaction
+    FROM meaning_interactions
+    WHERE interaction_id = NEW.interaction_id
+    AND meaning_id = NEW.meaning_id;
+    
+    IF existing_interaction > 0 THEN
+        SIGNAL SQLSTATE '45003'
+        SET MESSAGE_TEXT = 'Erro: Interação duplicada detectada';
+    END IF;
+    
+    -- 5. Atualiza contagens na tabela de significados (substitui o log)
+    IF v_interaction_type = 'LIKE' THEN
+        UPDATE meanings 
+        SET likes_count = IFNULL(likes_count, 0) + 1
+        WHERE meaning_id = NEW.meaning_id;
+    ELSEIF v_interaction_type = 'DISLIKE' THEN
+        UPDATE meanings 
+        SET dislikes_count = IFNULL(dislikes_count, 0) + 1
+        WHERE meaning_id = NEW.meaning_id;
+    END IF;
+END$$
+
+DELIMITER ;
+
+
+
+DELIMITER $$
+CREATE TRIGGER trg_log_meaning_update
+BEFORE UPDATE ON meanings
+FOR EACH ROW
+BEGIN
+    -- Verifica se houve mudança relevante para registrar no log
+    IF OLD.description != NEW.description OR 
+       OLD.additional_info != NEW.additional_info OR
+       OLD.location_id != NEW.location_id THEN
+        
+        INSERT INTO update_logs (
+            user_id,
+            meaning_id,
+            previous_description,
+            type,
+            update_date
+        ) VALUES (
+            OLD.user_id,
+            OLD.meaning_id,
+            CONCAT('Description: ', OLD.description, 
+                   ' | Info: ', IFNULL(OLD.additional_info, 'NULL'),
+                   ' | Location: ', OLD.location_id),
+            OLD.type,  -- Aqui usamos o tipo do significado que está sendo atualizado
+            NOW()
+        );
+    END IF;
+END$$
+DELIMITER ;
+
+
+DELIMITER //
+
+CREATE TRIGGER tr_before_insert_update_logs
+BEFORE INSERT ON update_logs
+FOR EACH ROW
+BEGIN
+    -- 1. Validação do user_id
+    IF NOT EXISTS (SELECT 1 FROM users WHERE user_id = NEW.user_id) THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'User does not exist';
+    END IF;
+    
+    -- 2. Validação do meaning_id (a tabela só será atualizada com meanings)
+    IF NEW.meaning_id IS NOT NULL AND 
+       NOT EXISTS (SELECT 1 FROM meanings WHERE meaning_id = NEW.meaning_id) THEN
+        SIGNAL SQLSTATE '45001'
+        SET MESSAGE_TEXT = 'Meaning does not exist';
+    END IF;
+    
+    -- 3. Garantir que o tipo seja válido (apenas os tipos do ENUM de meanings)
+    IF NEW.type NOT IN ('noun', 'adjective', 'article', 'pronoun', 'numeral', 
+                       'verb', 'adverb', 'preposition', 'conjunction', 
+                       'interjection', 'empty') THEN
+        SIGNAL SQLSTATE '45002'
+        SET MESSAGE_TEXT = 'Invalid log type';
+    END IF;
+    
+    -- 5. Limitação do tamanho da descrição anterior
+    IF NEW.previous_description IS NOT NULL AND LENGTH(NEW.previous_description) > 500 THEN
+        SET NEW.previous_description = CONCAT(SUBSTRING(NEW.previous_description, 1, 497), '...');
+    END IF;
+END //
+
+DELIMITER ;
