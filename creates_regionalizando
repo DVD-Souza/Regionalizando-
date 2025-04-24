@@ -1,3 +1,5 @@
+
+
 create database db_regionalizando;
 use db_regionalizando;
 
@@ -6,9 +8,11 @@ CREATE TABLE users (
     user_id INT AUTO_INCREMENT NOT NULL,
     name VARCHAR(100) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL, 
-    password VARCHAR(30) NOT NULL,
+    password VARCHAR(100) NOT NULL,
     PRIMARY KEY (user_id)
 );
+
+
 
 -- Locations table
 CREATE TABLE locations (
@@ -44,10 +48,13 @@ CREATE TABLE meanings (
     description VARCHAR(500) NOT NULL,
     additional_info VARCHAR(250),
     type ENUM('noun', 'adjective', 'article', 'pronoun', 'numeral', 'verb', 'adverb', 'preposition', 'conjunction', 'interjection', 'empty') DEFAULT 'empty',
+    like_count INT DEFAULT 0,
+    dislike_count INT DEFAULT 0,
     PRIMARY KEY (meaning_id),
     FOREIGN KEY(user_id) REFERENCES users(user_id),
     FOREIGN KEY (location_id) REFERENCES locations(location_id)
 );
+
 
 -- Meaning interactions table
 CREATE TABLE meaning_interactions (
@@ -87,5 +94,8 @@ CREATE TABLE meaning_logs (
         FOREIGN KEY (meaning_id)
         REFERENCES meanings(meaning_id)
 );
+
+
+
 
 
