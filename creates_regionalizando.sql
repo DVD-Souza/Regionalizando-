@@ -1,0 +1,94 @@
+
+
+create database if not exists db_regionalizando;
+use db_regionalizando;
+
+-- Users table
+CREATE TABLE users (
+    user_id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL, 
+    password VARCHAR(100) NOT NULL,
+    PRIMARY KEY (user_id)
+);
+
+
+
+-- Locations table
+CREATE TABLE locations (
+    location_id INT AUTO_INCREMENT NOT NULL,
+    region VARCHAR(100) NOT NULL,
+    PRIMARY KEY(location_id)
+);
+
+-- Interactions table
+CREATE TABLE interactions (
+    interaction_id INT AUTO_INCREMENT NOT NULL,
+    user_id INT NOT NULL,
+    likes TINYINT(1) DEFAULT 0 CHECK (likes IN (0, 1)),
+    dislike TINYINT(1) DEFAULT 0 CHECK (dislike IN (0, 1)),
+    PRIMARY KEY(interaction_id),
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
+-- Textual elements table
+CREATE TABLE textual_elements (
+    element_id INT AUTO_INCREMENT NOT NULL, 
+    user_id INT NOT NULL, 
+    word VARCHAR(100) NOT NULL,
+    PRIMARY KEY(element_id),
+    FOREIGN KEY(user_id) REFERENCES users(user_id)
+);
+
+-- Meanings table
+CREATE TABLE meanings (
+    meaning_id INT AUTO_INCREMENT NOT NULL,
+    user_id INT NOT NULL, 
+    location_id INT NOT NULL,
+    description VARCHAR(500) NOT NULL,
+    additional_info VARCHAR(250),
+    type ENUM('noun', 'adjective', 'article', 'pronoun', 'numeral', 'verb', 'adverb', 'preposition', 'conjunction', 'interjection', 'empty') DEFAULT 'empty',
+    PRIMARY KEY (meaning_id),
+    FOREIGN KEY(user_id) REFERENCES users(user_id),
+    FOREIGN KEY (location_id) REFERENCES locations(location_id)
+);
+
+
+CREATE TABLE meaning_interactions (
+    interaction_id INT NOT NULL,
+    meaning_id INT NOT NULL,
+    PRIMARY KEY (interaction_id, meaning_id),
+    CONSTRAINT fk_interaction
+        FOREIGN KEY (interaction_id)
+        REFERENCES interactions(interaction_id),
+    CONSTRAINT fk_meaning
+        FOREIGN KEY (meaning_id)
+        REFERENCES meanings(meaning_id)
+);
+
+
+-- Update logs table
+CREATE TABLE update_logs (
+    log_id INT AUTO_INCREMENT NOT NULL,
+    user_id INT NOT NULL, 
+    meaning_id INT NOT NULL, 
+    previous_description VARCHAR(500),
+    type ENUM('noun', 'adjective', 'article', 'pronoun', 'numeral', 'verb', 'adverb', 'preposition', 'conjunction', 'interjection', 'empty') DEFAULT 'empty',
+    update_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY(log_id),
+    FOREIGN KEY(user_id) REFERENCES users(user_id),
+    FOREIGN KEY (meaning_id) REFERENCES meanings(meaning_id)
+);
+
+-- Meaning logs table
+CREATE TABLE meaning_logs (
+    element_id INT NOT NULL,
+    meaning_id INT NOT NULL,
+    PRIMARY KEY(element_id, meaning_id),
+    CONSTRAINT fk_text_element
+        FOREIGN KEY (element_id)
+        REFERENCES textual_elements(element_id),
+    CONSTRAINT fk_meaning_ref
+        FOREIGN KEY (meaning_id)
+        REFERENCES meanings(meaning_id)
+);
