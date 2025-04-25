@@ -1,6 +1,6 @@
 
 
-create database db_regionalizando;
+create database if not exists db_regionalizando;
 use db_regionalizando;
 
 -- Users table
@@ -57,8 +57,6 @@ CREATE TABLE meanings (
 CREATE TABLE meaning_interactions (
     interaction_id INT NOT NULL,
     meaning_id INT NOT NULL,
-    like_counts INT DEFAULT 0,
-    dislike_counts INT DEFAULT 0,
     PRIMARY KEY (interaction_id, meaning_id),
     CONSTRAINT fk_interaction
         FOREIGN KEY (interaction_id)
@@ -94,8 +92,3 @@ CREATE TABLE meaning_logs (
         FOREIGN KEY (meaning_id)
         REFERENCES meanings(meaning_id)
 );
-
-
-
-
-
