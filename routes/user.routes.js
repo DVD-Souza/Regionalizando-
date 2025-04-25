@@ -3,7 +3,7 @@ const express = require('express');
 // Configures the use of a router.
 const router = express.Router();
 // Connects to the user controller.
-const userController = require('../controller/user.controller');
+const userController = require('../controllers/user.controller');
 // Requests the use of middleware
 const { protect } = require('../middleware/auth'); // Authentication middleware
 

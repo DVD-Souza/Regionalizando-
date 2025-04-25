@@ -3,7 +3,7 @@
 const express = require('express');
 const router = express.Router();
 const interactionController = require('../controllers/interactionController');
-const { protect } = require('../middleware/authMiddleware');
+const { protect } = require('../middleware/auth');
 
 // Route to create an interaction for a meaning of a word
 router.post('/word/:wordId/meaning/:meaningId/interaction', protect, interactionController.create);

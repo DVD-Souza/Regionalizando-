@@ -5,11 +5,16 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+const userRoute = require('./routes/user.routes'); 
+const wordRoute = require('./routes/wordRoutes');
+const meaningRoute = require('./routes/meaningRoutes');
+const interactionRoute = require('./routes/interactionRoutes');
+
 // Rotas organizadas
-app.use('/users', require('./routes/user.routes'));
-app.use('/words', require('./routes/wordRoutes'));
-app.use('/meanings', require('./routes/meaningRoutes'));
-app.use('/interactions', require('./routes/interactionRoutes'));
+app.use('/users', userRoute);
+app.use('/words', wordRoute);
+app.use('/meanings', meaningRoute);
+app.use('/interactions', interactionRoute);
 
 // Inicialização do servidor
 const PORT = process.env.PORT || 3000;
