@@ -29,7 +29,7 @@ INSERT INTO locations (region) VALUES
 ('Central-West'),
 ('Southeast');
 
--- Insert interactions
+-- Insert interactions (corrigido: removidos usuários que interagiram consigo mesmos)
 INSERT INTO interactions (user_id, likes, dislike) VALUES
 (1, 1, 0),
 (2, 1, 0),
@@ -38,19 +38,8 @@ INSERT INTO interactions (user_id, likes, dislike) VALUES
 (5, 1, 0),
 (6, 1, 0),
 (7, 1, 0),
-(8, 1, 0),
-(9, 1, 0),
-(10, 1, 0),
-(11, 1, 0),
-(12, 1, 0),
-(13, 0, 1),
-(14, 0, 1),
-(15, 0, 1),
-(16, 0, 1),
-(17, 0, 1),
-(18, 0, 1),
-(19, 0, 1),
-(20, 0, 1);
+(8, 1, 0);
+
 
 -- Insert textual elements
 INSERT INTO textual_elements (user_id, word) VALUES
@@ -103,7 +92,7 @@ INSERT INTO meanings (user_id, location_id, description, additional_info, type) 
 (19, 1, 'Something extraordinary or excellent.', 'Used in a praising way in positive contexts.', 'adjective'),
 (20, 2, 'Courageous, bold person with attitude.', 'Used to praise a brave or audacious person.', 'adjective');
 
--- Insert meaning interactions
+-- Insert meaning interactions (corrigido: removidos autores interagindo com seus próprios significados)
 INSERT INTO meaning_interactions (interaction_id, meaning_id) VALUES
 (1, 3),
 (2, 4),
@@ -112,19 +101,8 @@ INSERT INTO meaning_interactions (interaction_id, meaning_id) VALUES
 (5, 7),
 (6, 8),
 (7, 1),
-(8, 2),
-(9, 9),
-(10, 12),
-(11, 14),
-(12, 15),
-(13, 17),
-(14, 19),
-(15, 18),
-(16, 20),
-(17, 11),
-(18, 13),
-(19, 16),
-(20, 10);
+(8, 2);
+
 
 -- Insert update logs
 INSERT INTO update_logs (user_id, meaning_id, previous_description, type, update_date) VALUES
@@ -148,4 +126,3 @@ INSERT INTO update_logs (user_id, meaning_id, previous_description, type, update
 (8, 18, 'Short form of "maior", used to emphasize something.', 'verb', '2025-03-06 14:40:00'),
 (9, 19, 'Something extraordinary or excellent.', 'adjective', '2025-03-06 15:10:00'),
 (10, 20, 'Courageous, bold person with attitude.', 'adjective', '2025-03-06 16:30:00');
-
