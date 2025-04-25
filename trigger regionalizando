@@ -1,6 +1,6 @@
 -- Trigger de segurança para usuários
-DELIMITER // 
-CREATE TRIGGER tr_user_security  /*Correto*/
+ DELIMITER // 
+CREATE TRIGGER tr_user_security  
 BEFORE INSERT ON users
 FOR EACH ROW
 BEGIN
@@ -34,7 +34,7 @@ DELIMITER ;
 
 -- Trigger para registrar criação de significados
 DELIMITER //
-CREATE TRIGGER tg_after_insert_meanings  /* Correto */
+CREATE TRIGGER tg_after_insert_meanings 
 AFTER INSERT ON meanings
 FOR EACH ROW
 BEGIN
@@ -111,64 +111,60 @@ FOR EACH ROW
 BEGIN
     DECLARE v_user_id_interaction INT;
     DECLARE v_user_id_meaning INT;
-    DECLARE v_interaction_type VARCHAR(10);
-    DECLARE existing_interaction INT;
-    
-    -- 1. Verifica se a interação existe e obtém o tipo (like/dislike)
-    SELECT user_id, 
-           CASE WHEN likes = 1 THEN 'LIKE' 
-                WHEN dislike = 1 THEN 'DISLIKE' 
-                ELSE 'NONE' 
-           END INTO v_user_id_interaction, v_interaction_type
+    DECLARE v_like TINYINT(1);
+    DECLARE v_dislike TINYINT(1);
+    DECLARE v_meaning_id INT;
+    DECLARE v_existing_count INT;
+
+    -- Verifica se a interação existe e pega user_id e tipo
+    SELECT user_id, likes, dislike
+    INTO v_user_id_interaction, v_like, v_dislike
     FROM interactions
     WHERE interaction_id = NEW.interaction_id;
-    
+
     IF v_user_id_interaction IS NULL THEN
         SIGNAL SQLSTATE '45000'
         SET MESSAGE_TEXT = 'Erro: Interação não encontrada';
     END IF;
-    
-    -- 2. Verifica se o significado existe
-    SELECT user_id INTO v_user_id_meaning
+
+    -- Verifica se o significado existe e pega o user_id dono do significado
+    SELECT user_id
+    INTO v_user_id_meaning
     FROM meanings
     WHERE meaning_id = NEW.meaning_id;
-    
+
     IF v_user_id_meaning IS NULL THEN
         SIGNAL SQLSTATE '45001'
         SET MESSAGE_TEXT = 'Erro: Significado não encontrado';
     END IF;
-    
-    -- 3. Impede auto-interação (usuário interagindo com próprio conteúdo)
+
+    -- Impede que o usuário interaja com seu próprio conteúdo
     IF v_user_id_interaction = v_user_id_meaning THEN
         SIGNAL SQLSTATE '45002'
-        SET MESSAGE_TEXT = 'Erro: Não pode interagir com seu próprio conteúdo';
+        SET MESSAGE_TEXT = 'Erro: Você não pode interagir com seu próprio conteúdo';
     END IF;
-    
-    -- 4. Verifica se já existe esta interação
-    SELECT COUNT(*) INTO existing_interaction
-    FROM meaning_interactions
-    WHERE interaction_id = NEW.interaction_id
-    AND meaning_id = NEW.meaning_id;
-    
-    IF existing_interaction > 0 THEN
+
+    -- Impede likes e dislikes simultâneos
+    IF v_like = 1 AND v_dislike = 1 THEN
         SIGNAL SQLSTATE '45003'
-        SET MESSAGE_TEXT = 'Erro: Interação duplicada detectada';
+        SET MESSAGE_TEXT = 'Erro: Não pode dar like e dislike ao mesmo tempo';
     END IF;
-    
-    -- 5. Atualiza contagens na tabela de significados (substitui o log)
-    IF v_interaction_type = 'LIKE' THEN
-        UPDATE meanings 
-        SET likes_count = IFNULL(likes_count, 0) + 1
-        WHERE meaning_id = NEW.meaning_id;
-    ELSEIF v_interaction_type = 'DISLIKE' THEN
-        UPDATE meanings 
-        SET dislikes_count = IFNULL(dislikes_count, 0) + 1
-        WHERE meaning_id = NEW.meaning_id;
+
+    -- Verifica se o usuário já interagiu com o mesmo significado
+    SELECT COUNT(*) INTO v_existing_count
+    FROM meaning_interactions mi
+    JOIN interactions i ON i.interaction_id = mi.interaction_id
+    WHERE mi.meaning_id = NEW.meaning_id
+      AND i.user_id = v_user_id_interaction;
+
+    IF v_existing_count > 0 THEN
+        SIGNAL SQLSTATE '45004'
+        SET MESSAGE_TEXT = 'Erro: Você já interagiu com este significado';
     END IF;
+
 END$$
 
 DELIMITER ;
-
 
 
 DELIMITER $$
