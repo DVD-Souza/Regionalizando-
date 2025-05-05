@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/adicionar.css">
+    <title>Regionalizando: Seu dicionário informal regional</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+    <div class="container_logo_botoes">
+        <img id="imagemLogo" src="./assets/Regionalizando_logo 1.png" alt="Logo Regionalizando">
+
+        <div class="container_texto_logo">
+            <p id="textoLogo1"> Regionalizando </p>
+            <p id="textoLogo2">Dicionário Informal Regional</p>
+        </div>
+
+        <div class="botoes">
+           <button type="button" class="button_voltar" id="button_voltar" title="Voltar para Tela Inicial" onclick="telaPrincipal()">
+                <img src="./assets/Voltar.png" class="img_voltar" alt="Botão de voltar para Tela Inicial">
+            </button>
+        </div> 
+    </div>
+
+    <div class="background">
+            <h2 class="titulo">ADICIONAR TERMO</h2>
+            <p class="informacao"> Todas as palavras do Regionalizando foram adicionadas por pessoas como você. Agora é a sua chance de adicionar a sua própria palavra! </p>
+
+            <form action="">
+                <input type="text" name="escreverTermo" class="escreverTermo" placeholder="Palavra" id="termo">
+                
+                <h3> Escreva a definição da palavra abaixo.</h3>
+                
+                <p class="atencao"> Atenção!! </p>
+                <p class="informacao">Todas as pessoas poderão ver a definição escrita por você, então não coloque informações privadas ou de seus amigos e familiares. </p>
+                
+                <textarea maxlength="500" cols="30" rows="3" class="escreverSignificado" name="escreverSignificado" placeholder="Escreva o significado da palavra aqui" id="significado"></textarea>
+
+                <textarea maxlength="500" cols="30" rows="5" class="escreverSignificado" name="escreverSignificado" placeholder="Escreva aqui informações adicionais (casos de uso ou alguma informação relevante)" id="significado"></textarea>
+
+                <div class="container_classe_regiao">
+                    <div class="classe_regiao"> 
+                        <label for="classeGramatical" class="label_classe_regiao"> 
+                            Adicione a classe gramatical da palavra:
+                        </label> 
+                        <select id="tipo" name="classeGramatical">
+                            <option value="Vazio">Vazio</option>
+                            <option value="Substantivo">Substantivo</option>
+                            <option value="Adjetivo">Adjetivo</option>
+                            <option value="Artigo">Artigo</option>
+                            <option value="Pronome">Pronome</option>
+                            <option value="Numeral">Numeral</option>
+                            <option value="Verbo">Verbo</option>
+                            <option value="Advérbio">Advérbio</option>
+                            <option value="Preposição">Preposição</option>
+                            <option value="Conjunção">Conjunção</option>
+                            <option value="Interjeição">Interjeição</option>
+                        </select>
+                    </div>
+    
+                    <div class="classe_regiao">
+                        <label for="regiao" class="label_classe_regiao"> 
+                            Qual a região que utiliza essa gíria:
+                        </label>
+                        <select id="regiao" name="regiao">
+                            <option value="Vazio">Vazio</option>
+                            <option value="Nordeste">Nordeste</option>
+                            <option value="Norte">Norte</option>
+                            <option value="Sul">Sul</option>
+                            <option value="Sudeste">Sudeste</option>
+                            <option value="Centro-Oeste">Centro-Oeste</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="termos">
+                    <p>Significados estão sujeitos aos nossos <a href="#" class="termosepolitica"> termos de serviço</a> e <a href="#" class="termosepolitica"> políticas de privacidade.</a></p>
+                </div>
+                  
+                  
+                <button class="enviar">Enviar</button>
+
+            </form>
+    </div>
+
+    </body>
+
+    <script>
+    function telaLogin(){
+        window.location.href = "login.html";
+    }
+    function telaPrincipal(){
+        window.location.href = "index.html";
+    }
+    function telaIndex(){
+        window.location.href = "Index.html";
+    }
+    </script>
+
+    </html>

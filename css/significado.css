@@ -1,0 +1,547 @@
+@import url('https://fonts.cdnfonts.com/css/source-serif-pro');
+/* font-family: 'Source Serif Pro', sans-serif; */
+                                                
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    --primary: #F2D027;
+    --secondary: #F2B705;
+    --terciary: #D98E04;
+    --quartenary:#A66D03;
+    --quintenary:#8C4E03;
+    --branco:#f8f8f8;
+}
+
+body {
+    background-color: var(--quintenary);
+}
+
+button:hover{
+    cursor: pointer;
+}
+
+#imagemLogo{
+    margin-top: 0.5%;
+    margin-left: 0.5%;
+}
+
+.container_logo_botoes {
+    display:flex;
+    justify-content: space-between;
+}
+
+
+.container_logo{
+    display: flex;
+}
+
+#textoLogo1{
+    color: #F2D027;
+    font-size: 64px;
+    font-family: 'Source Serif Pro', sans-serif;                                      
+    font-weight: bold;
+    }
+
+#textoLogo2{
+    position: absolute;
+    color: #F2B705;
+    font-size: 24px;
+    font-family: 'Source Serif Pro', sans-serif;                          
+    left: 140px;
+    top: 90px;
+}
+
+.botoes{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    gap:10px;
+    margin:0% 5%;
+
+    & .botoes_header{
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        width: 173px;
+        height: 67px;
+        color: #F2B705;
+        font-size: 32px;
+        font-weight: bold;
+        font-family: 'Source Serif Pro', sans-serif;
+        border-radius: 45px;
+        border: none;
+        background-color: #A66D03;
+    }
+
+    & .botoes_header:hover{
+        background-color: #A35D00;
+        cursor: pointer;
+    }
+}
+
+#userImage{
+ margin-left: 5px;
+}
+
+#menuImage{
+margin-left: 5px;
+}
+
+#buscarimg{
+    position: absolute;
+    left: 4%;
+    width: 30px;
+}
+
+#maisimg{
+    width: 60px;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+#maisimg:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.container_pesquisa_add{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3%;
+    background-color: var(--primary);
+    border-radius: 50px;
+    height: 75px;
+    width: 90%;
+    padding:0% 2% 0% 2%;
+    margin: 0% 5%;
+}
+
+.input_buscar{
+    border-radius:0 50px 50px 0;
+    width: 100%;
+    height: 50px;
+    text-align: left;
+    font-family: 'Source Serif Pro', sans-serif;
+    border-radius: 100px;
+    border:2px solid black;
+    padding-left: 80px;
+    font-size: 30px;
+    outline: none;
+}
+
+.container_significados{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: auto;
+    background-color: #8C4E03;
+    margin: 3% 5% 0% 5%;
+}
+
+.palavra{
+    display: flex;
+    padding-left: 100px;
+    flex-direction: column;
+    background-color: #F2B705;
+    width: 100%;
+    height: 431px;
+    align-self: center;
+    justify-self: center;
+    border-radius: 15px;
+    font-family: 'Source Serif Pro', sans-serif;
+
+    & button{
+        font-family: 'Source Serif Pro', sans-serif;
+    }
+}
+
+.palavra1{
+    display: flex;
+    padding-left: 100px;
+    flex-direction: column;
+    background-color: #D98E04;
+    width: 100%;
+    height: 431px;
+    align-self: center;
+    justify-self: center;
+    border-radius: 15px;
+    font-family: 'Source Serif Pro', sans-serif;
+
+    & button{
+        font-family: 'Source Serif Pro', sans-serif;
+    }
+}
+
+.nomesignificado{
+    font-size: clamp(32px, 4vw, 60px);   
+    font-weight: bold;
+    text-align: left;
+    background-color: transparent;
+    border: none;
+    
+}
+
+.tiposignificado{
+    font-size: 40px;
+    color: #F8F8F8;
+}
+
+.descricaosignificado{
+    font-size: 47.5px;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+.criadorsignificado{
+    font-size: 36.5px;
+    font-weight: 600;
+    font-style: italic;
+}
+
+.nomeusuario{
+    color: white;
+    font: Source Serif Pro;
+    background-color: transparent;
+    border: none;
+    font-size: 18px;
+}
+
+.likedislike{
+    width: 220px;
+    display: flex;
+    flex-direction: row;
+    height: 80px;
+}
+.likeimagem{
+    border: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 110px;
+    height: 80px;
+    background-color: #8C4E03;
+    border-radius: 45px 0px 0px 45px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+.likeimagem:hover{
+    border: 2px solid #000;
+    cursor: pointer;
+}
+
+.dislikeimagem{
+    border: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 110px;
+    height: 80px;
+    background-color: #A66D03;
+    border-radius: 0px 45px 45px 0px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.dislikeimagem:hover{
+    border: 2px solid #000;
+    cursor: pointer;
+}
+
+.contarLikes{
+    background-color: red;
+    display: flex;
+    flex-direction: row;
+    margin-left: 3.2%;
+    gap :10px;
+}
+
+.regiaonome{
+    color: white;
+    font-size: 48px;
+    font-weight: 600;
+    font-style: italic;
+    text-align: right;
+    vertical-align: text-top;
+    margin-top: 50px;
+    margin-right: 2%;
+}
+
+.container_botao_vermais{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & button{
+        padding: 20px 60px 20px 60px;
+        font-family: 'Source Serif Pro', sans-serif;
+        font-weight: bold;
+        font-size: 32px;
+        background-color: var(--quartenary);
+        border-radius: 15px;
+        border: none;
+        margin-bottom: 40px;
+    }
+
+    & button:hover{
+    background-color: var(--terciary);
+    color: var(--branco);
+    cursor: pointer;
+    }
+}
+
+.texto_addcomentario{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin:5% 5% 0% 5%;
+    gap: 1%;
+}
+
+#Titulo{
+    font-size: 80px;
+    font-weight: bold;
+    font-family: 'Source Serif Pro', sans-serif;
+    text-align: left;
+    border: none;
+    color: white;
+    text-decoration: underline;
+}
+
+.addcomentario{
+    align-self: end;
+    height: 1%;
+    padding: 5px 20px;
+    border-radius: 15px;
+    font-size: 32px;
+    border: 2px solid black;
+    background-color: var(--terciary);
+    font-family: 'Source Serif Pro', sans-serif;
+}
+
+.addcomentario:hover{
+    background-color: var(--quartenary);
+    border-color: var(--terciary);
+    color: var(--branco);
+    cursor: pointer;
+}
+
+/* O modal em si */
+.modal {
+    display: none; /* Inicialmente escondido */
+    overflow: hidden;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+  
+  /* Conteúdo do modal */
+  .modal-content {
+    background-color: var(--quintenary);
+    padding: 20px;
+    border-radius: 15px;
+    justify-self: center;
+    border: 3px solid black;
+    width: 80%;
+    max-width: 1000px;
+    width: clamp(85%, 70vw, 70%);
+    margin-top: 10px;
+  }
+  
+  
+.modal_background{
+    background-color: var(--quartenary);
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.titulo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: underline;
+    color: black;
+    font-size: 36px;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 5%;
+}
+
+.escreverSignificado{
+    width: 100%;
+    padding: 2%;
+    margin: 2% 0% 2% 0%;
+    font-family: 'Roboto Serif', sans-serif;
+    font-weight: bolder;
+    font-size: 20px;
+    border-radius: 15px;
+    border: 1px solid black;
+    border-bottom: 3px solid black;
+    resize: none;
+}
+
+.escreverSignificado:hover{
+    cursor: pointer;
+}
+
+.escreverSignificado:focus{
+    outline: none;
+    cursor: text;
+}
+
+.atencao{
+    color: black;
+    font-weight: 900;
+    font-size: 20px;
+    font-family: 'Roboto Serif', sans-serif;
+    margin-bottom: 5px;
+}
+
+.classeGramatical{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: auto;
+}
+
+select{
+    align-self: center;
+    background-color: #A35D00; 
+    color: black;
+    border: none;
+    padding: 6px;
+    border-radius: 4px;
+    font-family: 'Source Serif Pro', sans-serif;
+    cursor: pointer;
+    font-size: 16px;
+    width: 20%;
+    outline: none;
+    border: 1px solid black;
+    font-weight: bold;
+}
+
+select:after{
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: black;
+}
+
+option{
+    background-color: var(--quintenary);
+    color:black;
+    font-family: 'Source Serif Pro', sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.label_classe_regiao{
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    color: white;
+    font-family: 'Roboto Serif', sans-serif;
+    font-weight: lighter;
+}
+
+.classe_regiao{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container_classe_regiao{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.termos{
+    display: flex;
+    justify-content: center;
+    font-size: 18px;
+    margin-top: 5%;
+    margin-bottom: 5px;
+}
+
+.enviar{
+    display: flex;
+    background-color: var(--primary);
+    justify-self: center;
+    justify-content: center;
+    width: 90%;
+    padding-left: 50px;
+    padding-right: 50px;
+    border-radius: 15px;
+    border: 1px solid black;
+    border-bottom: 3px solid black;
+    font-size: 48px;
+    font-weight: bold;
+    font-family: 'Source Serif Pro', sans-serif;
+
+}
+
+.enviar:hover{
+    cursor: pointer;
+    background-color: var(--secondary);
+    border: 1px solid var(--branco);
+    border-bottom: 3px solid var(--branco);
+    color: var(--branco);
+
+}
+
+.enviar:focus{
+    cursor: default;
+    outline: none;
+}
+
+a{
+    color: black;
+    text-decoration: underline;
+}
+
+.termos p{
+    color: white;
+}
+
+
+.botoes{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 5%;
+}
+
+.fechar {
+    display: flex;
+    justify-self: right;
+
+    margin-right: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #aaa;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    background: transparent;
+    border: none;
+
+  }
+  
+  .fechar:hover {
+    color: black;
+  }
+  
+  .voltarIndex{
+    position: relative;
+    background: transparent;
+    border: none;
+  }

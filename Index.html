@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/index.css">
+    <title>Regionalizando: Seu dicionário informal regional</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+    <div class="container_logo_botoes">
+        <div class="container_logo">
+            <button class="voltarIndex" onclick="telaIndex()"> 
+                <img id="imagemLogo" src="./assets/Regionalizando_logo 1.png" alt="Logo Regionalizando">
+            </button>
+        
+            <button class="voltarIndex" onclick="telaIndex()">
+                <p id="textoLogo1"> Regionalizando </p>
+                <p id="textoLogo2">Dicionário Informal Regional</p>
+            </button>
+            
+        </div>
+
+        <div class="botoes">
+            <button type="button" class="botoes_header" id="botaoLogin" onclick="telaLogin()">
+                Login  
+                <img id="userImage" src="./assets/User.png"> 
+            </button>
+            <button type="button" class="botoes_header" id="botaoPerfil" onclick="mostrarMensagem()">
+                Menu  
+                <img id="menuImage" src="./assets/Hamburguer.png" alt="3 tracinhos menu"> 
+            </button>
+        </div>
+    </div>
+
+    <div class="container_pesquisa_add" id="barraDePesquisa">
+        <input class="input_buscar" placeholder="Procure um termo" type="text" name="buscar" id="buscar">
+        <img id="buscarimg" src="/assets/Vector.png" alt="imagem lupa">
+        <button type="button" class="adicionarTermo" onclick="telaAdicionar()"> 
+            <img id="maisimg" src="/assets/Add@2x.png" alt="Imagem mais"> 
+        </button>
+    </div>
+
+    <div class="container_significados_filtros">
+
+        <div class="container_significados">
+
+            <div class="palavra">
+                <button class="nomesignificado" onclick="telaSignificado()"> "Nome Significado" </button>
+                <p class="tiposignificado"> "Tipo Significado"</p>
+                <p class="descricaosignificado"> "Descrição significado"</p>
+                <p> Significado de "Palavra" por <button class="nomeusuario" onclick="telaPerfil()">"Usuário"</button> em "Data"</p>
+                <div class="likedislike">
+                    <div class="likeimagem">
+                        <img src="/assets/Like.png" alt="Imagem Like">
+                        <p>"Likes"</p>
+                    </div>
+                    <div class="dislikeimagem">
+                        <img src="/assets/Dislike.png" alt="Imagem Dislike">
+                        <p>"Dislikes"</p>
+                    </div>
+                </div>
+                <p class="regiaonome"> "Região" </p>
+            </div>
+
+            <div class="palavra1">
+                <button class="nomesignificado" onclick="telaSignificado()"> "Nome Significado" </button>
+                <p class="tiposignificado"> "Tipo Significado"</p>
+                <p class="descricaosignificado"> "Descrição significado"</p>
+                <p> Significado de "Palavra" por <button class="nomeusuario" onclick="telaPerfil()">"Usuário"</button> em "Data"</p>
+                <div class="likedislike">
+                    <button class="likeimagem">
+                        <img src="/assets/Like.png" alt="Imagem Like">
+                        <p>"Likes"</p>
+                    </button>
+                    <button class="dislikeimagem">
+                        <img src="/assets/Dislike.png" alt="Imagem Dislike">
+                        <p>"Dislikes"</p>
+                    </button>
+                </div>
+                <p class="regiaonome"> "Região" </p>
+            </div>
+
+            <div class="palavra">
+                <button class="nomesignificado" onclick="telaSignificado()"> "Nome Significado" </button>
+                <p class="tiposignificado"> "Tipo Significado"</p>
+                <p class="descricaosignificado"> "Descrição significado"</p>
+                <p> Significado de "Palavra" por <button class="nomeusuario" onclick="telaPerfil()">"Usuário"</button> em "Data"</p>
+                <div class="likedislike">
+                    <div class="likeimagem">
+                        <img src="/assets/Like.png" alt="Imagem Like">
+                        <p>"Likes"</p>
+                    </div>
+                    <div class="dislikeimagem">
+                        <img src="/assets/Dislike.png" alt="Imagem Dislike">
+                        <p>"Dislikes"</p>
+                    </div>
+                </div>
+                <p class="regiaonome"> "Região" </p>
+            </div>
+
+            <div class="palavra1">
+                <button class="nomesignificado" onclick="telaSignificado()"> "Nome Significado" </button>
+                <p class="tiposignificado"> "Tipo Significado"</p>
+                <p class="descricaosignificado"> "Descrição significado"</p>
+                <p> Significado de "Palavra" por <button class="nomeusuario" onclick="telaPerfil()">"Usuário"</button> em "Data"</p>
+                <div class="likedislike">
+                    <div class="likeimagem">
+                        <img src="/assets/Like.png" alt="Imagem Like">
+                        <p>"Likes"</p>
+                    </div>
+                    <div class="dislikeimagem">
+                        <img src="/assets/Dislike.png" alt="Imagem Dislike">
+                        <p>"Dislikes"</p>
+                    </div>
+                </div>
+                <p class="regiaonome"> "Região" </p>
+            </div>
+
+            <div class="palavra">
+                <button class="nomesignificado" onclick="telaSignificado()"> "Nome Significado" </button>
+                <p class="tiposignificado"> "Tipo Significado"</p>
+                <p class="descricaosignificado"> "Descrição significado"</p>
+                <p> Significado de "Palavra" por <button class="nomeusuario" onclick="telaPerfil()">"Usuário"</button> em "Data"</p>
+                <div class="likedislike">
+                    <div class="likeimagem">
+                        <img src="/assets/Like.png" alt="Imagem Like">
+                        <p>"Likes"</p>
+                    </div>
+                    <div class="dislikeimagem">
+                        <img src="/assets/Dislike.png" alt="Imagem Dislike">
+                        <p>"Dislikes"</p>
+                    </div>
+                </div>
+                <p class="regiaonome"> "Região" </p>
+            </div>
+
+            <div class="palavra1">
+                <button class="nomesignificado" onclick="telaSignificado()"> "Nome Significado" </button>
+                <p class="tiposignificado"> "Tipo Significado"</p>
+                <p class="descricaosignificado"> "Descrição significado"</p>
+                <p> Significado de "Palavra" por <button class="nomeusuario" onclick="telaPerfil()">"Usuário"</button> em "Data"</p>
+                <div class="likedislike">
+                    <div class="likeimagem">
+                        <img src="/assets/Like.png" alt="Imagem Like">
+                        <p>"Likes"</p>
+                    </div>
+                    <div class="dislikeimagem">
+                        <img src="/assets/Dislike.png" alt="Imagem Dislike">
+                        <p>"Dislikes"</p>
+                    </div>
+                </div>
+                <p class="regiaonome"> "Região" </p>
+            </div>
+            <div class="container_botao_vermais">
+                <button>Ver mais</button>
+            </div>
+        </div>
+
+        <div class="container_filtros">
+
+            <div class="filtros">
+
+                <h3>Filtros:</h3>
+
+                <form action="" method="get">
+
+                    <div class="campos_filtros">
+                        <label for="regiao">Região:</label>
+                        <select id="regiao" name="regiao">
+                            <option value="todas">Todas</option>
+                            <option value="norte">Norte</option>
+                            <option value="nordeste">Nordeste</option>
+                            <option value="centro_oeste">Centro Oeste</option>
+                            <option value="sudeste">Sudeste</option>
+                            <option value="sul">Sul</option>
+                        </select>
+                    </div>
+
+                    <div class="campos_filtros">
+                        <label for="tipo">Tipo:</label>
+                        <select id="tipo" name="tipo">
+                            <option value="Todos">Todos</option>
+                            <option value="Substantivo">Substantivo</option>
+                            <option value="Adjetivo">Adjetivo</option>
+                            <option value="Artigo">Artigo</option>
+                            <option value="Pronome">Pronome</option>
+                            <option value="Numeral">Numeral</option>
+                            <option value="Verbo">Verbo</option>
+                            <option value="Advérbio">Advérbio</option>
+                            <option value="Preposição">Preposição</option>
+                            <option value="Conjunção">Conjunção</option>
+                            <option value="Interjeição">Interjeição</option>
+                        </select>
+                    </div>
+
+                    <button type="submit">Aplicar</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+
+<script>
+    function mostrarMensagem() {
+        alert("Em Breve");
+    }
+    function telaLogin(){
+        window.location.href = "login.html";
+    }
+
+    function telaSignificado(){
+        window.location.href = "significado.html";
+    }
+    function telaPerfil(){
+        window.location.href = "perfil.html";
+    }
+    function telaAdicionar(){
+        window.location.href = "adicionar.html";
+    }
+    function telaIndex(){
+        window.location.href = "Index.html";
+    }
+</script>
+
+
+</html>

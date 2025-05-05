@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.cdnfonts.com/css/source-serif-pro');
+/* font-family: "Roboto Serif", serif; */
+/* font-family: 'Source Serif Pro', sans-serif; */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    --primary: #F2D027;
+    --secondary: #F2B705;
+    --terciary: #D98E04;
+    --quartenary:#A66D03;
+    --quintenary:#8C4E03;
+    --branco:#f8f8f8;
+}
+
+body{
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--quintenary);
+}
+.background{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50vw;
+    height: auto;
+    background-color: var(--terciary);
+    border-radius: 15px;
+    padding: 50px 0px;
+}
+#mensagemRegistro{
+    color: var(--branco);
+    font-size: 48px;
+    margin-bottom: 10px;
+    font-family: 'Source Serif Pro', sans-serif;
+}
+
+.labels{
+    color: white;
+    font-size: 24px;
+    margin-top: 1vw;
+
+}
+
+#invisivel{
+    align-self: center;
+    justify-self: center;
+    width: 90%;
+    height: auto;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+
+    & div{
+        position: relative;
+    }
+}
+
+.inputs{
+    border-radius: 7px;
+    border: none;
+    width: 100%;
+    height:30px;
+    padding-left: 1vw;
+    font-size: 16px;
+    align-items: center;
+}
+
+#inputs:hover{
+    border: none;
+}
+
+.enviar{
+    display: flex;
+    font-family: 'Source Serif Pro', sans-serif;
+    border-radius: 15px;
+    margin-top: 4vh;
+    width: 100%;
+    height: auto;
+    background-color: var(--primary);
+    border: none;
+    font-size: 48px;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+.enviar:hover{
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+#jatemconta{
+    font-size: 20px;
+    font-family: 'Source Serif Pro', sans-serif;
+    font-weight: bolder;
+    margin-top: 2px;
+    background-color: transparent;
+    border: none;
+}
+#jatemconta:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+.icone_olho_fechado{
+    position: absolute;
+    bottom: 4px;
+    right: 20px;
+    background-color: transparent;
+    border: none;
+}
+
+.icone_olho_fechado:hover{
+    cursor: pointer;
+}

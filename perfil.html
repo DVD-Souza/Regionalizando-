@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/perfil.css">
+    <title>Regionalizando: Seu dicionário informal regional</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+    <div class="container_logo_botoes">
+        <img id="imagemLogo" src="./assets/Regionalizando_logo 1.png" alt="Logo Regionalizando">
+
+        <div class="container_texto_logo">
+            <p id="textoLogo1"> Regionalizando </p>
+            <p id="textoLogo2">Dicionário Informal Regional</p>
+        </div>
+
+        <div class="botoes">
+            <button type="button" class="botoes_header" id="botaoLogin" onclick="telaLogin()">
+                Login  
+                <img id="userImage" src="./assets/User.png">
+            </button>
+            <button type="button" class="botoes_header" id="botaoPerfil" onclick="mostrarMensagem()">
+                Menu 
+                <img id="menuImage" src="./assets/Hamburguer.png" alt="3 tracinhos menu">
+            </button>
+        </div>
+    </div>
+
+    <div class="background">
+        <P class="nomeUsuario"> Carlos Lima </P>
+        <p class="apresentacao"> Usuário há "Maior Tempo (anos/meses/semanas/dias/horas)" (Desde "dia/mês/ano") </p>
+        <p class="apresentacao"> Já enviou "quantidade definições" definições </p>
+
+
+
+        <div class="palavra">
+            <button class="nomesignificado"> "Nome Significado" </button>
+            <p class="tiposignificado"> "Tipo Significado"</p>
+            <p class="descricaosignificado"> "Descrição significado"</p>
+            <p> Significado de "Palavra" por <button class="nomeusuario" onclick="telaPerfil()">"Usuário"</button> em "Data"</p>
+            <div class="likedislike">
+                <div class="likeimagem">
+                    <img src="/assets/Like.png" alt="Imagem Like">
+                    <p>"Likes"</p>
+                </div>
+                <div class="dislikeimagem">
+                    <img src="/assets/Dislike.png" alt="Imagem Dislike">
+                    <p>"Dislikes"</p>
+                </div>
+            </div>
+            <p class="regiaonome"> "Região" </p>
+        </div>
+
+        <div class="criarPalavras">
+            <p class="textoCriouPalavra">Criou as seguintes palavras:</p>
+            <ul class="palavrasCriadas">
+                <li>"Primeiro item"</li>
+                <li>"Segundo item"</li>
+                <li>"Terceiro item"</li>
+              </ul>
+            </div>
+</div>
+
+
+
+    </body>
+    
+    <script>
+        function mostrarMensagem() {
+            alert("Você clicou no botão!");
+        }
+    
+        function telaLogin(){
+            window.location.href = "login.html";
+        }
+        function telaPerfil(){
+            window.location.href = "perfil.html";
+        }
+        </script>
+    </html>
