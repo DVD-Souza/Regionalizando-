@@ -10,7 +10,7 @@ class Word {
 
   // Word creation and return of the object with the generated ID
   static async create({ addedBy, word }) {
-    const query = 'INSERT INTO words (user_id, word) VALUES (?, ?)';
+    const query = 'INSERT INTO textual_elements (user_id, word) VALUES (?, ?)';
     const [result] = await db.execute(query, [addedBy, word]);
     return { id: result.insertId, addedBy, word };
   }
@@ -24,7 +24,7 @@ class Word {
 
   // Search by parameter (filtering by name, region, etc.) — adapt according to table structure
   static async byParams({ name, region, type }) {
-    let query = 'SELECT * FROM words WHERE 1=1';
+    let query = 'SELECT * FROM textual_elements WHERE 1=1';
     const values = [];
     if (name) {
       query += ' AND word LIKE ?';

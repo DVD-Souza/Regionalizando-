@@ -32,11 +32,8 @@ class User {
 
   // Method to create a new user
   static async create(newUser) {
-    // Hash the password before saving it
-    const hashedPassword = await bcrypt.hash(newUser.password, 10);
-    
     const query = 'INSERT INTO users (name, email, password) VALUES (?, ?, ?)';
-    await db.execute(query, [newUser.name, newUser.email, hashedPassword]);
+    await db.execute(query, [newUser.name, newUser.email, newUser.password]);
   }
 
   // Method to update user data
@@ -46,9 +43,8 @@ class User {
 
     // If password is provided, hash it again
     if (password) {
-      const hashedPassword = await bcrypt.hash(password, 10); // Hash the new password
       fields.push('password = ?');
-      values.push(hashedPassword);
+      values.push(password);
     }
 
     if (name) {

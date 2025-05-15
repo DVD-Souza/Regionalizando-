@@ -3,18 +3,20 @@
 const db = require('../config/db');
 
 class Meaning {
-  constructor(id, region_id, description, additional_info, type) {
+  constructor(id, addedBy, region, description, additional_info, type) {
     this.id = id;
-    this.region_id = region_id;             // Value received as "region"
+    this.user_id = addedBy;
+    this.region_id = region;             // Value received as "region"
     this.description = description;         // Value received as "description"
     this.additional_info = additional_info; // Value received as "info"
     this.type = type || 'empty';            // Value received as "type", with default if not provided
   }
 
   static async create(newMeaning) {
-    const query = 'INSERT INTO meanings (region_id, description, additional_info, type) VALUES (?, ?, ?, ?)';
+    const query = 'INSERT INTO meanings (user_id, location_id, description, additional_info, type) VALUES (?, ?, ?, ?, ?)';
     // Here we use the properties of the newMeaning object as defined in the constructor
-    await db.execute(query, [newMeaning.region_id, newMeaning.description, newMeaning.additional_info, newMeaning.type]);
+    const [result] = await db.execute(query, [newMeaning.user_id, newMeaning.region_id, newMeaning.description, newMeaning.additional_info, newMeaning.type]);
+    return { id: result.insertId };
   }
 
   static async getByWordId(wordId) {

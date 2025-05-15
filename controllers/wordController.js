@@ -16,12 +16,12 @@ const create = async (req, res) => {
     const createdWord = await Word.create({ addedBy, word });
     
     // Create the meaning
-    const newMeaning = new Meaning(null, region, description, info, type);
+    const newMeaning = new Meaning(null, addedBy, region, description, info, type);
     const createdMeaning = await Meaning.create(newMeaning);
     
     // Associate the meaning with the word in the relationship table,
     // assuming the table is "words_meanings"
-    const associationQuery = 'INSERT INTO words_meanings (word_id, meaning_id) VALUES (?, ?)';
+    const associationQuery = 'INSERT INTO meaning_logs (element_id, meaning_id) VALUES (?, ?)';
     await db.execute(associationQuery, [createdWord.id, createdMeaning.id]);
 
     res.status(201).send("Word added successfully.");
@@ -37,14 +37,15 @@ const getSix = async (req, res) => {
     const limit = 6;
     const offset = (page - 1) * limit;
 
-    const [rows] = await db.execute(
-      `SELECT p.*, u.username 
-       FROM words p 
-       JOIN users u ON p.added_by = u.id 
-       ORDER BY RAND() 
-       LIMIT ? OFFSET ?`,
-      [limit, offset]
-    );
+    const query = `
+      SELECT p.*, u.name 
+      FROM textual_elements p 
+      JOIN users u ON p.user_id = u.user_id 
+      ORDER BY RAND() 
+      LIMIT ${limit} OFFSET ${offset}
+    `;
+
+    const [rows] = await db.execute(query);
 
     res.status(200).json({
       currentPage: page,
@@ -53,9 +54,10 @@ const getSix = async (req, res) => {
     });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ message: 'Error while fetching words' });
+    res.status(500).json({ message: 'Error while fetching words', error: err.message });
   }
 };
+
 
 const getByParams = async (req, res) => {
   try {
