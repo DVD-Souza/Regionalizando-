@@ -17,7 +17,7 @@ class Word {
 
   // Word removal
   static async remove(id) {
-    const query = 'DELETE FROM words WHERE id = ?';
+    const query = 'DELETE FROM textual_elements WHERE element_id = ?';
     const [result] = await db.execute(query, [id]);
     return result;
   }
@@ -50,11 +50,11 @@ class Word {
   }
 
   // Word update (field "word")
-  static async update(id, name) {
-    if (!name) return { affectedRows: 0 };
+  static async update(id, word) {
+    if (!word) return { affectedRows: 0 };
 
-    const query = 'UPDATE words SET word = ? WHERE id = ?';
-    const [result] = await db.execute(query, [name, id]);
+    const query = 'UPDATE textual_elements SET word = ? WHERE element_id = ?';
+    const [result] = await db.execute(query, [word, id]);
     return result;
   }
 }

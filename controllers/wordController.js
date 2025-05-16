@@ -86,10 +86,10 @@ const getByParams = async (req, res) => {
 
 const remove = async (req, res) => {
   try {
-    const { palavraId } = req.params;
+    const { id } = req.params;
 
     // Check if the word exists
-    const [rows] = await db.execute('SELECT * FROM words WHERE id = ?', [palavraId]);
+    const [rows] = await db.execute('SELECT * FROM textual_elements WHERE element_id = ?', [id]);
     const word = rows[0];
 
     if (!word) {
@@ -97,11 +97,11 @@ const remove = async (req, res) => {
     }
 
     // Check if user is authorized to delete (handled by protect middleware)
-    if (word.added_by !== req.user.id) {
+    if (word.user_id !== req.user.id) {
       return res.status(403).json({ message: 'You are not allowed to delete this word' });
     }
 
-    await Word.remove(palavraId);
+    await Word.remove(id);
     res.status(200).json({ message: 'Word successfully deleted' });
   } catch (err) {
     console.error(err);
@@ -111,14 +111,14 @@ const remove = async (req, res) => {
 
 const update = async (req, res) => {
   try {
-    const { palavraId } = req.params;
-    const { name } = req.body; // New name to update
+    const { id } = req.params;
+    const { word } = req.body; // New name to update
 
-    if (!name) {
+    if (!word) {
       return res.status(400).json({ message: 'No field provided for update.' });
     }
 
-    const result = await Word.update(palavraId, name);
+    const result = await Word.update(id, word);
 
     if (result.affectedRows === 0) {
       return res.status(404).json({ message: 'Word not found.' });

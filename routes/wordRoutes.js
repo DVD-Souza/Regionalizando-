@@ -15,9 +15,9 @@ router.get('/word', wordController.getSix);
 router.get('/word/search', wordController.getByParams);
 
 // Route to delete a word (only the creator can delete)
-router.delete('/word/:wordId', protect, wordController.remove);
+router.delete('/word/:id', protect, wordController.remove);
 
 // Route to update a word (only the creator can update)
-router.put('/word/:wordId', protect, wordController.update);
+router.put('/word/:id', protect, wordController.update);
 
 module.exports = router;
