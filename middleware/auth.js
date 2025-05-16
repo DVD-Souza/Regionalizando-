@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 
 const protect = (req, res, next) => {
     const authHeader = req.headers.authorization;
-    const token = authHeader?.split(' ')[1];
+    const token = authHeader;
 
     console.log('Authorization header:', authHeader);
     console.log('Token extraído:', token);
