@@ -5,18 +5,19 @@ const Meaning = require('../models/Meaning');
 const create = async (req, res) => {
   try {
     const { wordId } = req.params; // Word ID
-    const { region, description, info, type } = req.body; // Sent data
+    const { addedBy ,region, description, info, type } = req.body; // Sent data
 
     // Validate required fields
-    if (!region || !description || !info || !type) {
-      return res.status(400).json({
-        message: 'All fields (region, description, info, and type) are required to create the meaning.'
-      });
-    }
+   if (!addedBy || !region || !description || !info || !type) {
+  return res.status(400).json({
+    message: 'All fields (addedBy, region, description, info, and type) are required to create the meaning.'
+  });
+}
+
 
     // Create the meaning object – note that the constructor maps:
     // region → region_id, description → description, info → additional_info, and type → type
-    const newMeaning = new Meaning(null, region, description, info, type);
+    const newMeaning = new Meaning(null,addedBy ,region, description, info, type);
     await Meaning.create(newMeaning);
 
     // Retrieve the ID of the newly created meaning
@@ -24,7 +25,7 @@ const create = async (req, res) => {
     const meaningId = result[0].id;
 
     // Associate the meaning with the word in the relationship table (e.g., words_meanings)
-    const associationQuery = 'INSERT INTO words_meanings (word_id, meaning_id) VALUES (?, ?)';
+    const associationQuery = 'INSERT INTO meaning_logs (element_id, meaning_id) VALUES (?, ?)';
     await db.execute(associationQuery, [wordId, meaningId]);
 
     res.status(201).json({ message: 'Meaning created and successfully associated with the word.' });

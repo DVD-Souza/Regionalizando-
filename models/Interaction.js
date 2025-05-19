@@ -3,18 +3,18 @@
 const db = require('../config/db');
 
 class Interaction {
-  constructor(id, user_id, like, dislike) {
+  constructor(id, userId, like, dislike) {
     this.id = id;
-    this.user_id = user_id;
+    this.user_id = userId;
     this.like = like;
     this.dislike = dislike;
   }
 
   // Creates an interaction in the database
-  static async create(user_id, like, dislike) {
+  static async create(newInteraction) {
     // Uses three placeholders for the table fields
-    const query = `INSERT INTO interactions (user_id, like, dislike) VALUES (?, ?, ?)`;
-    const [result] = await db.execute(query, [user_id, like, dislike]);
+    const query = `INSERT INTO interactions (user_id, likes, dislike) VALUES (?, ?, ?)`;
+    const [result] = await db.execute(query, [newInteraction.user_id, newInteraction.like, newInteraction.dislike]);
     return result;
   }
 
@@ -23,7 +23,7 @@ class Interaction {
     const query = `
       SELECT i.*
       FROM interactions AS i
-      INNER JOIN interactions_meanings AS im ON i.id = im.interaction_id
+      INNER JOIN meaning_interactions AS im ON i.interaction_id = im.interaction_id
       WHERE im.meaning_id = ? AND i.user_id = ?`;
     const [rows] = await db.execute(query, [meaningId, user_id]);
     return rows[0];
@@ -33,10 +33,10 @@ class Interaction {
   static async allInt(meaningId) {
     const query = `
       SELECT 
-        SUM(CASE WHEN i.like = 1 THEN 1 ELSE 0 END) AS total_likes,
+        SUM(CASE WHEN i.likes = 1 THEN 1 ELSE 0 END) AS total_likes,
         SUM(CASE WHEN i.dislike = 1 THEN 1 ELSE 0 END) AS total_dislikes
       FROM interactions AS i
-      INNER JOIN interactions_meanings AS im ON i.id = im.interaction_id
+      INNER JOIN meaning_interactions AS im ON i.interaction_id = im.interaction_id
       WHERE im.meaning_id = ?`;
       
     const [rows] = await db.execute(query, [meaningId]);

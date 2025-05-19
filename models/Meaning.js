@@ -23,8 +23,8 @@ class Meaning {
     const query = `
       SELECT m.*
       FROM meanings m
-      JOIN words_meanings wm ON m.id = wm.meaning_id
-      WHERE wm.word_id = ?`;
+      JOIN meaning_logs wm ON m.meaning_id = wm.meaning_id
+      WHERE wm.element_id = ?`;
     const [rows] = await db.execute(query, [wordId]);
     return rows;
   }
@@ -32,9 +32,9 @@ class Meaning {
   static async delete(wordId, meaningId) {
     const query = `
       DELETE wm
-      FROM words_meanings wm
-      JOIN meanings m ON wm.meaning_id = m.id
-      WHERE wm.word_id = ? AND wm.meaning_id = ?`;
+      FROM meaning_logs wm
+      JOIN meanings m ON wm.meaning_id = m.meaning_id
+      WHERE wm.element_id = ? AND wm.meaning_id = ?`;
     const [result] = await db.execute(query, [wordId, meaningId]);
     return result;
   }
@@ -49,7 +49,7 @@ class Meaning {
     const values = [];
 
     if (region) {
-      query += 'region_id = ?, ';
+      query += 'location_id = ?, ';
       values.push(region);
     }
     if (description) {
@@ -69,7 +69,7 @@ class Meaning {
     query = query.slice(0, -2);
 
     // Add the WHERE clause filtering by the meaning ID
-    query += ' WHERE id = ?';
+    query += ' WHERE meaning_id = ?';
     values.push(meaningId);
 
     const [result] = await db.execute(query, values);
@@ -78,3 +78,4 @@ class Meaning {
 }
 
 module.exports = Meaning;
+

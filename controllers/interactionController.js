@@ -14,10 +14,11 @@ const create = async (req, res) => {
     }
 
     // Create the interaction using the model
-    const result = await Interaction.create(userId, like, dislike);
+    const newInteraction = new Interaction(null,userId, like, dislike);
+    const result = await Interaction.create(newInteraction);
 
     // Associate the interaction with the meaning (relationship table)
-    const associationQuery = `INSERT INTO interactions_meanings (interaction_id, meaning_id) VALUES (?, ?)`;
+    const associationQuery = `INSERT INTO meaning_interactions (interaction_id, meaning_id) VALUES (?, ?)`;
     await db.execute(associationQuery, [result.insertId, meaningId]);
 
     res.status(201).json({ message: 'Interaction successfully recorded.', id: result.insertId });
@@ -31,7 +32,9 @@ const getByUser = async (req, res) => {
   try {
     const { meaningId } = req.params;
     // The userId can come via query or, if available, from the token (req.user)
-    const { userId } = req.query; 
+    // const { userId } = req.query;
+    const userId = req.user?.id;
+
 
     if (!userId) {
       return res.status(400).json({ message: 'User ID is required.' });
