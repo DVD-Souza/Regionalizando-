@@ -12,21 +12,24 @@
     --quartenary:#A66D03;
     --quintenary:#8C4E03;
     --branco:#f8f8f8;
+    font-family: 'Source Serif Pro', sans-serif;
 }
 
 body {
     background-color: var(--quintenary);
 }
+
 button:hover{
     cursor: pointer;
 }
 
 .container_logo_botoes {
     display:flex;
+    gap: 8px;
 }
 
-#imagemLogo{
-    margin-left: 0.5%;
+.imagemLogo{
+    margin-left: 3%;
     margin-top: 0.5%;
 }
 
@@ -34,7 +37,7 @@ button:hover{
     position: relative;
     width: 100%;
 
-    & #textoLogo1{
+    & .textoLogo1{
     color: #F2D027;
     font-size: 64px;
     font-family: 'Source Serif Pro', sans-serif;                                      
@@ -42,7 +45,7 @@ button:hover{
     margin-top: 20px;
     }
 
-    & #textoLogo2{
+    & .textoLogo2{
     position: absolute;
     color: #F2B705;
     font-size: 24px;
@@ -80,11 +83,11 @@ button:hover{
     }
 }
 
-#userImage{
+.userImage{
  margin-left: 5px;
 }
 
-#menuImage{
+.menuImage{
 margin-left: 5px;
 }
 
@@ -100,12 +103,14 @@ margin-left: 5px;
     padding-bottom: 50px;
     margin-top: 40px;
 }
+
 .nomeUsuario{
     color: var(--secondary);
     text-decoration: underline;
     font-weight: 600;
     font-size: 72px;
 }
+
 .apresentacao{
     font-size: 27px;
     color: white;
@@ -128,6 +133,7 @@ margin-left: 5px;
         font-family: 'Source Serif Pro', sans-serif;
     }
 }
+
 .nomesignificado{
     font-size: 60px;
     font-weight: bold;
@@ -157,7 +163,7 @@ margin-left: 5px;
 
 .nomeusuario{
     color: white;
-    font: Source Serif Pro;
+    font-family: 'Source Serif Pro', sans-serif;
     background-color: transparent;
     border: none;
     font-size: 18px;
@@ -221,8 +227,9 @@ margin-left: 5px;
     font-style: italic;
     text-align: right;
     vertical-align: text-top;
-    margin-top: 80px;
+    margin-top: 50px;
     margin-right: 2%;
+    font-family: 'Source Serif Pro', sans-serif;
 }
 
 .criarPalavras{
@@ -236,20 +243,25 @@ margin-left: 5px;
     margin-top: 30px;
     border-radius: 15px;
 }
+
 .textoCriouPalavra{
     color: white;
     font-size: 48px;
     font-weight: 600;
 }
+
 .palavrasCriadas{
     color: white;
 }
+
 ul {
     list-style-type: disc; /* pode ser disc, circle, square, etc */
     margin-left: 20px;
     padding-left: 5vw;
-  }
-  li {
+}
+
+li {
     font-size: 72px;
     font-weight: 600;
-  }
+    font-family: 'Source Serif Pro', sans-serif;
+}

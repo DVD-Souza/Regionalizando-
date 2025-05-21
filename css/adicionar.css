@@ -32,9 +32,10 @@ button:hover{
 
 .container_logo_botoes {
     display:flex;
+    gap:8px;
 }
 
-#imagemLogo{
+.imagemLogo{
     margin-left: 5%;
     margin-top: 0.5%;
 }
@@ -43,7 +44,7 @@ button:hover{
     position: relative;
     width: 100%;
 
-    & #textoLogo1{
+    & .textoLogo1{
     color: #F2D027;
     font-size: 64px;
     font-family: 'Source Serif Pro', sans-serif;                                      
@@ -51,7 +52,7 @@ button:hover{
     margin-top: 20px;
     }
 
-    & #textoLogo2{
+    & .textoLogo2{
     position: absolute;
     color: #F2B705;
     font-size: 24px;
@@ -262,7 +263,6 @@ a{
 .termos p{
     color: white;
 }
-
 
 .botoes{
     display:flex;

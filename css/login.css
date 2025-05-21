@@ -49,7 +49,7 @@ body{
 
 }
 
-#invisivel{
+.containerForm{
     align-self: center;
     justify-self: center;
     width: 90%;
@@ -71,13 +71,13 @@ form{
     border-radius: 7px;
     border: none;
     width: 100%;
-    height:30px;
+    height:36px;
     padding-left: 1vw;
     font-size: 16px;
     align-items: center;
 }
 
-#inputs:hover{
+.inputs:hover{
     border: none;
 }
 
@@ -116,7 +116,7 @@ form{
 
 .icone_olho_fechado{
     position: absolute;
-    top: 40px;
+    top: 44px;
     right: 20px;
     background-color: transparent;
     border: none;
@@ -126,17 +126,12 @@ form{
     cursor: pointer;
 }
 
-#jatemconta{
+.seregistre{
     background-color: transparent;
     border: none;
 }
 
-#seregistre{
-    background-color: transparent;
-    border: none;
-}
-
-#seregistre:hover{
+.seregistre:hover{
     cursor: pointer;
     text-decoration: underline;
 }

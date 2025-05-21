@@ -28,12 +28,13 @@ button:hover{
 }
 
 .imagemLogo{
-    margin-left: 0.5%;
     margin-top: 0.5%;
+    margin-left: 3%;
 }
 
 .container_logo{
     display: flex;
+    gap:16px;
 }
 
 .textoLogo1{
@@ -289,7 +290,7 @@ margin-left: 5px;
 .nomesignificado{
     font-size: 44px;
     font-weight: bold;
-    font: Source Serif Pro;
+    font-family: 'Source Serif Pro', sans-serif;
     text-align: left;
     width: 420px;
     background-color: transparent;
@@ -303,25 +304,25 @@ margin-left: 5px;
 .tiposignificado{
     font-size: 22px;
     color: #F8F8F8;
-    font: Source Serif Pro;
+    font-family: 'Source Serif Pro', sans-serif;
 }
 
 .descricaosignificado{
     font-size: 27.5px;
     color: #FFFFFF;
     font-weight: bold;
-    font: Source Serif Pro;
+    font-family: 'Source Serif Pro', sans-serif;
 }
 
 .criadorsignificado{
     font-size: 16.5px;
-    font: Source Serif Pro;
+    font-family: 'Source Serif Pro', sans-serif;
     font-weight: 600;
     font-style: italic;
 }
 .nomeusuario{
     color: white;
-    font: Source Serif Pro;
+    font-family: 'Source Serif Pro', sans-serif;
     background-color: transparent;
     border: none;
     font-size: 18px;
@@ -365,6 +366,7 @@ margin-left: 5px;
 .dislikeimagem:hover{
     border: 2px solid #000;
 }
+
 .contarLikes{
     background-color: red;
     display: flex;
@@ -381,6 +383,7 @@ margin-left: 5px;
     text-align: right;
     margin-top: 170px;
     margin-right: 2%;
+    font-family: 'Source Serif Pro', sans-serif;
 }
 
 .container_botao_vermais{

@@ -34,7 +34,8 @@ body{
     border-radius: 15px;
     padding: 50px 0px;
 }
-#mensagemRegistro{
+
+.mensagemRegistro{
     color: var(--branco);
     font-size: 48px;
     margin-bottom: 10px;
@@ -48,7 +49,7 @@ body{
 
 }
 
-#invisivel{
+.containerForm{
     align-self: center;
     justify-self: center;
     width: 90%;
@@ -70,13 +71,13 @@ form{
     border-radius: 7px;
     border: none;
     width: 100%;
-    height:30px;
+    height:32px;
     padding-left: 1vw;
     font-size: 16px;
     align-items: center;
 }
 
-#inputs:hover{
+.inputs:hover{
     border: none;
 }
 
@@ -94,12 +95,13 @@ form{
     justify-content: center;
     padding: 10px;
 }
+
 .enviar:hover{
     opacity: 0.8;
     cursor: pointer;
 }
 
-#jatemconta{
+.jatemconta{
     font-size: 20px;
     font-family: 'Source Serif Pro', sans-serif;
     font-weight: bolder;
@@ -107,13 +109,15 @@ form{
     background-color: transparent;
     border: none;
 }
-#jatemconta:hover{
+
+.jatemconta:hover{
     text-decoration: underline;
     cursor: pointer;
 }
+
 .icone_olho_fechado{
     position: absolute;
-    bottom: 4px;
+    top: 42px;
     right: 20px;
     background-color: transparent;
     border: none;
