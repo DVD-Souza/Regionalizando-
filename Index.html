@@ -12,12 +12,12 @@
     <div class="container_logo_botoes">
         <div class="container_logo">
             <button class="voltarIndex" onclick="telaIndex()"> 
-                <img id="imagemLogo" src="./assets/Regionalizando_logo 1.png" alt="Logo Regionalizando">
+                <img class="imagemLogo" src="./assets/Regionalizando_logo 1.png" alt="Logo Regionalizando">
             </button>
         
             <button class="voltarIndex" onclick="telaIndex()">
-                <p id="textoLogo1"> Regionalizando </p>
-                <p id="textoLogo2">Dicionário Informal Regional</p>
+                <p class="textoLogo1"> Regionalizando </p>
+                <p class="textoLogo2">Dicionário Informal Regional</p>
             </button>
             
         </div>
@@ -25,20 +25,20 @@
         <div class="botoes">
             <button type="button" class="botoes_header" id="botaoLogin" onclick="telaLogin()">
                 Login  
-                <img id="userImage" src="./assets/User.png"> 
+                <img class="userImage" src="./assets/User.png"> 
             </button>
             <button type="button" class="botoes_header" id="botaoPerfil" onclick="mostrarMensagem()">
                 Menu  
-                <img id="menuImage" src="./assets/Hamburguer.png" alt="3 tracinhos menu"> 
+                <img class="menuImage" src="./assets/Hamburguer.png" alt="3 tracinhos menu"> 
             </button>
         </div>
     </div>
 
     <div class="container_pesquisa_add" id="barraDePesquisa">
         <input class="input_buscar" placeholder="Procure um termo" type="text" name="buscar" id="buscar">
-        <img id="buscarimg" src="/assets/Vector.png" alt="imagem lupa">
+        <img class="buscarimg" src="/assets/Vector.png" alt="imagem lupa">
         <button type="button" class="adicionarTermo" onclick="telaAdicionar()"> 
-            <img id="maisimg" src="/assets/Add@2x.png" alt="Imagem mais"> 
+            <img class="maisimg" src="/assets/Add@2x.png" alt="Imagem mais"> 
         </button>
     </div>
 
@@ -46,8 +46,8 @@
 
         <div class="container_significados">
 
-            <div class="palavra">
-                <button class="nomesignificado" onclick="telaSignificado()"> "Nome Significado" </button>
+            <div class="palavra bc-secondary">
+               <button id="btnSignificado1" class="nomesignificado" onclick="telaSignificado()">Nome Significado</button>
                 <p class="tiposignificado"> "Tipo Significado"</p>
                 <p class="descricaosignificado"> "Descrição significado"</p>
                 <p> Significado de "Palavra" por <button class="nomeusuario" onclick="telaPerfil()">"Usuário"</button> em "Data"</p>
@@ -64,7 +64,7 @@
                 <p class="regiaonome"> "Região" </p>
             </div>
 
-            <div class="palavra1">
+            <div class="palavra bc-terciary">
                 <button class="nomesignificado" onclick="telaSignificado()"> "Nome Significado" </button>
                 <p class="tiposignificado"> "Tipo Significado"</p>
                 <p class="descricaosignificado"> "Descrição significado"</p>
@@ -82,7 +82,7 @@
                 <p class="regiaonome"> "Região" </p>
             </div>
 
-            <div class="palavra">
+            <div class="palavra bc-secondary">
                 <button class="nomesignificado" onclick="telaSignificado()"> "Nome Significado" </button>
                 <p class="tiposignificado"> "Tipo Significado"</p>
                 <p class="descricaosignificado"> "Descrição significado"</p>
@@ -100,7 +100,7 @@
                 <p class="regiaonome"> "Região" </p>
             </div>
 
-            <div class="palavra1">
+            <div class="palavra bc-terciary">
                 <button class="nomesignificado" onclick="telaSignificado()"> "Nome Significado" </button>
                 <p class="tiposignificado"> "Tipo Significado"</p>
                 <p class="descricaosignificado"> "Descrição significado"</p>
@@ -118,7 +118,7 @@
                 <p class="regiaonome"> "Região" </p>
             </div>
 
-            <div class="palavra">
+            <div class="palavra bc-secondary">
                 <button class="nomesignificado" onclick="telaSignificado()"> "Nome Significado" </button>
                 <p class="tiposignificado"> "Tipo Significado"</p>
                 <p class="descricaosignificado"> "Descrição significado"</p>
@@ -136,7 +136,7 @@
                 <p class="regiaonome"> "Região" </p>
             </div>
 
-            <div class="palavra1">
+            <div class="palavra bc-terciary">
                 <button class="nomesignificado" onclick="telaSignificado()"> "Nome Significado" </button>
                 <p class="tiposignificado"> "Tipo Significado"</p>
                 <p class="descricaosignificado"> "Descrição significado"</p>
@@ -225,6 +225,34 @@
     function telaIndex(){
         window.location.href = "Index.html";
     }
+
+    // Requisição do banco de dados *================================================================*
+
+
+  function telaSignificado() {
+  fetch("http://localhost:3000/words/word")
+    .then(response => {
+      if (!response.ok) throw new Error("Erro na requisição");
+      return response.json();
+    })
+    .then(data => {
+      // data é o objeto completo, nomes estão em data.data (array)
+      if (Array.isArray(data.data) && data.data.length > 0) {
+        const primeiro = data.data[0]; // pega o primeiro objeto do array
+        // Exemplo: colocar o nome no botão
+        document.getElementById("btnSignificado1").textContent = primeiro.name || "Sem nome";
+      } else {
+        document.getElementById("btnSignificado1").textContent = "Nenhum nome encontrado";
+      }
+    })
+    .catch(error => {
+      console.error("Erro ao buscar os nomes:", error);
+      document.getElementById("btnSignificado1").textContent = "Erro na busca";
+    });
+}
+
+
+window.onload = telaSignificado;
 </script>
 
 

@@ -27,7 +27,7 @@ button:hover{
     justify-content: space-between;
 }
 
-#imagemLogo{
+.imagemLogo{
     margin-left: 0.5%;
     margin-top: 0.5%;
 }
@@ -36,14 +36,14 @@ button:hover{
     display: flex;
 }
 
-#textoLogo1{
+.textoLogo1{
     color: #F2D027;
     font-size: 64px;
     font-family: 'Source Serif Pro', sans-serif;                                      
     font-weight: bold;
     }
 
-#textoLogo2{
+.textoLogo2{
     position: absolute;
     color: #F2B705;
     font-size: 24px;
@@ -86,15 +86,15 @@ button:hover{
     }
 }
 
-#userImage{
+.userImage{
  margin-left: 5px;
 }
 
-#menuImage{
+.menuImage{
 margin-left: 5px;
 }
 
-#buscarimg{
+.buscarimg{
     position: absolute;
     left: 4%;
     width: 30px;
@@ -113,7 +113,7 @@ margin-left: 5px;
 }
 
 
-#maisimg{
+.maisimg{
     width: 60px;
     height: auto;
 }
@@ -262,7 +262,6 @@ margin-left: 5px;
     display: flex;
     padding-left: 100px;
     flex-direction: column;
-    background-color: #F2B705;
     width: 100%;
     height: 431px;
     align-self: center;
@@ -279,25 +278,12 @@ margin-left: 5px;
         }
 }
 
-.palavra1{
-    display: flex;
-    padding-left: 100px;
-    flex-direction: column;
-    background-color: #D98E04;
-    width: 100%;
-    height: 431px;
-    align-self: center;
-    justify-self: center;
-    border-radius: 15px;
-    font-family: 'Source Serif Pro', sans-serif;
+.bc-secondary{
+    background-color: var(--secondary);
+}
 
-        & button{
-            font-family: 'Source Serif Pro', sans-serif;
-        }
-
-        & button:hover{
-            cursor: pointer;
-        }
+.bc-terciary{
+    background-color: var(--terciary);
 }
 
 .nomesignificado{
