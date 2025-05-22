@@ -6,13 +6,14 @@
     <link rel="stylesheet" href="./css/login.css">
     <link rel="shortcut icon" href="./assets/Regionalizando_logo 1.png" type="image/x-icon">
     <title>Login</title>
+    <script src="./js/login.js" defer></script>
 </head>
 
 <body>
     <div class="background">
         <div class="containerForm">
             <h1 class="mensagem_login">Login</h1>
-            <form action="" method="post">
+            <form id="form">
                 <div>
                     <img src="./assets/email.png" alt="Imagem usuario">
                     <label class="labels" for="usuario">Email*</label></br>
@@ -45,58 +46,7 @@
 </body>
 
 <script>
-    function telaLogin(){
-        window.location.href = "login.html"
-    }
-
-    function olhoAtual() {
-    const olho = document.getElementById("olho");
-
-        if (olho.src.includes("olhofechado.png")) {
-            olho.src = "./assets/olho.png";
-            mudarVisibilidade();
-        } else {
-            olho.src = "./assets/olhofechado.png";
-            mudarVisibilidade();
-        }  
-    }
-
-    function olhoAtual1(){
-        const olho1 = document.getElementById("olho1"); 
-
-        if (olho1.src.includes("olhofechado.png")){
-        olho1.src = "./assets/olho.png";
-        mudarVisibilidade1();
-        } else {
-        olho1.src = "./assets/olhofechado.png";
-        mudarVisibilidade1();
-        }
-    }
-
-
-
-    function mudarVisibilidade(){
-        const senha = document.getElementById("inputsenha")
-        if (senha.type === "password") {
-        senha.type = "text";
-    } else {
-        senha.type = "password";      
-    }
-    }
-
-    function mudarVisibilidade1(){
-        const confirmarSenha = document.getElementById("inputconfirmarsenha");
-        if(confirmarSenha.type === "password"){
-            confirmarSenha.type = "text"; // Torna a senha visível
-        }
-        else{
-        confirmarSenha.type = "password";
-        }
-    }
-
-    function paginaRegistro(){
-        window.location.href = "Registro.html";
-    }
+    
 </script>
 
 </html>

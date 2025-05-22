@@ -274,6 +274,7 @@ margin-left: 5px;
 }
 
 .container_botao_vermais{
+    margin-top: 20px;
     display: flex;
     justify-content: center;
     align-items: center;

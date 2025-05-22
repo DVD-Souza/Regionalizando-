@@ -7,6 +7,7 @@
     <title>Regionalizando: Seu dicionário informal regional</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="shortcut icon" href="./assets/Regionalizando_logo 1.png" type="image/x-icon">
+    <script src="./js/significado.js" defer></script>
 </head>
 <body>
 
@@ -45,7 +46,7 @@
         <button type="button" class="addcomentario" onclick="abrirmodal()">Adicionar Comentario</button>
     </div>
 
-    <div class="container_significados">
+    <div class="container_significados" id="containerSignificados">
         <div class="palavra">
             <button class="nomesignificado"> "Nome Significado" </button>
             <p class="tiposignificado"> "Tipo Significado"</p>
@@ -153,10 +154,10 @@
             </div>
             <p class="regiaonome"> "Região" </p>
         </div>
+    </div>
 
-        <div class="container_botao_vermais">
-            <button type="button">Ver mais</button>
-        </div>
+    <div class="container_botao_vermais">
+        <button type="button" id="btnVerMais">Ver mais</button>
     </div>
 
 
@@ -217,67 +218,5 @@
           </div>
         </div>
 </body>
-
-
-<script>
-    function mostrarMensagem() {
-        alert("Você clicou no botão!");
-    }
-    function telaLogin(){
-        window.location.href = "login.html";
-    }
-
-    function fecharModal() {
-  modal.style.display = 'none';
-}
-
-</script>
-
-<script>
-    function mostrarMensagem() {
-        alert("Você clicou no botão!");
-    }
-
-    function telaLogin(){
-        window.location.href = "login.html";
-    }
-    function telaPerfil(){
-        window.location.href = "perfil.html";
-    }
-    function telaIndex(){
-        window.location.href = "Index.html";
-    }
-
-    window.onload = function () {
-        const botoes = document.querySelectorAll('.nomesignificado');
-        const total = botoes.length;
-
-        botoes.forEach((botao, index) => {
-            botao.textContent = `${index + 1}. Nome Significado`;
-        });
-    };
-
-    var modal = document.getElementById("myModal");
-var btn = document.getElementById("openModalBtn");
-var span = document.getElementsByClassName("close")[0];
-
-// Quando o botão é clicado, abre o modal
-function abrirmodal() {
-  modal.style.display = "block";
-}
-
-// Quando o usuário clicar no "x", fecha o modal
-span.onclick = function() {
-  modal.style.display = "none";
-}
-
-// Quando o usuário clicar fora do modal, ele também será fechado
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
-</script>
-
 
 </html>

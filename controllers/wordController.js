@@ -34,7 +34,7 @@ const create = async (req, res) => {
 const getSix = async (req, res) => {
   try {
     const page = parseInt(req.query.page) || 1;
-    const limit = 6;
+    const limit = 100;
     const offset = (page - 1) * limit;
 
     const query = `

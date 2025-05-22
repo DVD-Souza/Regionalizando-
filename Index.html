@@ -1,37 +1,41 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/index.css">
     <title>Regionalizando: Seu dicionário informal regional</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="shortcut icon" href="./assets/Regionalizando_logo 1.png" type="image/x-icon">
     <script src="./js/index.js" defer></script>
 </head>
+
 <body>
 
     <div class="container_logo_botoes">
         <div class="container_logo">
-            <button class="voltarIndex" onclick="telaIndex()"> 
+            <button class="voltarIndex" onclick="telaIndex()">
                 <img class="imagemLogo" src="./assets/Regionalizando_logo 1.png" alt="Logo Regionalizando">
             </button>
-        
+
             <button class="voltarIndex" onclick="telaIndex()">
                 <p class="textoLogo1"> Regionalizando </p>
                 <p class="textoLogo2">Dicionário Informal Regional</p>
             </button>
-            
+
         </div>
 
         <div class="botoes">
             <button type="button" class="botoes_header" id="botaoLogin" onclick="telaLogin()">
-                Login  
-                <img class="userImage" src="./assets/User.png"> 
+                Login
+                <img class="userImage" src="./assets/User.png">
             </button>
             <button type="button" class="botoes_header" id="botaoPerfil" onclick="mostrarMensagem()">
-                Menu  
-                <img class="menuImage" src="./assets/Hamburguer.png" alt="3 tracinhos menu"> 
+                Menu
+                <img class="menuImage" src="./assets/Hamburguer.png" alt="3 tracinhos menu">
             </button>
         </div>
     </div>
@@ -39,8 +43,8 @@
     <div class="container_pesquisa_add" id="barraDePesquisa">
         <input class="input_buscar" placeholder="Procure um termo" type="text" name="buscar" id="buscar">
         <img class="buscarimg" src="./assets/Vector.png" alt="imagem lupa">
-        <button type="button" class="adicionarTermo" onclick="telaAdicionar()"> 
-            <img class="maisimg" src="./assets/Add@2x.png" alt="Imagem mais"> 
+        <button type="button" class="adicionarTermo" onclick="telaAdicionar()">
+            <img class="maisimg" src="./assets/Add@2x.png" alt="Imagem mais">
         </button>
     </div>
 
@@ -48,11 +52,11 @@
 
         <div class="container_significados" id="containerSignificados">
 
-            <div class="palavra bc-secondary">
-               <button id="btnSignificado1" class="nomesignificado" onclick="telaSignificado()"></button>
+            <div class="palavra bc-secondary" data-word-id="3" data-meaning-id="5">
+                <button id="btnSignificado1" class="nomesignificado" onclick="abrirSignificado(this)" data-word-id="3"></button>
                 <p class="tiposignificado"> "Tipo Significado"</p>
                 <p class="descricaosignificado"> "Descrição significado"</p>
-                <p> Significado de "Palavra" por <button class="nomeusuario" onclick="telaPerfil()">"Usuário"</button> em "Data"</p>
+                <p> Significado de por <button class="nomeusuario" onclick="telaPerfil()"></button>.</p>
                 <div class="likedislike">
                     <button class="likeimagem">
                         <img src="./assets/Like.png" alt="Imagem Like">
@@ -66,11 +70,11 @@
                 <p class="regiaonome"> "Região" </p>
             </div>
 
-            <div class="palavra bc-terciary">
-                <button id="btnSignificado2" class="nomesignificado" onclick="telaSignificado()"> </button>
+            <div class="palavra bc-terciary" data-word-id="3" data-meaning-id="5">
+                <button id="btnSignificado2" class="nomesignificado" onclick="abrirSignificado(this)" data-word-id="3"></button>
                 <p class="tiposignificado"> "Tipo Significado"</p>
                 <p class="descricaosignificado"> "Descrição significado"</p>
-                <p> Significado de "Palavra" por <button class="nomeusuario" onclick="telaPerfil()">"Usuário"</button> em "Data"</p>
+                <p> Significado de por <button class="nomeusuario" onclick="telaPerfil()"></button></p>
                 <div class="likedislike">
                     <button class="likeimagem">
                         <img src="./assets/Like.png" alt="Imagem Like">
@@ -84,11 +88,11 @@
                 <p class="regiaonome"> "Região" </p>
             </div>
 
-            <div class="palavra bc-secondary">
-                <button id="btnSignificado3" class="nomesignificado" onclick="telaSignificado()"> </button>
+            <div class="palavra bc-secondary" data-word-id="3" data-meaning-id="5">
+                <button id="btnSignificado3" class="nomesignificado" onclick="abrirSignificado(this)" data-word-id="3"></button>
                 <p class="tiposignificado"> "Tipo Significado"</p>
                 <p class="descricaosignificado"> "Descrição significado"</p>
-                <p> Significado de "Palavra" por <button class="nomeusuario" onclick="telaPerfil()">"Usuário"</button> em "Data"</p>
+                <p> Significado de por <button class="nomeusuario" onclick="telaPerfil()"></button></p>
                 <div class="likedislike">
                     <button class="likeimagem">
                         <img src="./assets/Like.png" alt="Imagem Like">
@@ -102,11 +106,11 @@
                 <p class="regiaonome"> "Região" </p>
             </div>
 
-            <div class="palavra bc-terciary">
-                <button id="btnSignificado4" class="nomesignificado" onclick="telaSignificado()"> </button>
+            <div class="palavra bc-terciary" data-word-id="3" data-meaning-id="5">
+                <button id="btnSignificado4" class="nomesignificado" onclick="abrirSignificado(this)" data-word-id="3"></button>
                 <p class="tiposignificado"> "Tipo Significado"</p>
                 <p class="descricaosignificado"> "Descrição significado"</p>
-                <p> Significado de "Palavra" por <button class="nomeusuario" onclick="telaPerfil()">"Usuário"</button> em "Data"</p>
+                <p> Significado de por <button class="nomeusuario" onclick="telaPerfil()"></button></p>
                 <div class="likedislike">
                     <button class="likeimagem">
                         <img src="./assets/Like.png" alt="Imagem Like">
@@ -120,11 +124,11 @@
                 <p class="regiaonome"> "Região" </p>
             </div>
 
-            <div class="palavra bc-secondary">
-                <button id="btnSignificado5" class="nomesignificado" onclick="telaSignificado()"> </button>
+            <div class="palavra bc-secondary" data-word-id="3" data-meaning-id="5">
+            <button id="btnSignificado5" class="nomesignificado" onclick="abrirSignificado(this)" data-word-id="3"></button>
                 <p class="tiposignificado"> "Tipo Significado"</p>
                 <p class="descricaosignificado"> "Descrição significado"</p>
-                <p> Significado de "Palavra" por <button class="nomeusuario" onclick="telaPerfil()">"Usuário"</button> em "Data"</p>
+                <p> Significado de por <button class="nomeusuario" onclick="telaPerfil()"></button></p>
                 <div class="likedislike">
                     <button class="likeimagem">
                         <img src="./assets/Like.png" alt="Imagem Like">
@@ -138,11 +142,11 @@
                 <p class="regiaonome"> "Região" </p>
             </div>
 
-            <div class="palavra bc-terciary">
-                <button id="btnSignificado6" class="nomesignificado" onclick="telaSignificado()">  </button>
+            <div class="palavra bc-terciary" data-word-id="3" data-meaning-id="5">
+                <button id="btnSignificado6" class="nomesignificado" onclick="abrirSignificado(this)" data-word-id="3"></button>
                 <p class="tiposignificado"> "Tipo Significado"</p>
                 <p class="descricaosignificado"> "Descrição significado"</p>
-                <p> Significado de "Palavra" por <button class="nomeusuario" onclick="telaPerfil()">"Usuário"</button> em "Data"</p>
+                <p> Significado de por <button class="nomeusuario" onclick="telaPerfil()"></button></p>
                 <div class="likedislike">
                     <button class="likeimagem">
                         <img src="./assets/Like.png" alt="Imagem Like">
@@ -155,9 +159,9 @@
                 </div>
                 <p class="regiaonome"> "Região" </p>
             </div>
+
         </div>
-        
-        
+
 
         <div class="container_filtros">
 
@@ -207,7 +211,7 @@
         <button id="btnVerMais">Ver mais</button>
     </div>
 
-    
+
 </body>
 
 
