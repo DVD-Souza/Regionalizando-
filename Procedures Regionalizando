@@ -40,26 +40,6 @@ END$$
 
 DELIMITER ;
 
-DELIMITER $$ /* Remover elemento_txt_id e alterar o create  para seguir o lucidchart */
-
-CREATE PROCEDURE AddSignificado (
-    IN localidade_id INT,
-    IN elemento_txt_id INT,
-    IN descricao VARCHAR(500),
-    IN informacoes_adicionais VARCHAR(250),
-    IN tipo ENUM('substantivo', 'adjetivo', 'artigo', 'pronome', 'numeral', 'verbo', 'advébio', 'preposição', 'conjunção', 'interjeição', 'vazio')
-)
-BEGIN
-    INSERT INTO tb_significados (localidade_id, elemento_txt_id, descricao, informacoes_adicionais, tipo)
-    VALUES (localidade_id, elemento_txt_id, descricao, informacoes_adicionais, tipo);
-END$$
-
-
-
-
-
-
-
 DELIMITER $$
 
 CREATE PROCEDURE AddSignificado (
