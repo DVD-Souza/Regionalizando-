@@ -1,5 +1,6 @@
 -- Trigger de segurança para usuários
- DELIMITER // 
+DELIMITER // 
+
 CREATE TRIGGER tr_user_security  
 BEFORE INSERT ON users
 FOR EACH ROW
