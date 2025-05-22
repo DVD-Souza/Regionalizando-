@@ -27,7 +27,7 @@ END$$
 
 DELIMITER ;
 
-DELIMITER $$ /Correto Procedure para adicionar elementos na tabela elemento textual/
+DELIMITER $$ /*Correto Procedure para adicionar elementos na tabela elemento textual*/
 
 CREATE PROCEDURE AddElementoTextual (
     IN user_id INT,
