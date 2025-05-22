@@ -1,3 +1,5 @@
+USE db_regionalizando;
+
 -- View para contagem de likes e dislikes
 CREATE VIEW vw_likes_dislikes_count AS
 SELECT 
