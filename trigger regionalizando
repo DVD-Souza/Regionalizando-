@@ -1,3 +1,5 @@
+USE db_regionalizando;
+
 -- Trigger de segurança para usuários
 DELIMITER // 
 
