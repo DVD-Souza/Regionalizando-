@@ -7,6 +7,7 @@
     <title>Regionalizando: Seu dicionário informal regional</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="shortcut icon" href="./assets/Regionalizando_logo 1.png" type="image/x-icon">
+    <script src="./js/index.js" defer></script>
 </head>
 <body>
 
@@ -45,7 +46,7 @@
 
     <div class="container_significados_filtros">
 
-        <div class="container_significados">
+        <div class="container_significados" id="containerSignificados">
 
             <div class="palavra bc-secondary">
                <button id="btnSignificado1" class="nomesignificado" onclick="telaSignificado()"></button>
@@ -66,7 +67,7 @@
             </div>
 
             <div class="palavra bc-terciary">
-                <button class="nomesignificado" onclick="telaSignificado()"> "Nome Significado" </button>
+                <button id="btnSignificado2" class="nomesignificado" onclick="telaSignificado()"> </button>
                 <p class="tiposignificado"> "Tipo Significado"</p>
                 <p class="descricaosignificado"> "Descrição significado"</p>
                 <p> Significado de "Palavra" por <button class="nomeusuario" onclick="telaPerfil()">"Usuário"</button> em "Data"</p>
@@ -84,7 +85,7 @@
             </div>
 
             <div class="palavra bc-secondary">
-                <button class="nomesignificado" onclick="telaSignificado()"> "Nome Significado" </button>
+                <button id="btnSignificado3" class="nomesignificado" onclick="telaSignificado()"> </button>
                 <p class="tiposignificado"> "Tipo Significado"</p>
                 <p class="descricaosignificado"> "Descrição significado"</p>
                 <p> Significado de "Palavra" por <button class="nomeusuario" onclick="telaPerfil()">"Usuário"</button> em "Data"</p>
@@ -102,7 +103,7 @@
             </div>
 
             <div class="palavra bc-terciary">
-                <button class="nomesignificado" onclick="telaSignificado()"> "Nome Significado" </button>
+                <button id="btnSignificado4" class="nomesignificado" onclick="telaSignificado()"> </button>
                 <p class="tiposignificado"> "Tipo Significado"</p>
                 <p class="descricaosignificado"> "Descrição significado"</p>
                 <p> Significado de "Palavra" por <button class="nomeusuario" onclick="telaPerfil()">"Usuário"</button> em "Data"</p>
@@ -120,7 +121,7 @@
             </div>
 
             <div class="palavra bc-secondary">
-                <button class="nomesignificado" onclick="telaSignificado()"> "Nome Significado" </button>
+                <button id="btnSignificado5" class="nomesignificado" onclick="telaSignificado()"> </button>
                 <p class="tiposignificado"> "Tipo Significado"</p>
                 <p class="descricaosignificado"> "Descrição significado"</p>
                 <p> Significado de "Palavra" por <button class="nomeusuario" onclick="telaPerfil()">"Usuário"</button> em "Data"</p>
@@ -138,7 +139,7 @@
             </div>
 
             <div class="palavra bc-terciary">
-                <button class="nomesignificado" onclick="telaSignificado()"> "Nome Significado" </button>
+                <button id="btnSignificado6" class="nomesignificado" onclick="telaSignificado()">  </button>
                 <p class="tiposignificado"> "Tipo Significado"</p>
                 <p class="descricaosignificado"> "Descrição significado"</p>
                 <p> Significado de "Palavra" por <button class="nomeusuario" onclick="telaPerfil()">"Usuário"</button> em "Data"</p>
@@ -153,11 +154,10 @@
                     </button>
                 </div>
                 <p class="regiaonome"> "Região" </p>
-            </div>
-            <div class="container_botao_vermais">
-                <button>Ver mais</button>
             </div>
         </div>
+        
+        
 
         <div class="container_filtros">
 
@@ -203,58 +203,12 @@
         </div>
     </div>
 
+    <div class="container_botao_vermais">
+        <button id="btnVerMais">Ver mais</button>
+    </div>
+
+    
 </body>
-
-
-<script>
-    function mostrarMensagem() {
-        alert("Em Breve");
-    }
-    function telaLogin(){
-        window.location.href = "login.html";
-    }
-
-    function telaSignificado(){
-        window.location.href = "significado.html";
-    }
-    function telaPerfil(){
-        window.location.href = "perfil.html";
-    }
-    function telaAdicionar(){
-        window.location.href = "adicionar.html";
-    }
-    function telaIndex(){
-        window.location.href = "Index.html";
-    }
-
-    // Requisição do banco de dados *================================================================*
-
-
-  function telaSignificado() {
-  fetch("http://localhost:3000/words/word")
-    .then(response => {
-      if (!response.ok) throw new Error("Erro na requisição");
-      return response.json();
-    })
-    .then(data => {
-      // data é o objeto completo, nomes estão em data.data (array)
-      if (Array.isArray(data.data) && data.data.length > 0) {
-        const primeiro = data.data[0]; // pega o primeiro objeto do array
-        // Exemplo: colocar o nome no botão
-        document.getElementById("btnSignificado1").textContent = primeiro.name || "Sem nome";
-      } else {
-        document.getElementById("btnSignificado1").textContent = "Nenhum nome encontrado";
-      }
-    })
-    .catch(error => {
-      console.error("Erro ao buscar os nomes:", error);
-      document.getElementById("btnSignificado1").textContent = "Erro na busca";
-    });
-}
-
-
-window.onload = telaSignificado;
-</script>
 
 
 </html>
