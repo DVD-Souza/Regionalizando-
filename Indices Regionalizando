@@ -1,3 +1,5 @@
+USE db_regionalizando;
+
 CREATE INDEX significado_idx ON meanings(location_id);
 CREATE INDEX significado_idx_3 ON meanings(type);
 CREATE INDEX interacoes_idx ON interactions(user_id);
