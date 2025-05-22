@@ -8,14 +8,14 @@ CREATE TABLE users (
     email VARCHAR(100) UNIQUE NOT NULL, 
     password VARCHAR(100) NOT NULL,
     PRIMARY KEY (user_id)
-) ENGINE=InnoDB;
+);
 
 -- Locations table
 CREATE TABLE locations (
     location_id INT AUTO_INCREMENT NOT NULL,
     region VARCHAR(100) NOT NULL UNIQUE,
     PRIMARY KEY(location_id)
-) ENGINE=InnoDB;
+);
 
 -- Interactions table
 CREATE TABLE interactions (
@@ -25,7 +25,7 @@ CREATE TABLE interactions (
     dislike TINYINT(1) DEFAULT 0 CHECK (dislike IN (0, 1)),
     PRIMARY KEY(interaction_id),
     FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
-) ENGINE=InnoDB;
+);
 
 -- Textual elements table (com UNIQUE na coluna word)
 CREATE TABLE textual_elements (
@@ -34,7 +34,7 @@ CREATE TABLE textual_elements (
     word VARCHAR(100) NOT NULL UNIQUE,
     PRIMARY KEY(element_id),
     FOREIGN KEY(user_id) REFERENCES users(user_id) ON DELETE CASCADE
-) ENGINE=InnoDB;
+);
 
 -- Meanings table
 CREATE TABLE meanings (
@@ -47,7 +47,7 @@ CREATE TABLE meanings (
     PRIMARY KEY (meaning_id),
     FOREIGN KEY(user_id) REFERENCES users(user_id) ON DELETE CASCADE,
     FOREIGN KEY (location_id) REFERENCES locations(location_id) ON DELETE CASCADE
-) ENGINE=InnoDB;
+);
 
 -- Meaning interactions table
 CREATE TABLE meaning_interactions (
@@ -60,7 +60,7 @@ CREATE TABLE meaning_interactions (
     CONSTRAINT fk_meaning
         FOREIGN KEY (meaning_id)
         REFERENCES meanings(meaning_id) ON DELETE CASCADE
-) ENGINE=InnoDB;
+);
 
 -- Update logs table
 CREATE TABLE update_logs (
@@ -73,7 +73,7 @@ CREATE TABLE update_logs (
     PRIMARY KEY(log_id),
     FOREIGN KEY(user_id) REFERENCES users(user_id) ON DELETE CASCADE,
     FOREIGN KEY (meaning_id) REFERENCES meanings(meaning_id) ON DELETE CASCADE
-) ENGINE=InnoDB;
+);
 
 -- Meaning logs table
 CREATE TABLE meaning_logs (
@@ -86,4 +86,4 @@ CREATE TABLE meaning_logs (
     CONSTRAINT fk_meaning_ref
         FOREIGN KEY (meaning_id)
         REFERENCES meanings(meaning_id) ON DELETE CASCADE
-) ENGINE=InnoDB;
+);
