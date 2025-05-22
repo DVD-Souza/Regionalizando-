@@ -10,14 +10,6 @@ BEGIN
         SET MESSAGE_TEXT = 'Invalid email format. Use: user@domain.com';
     END IF;
     
-    -- 2. Criptografia da senha (simplificada para exemplo)
-    SET NEW.password = CONCAT(
-        '$2a$10$', -- Prefixo indicando algoritmo bcrypt com custo 10
-        SUBSTRING(SHA2(CONCAT(NEW.password, 's3cr3t_s4lt'), 256), 1, 22),
-        '$', 
-        SUBSTRING(SHA2(UUID(), 256), 1, 31)
-    );
-    
     -- 3. Verificação de senha comprometida (lista básica)
     IF LOWER(NEW.password) IN ('123456', 'password', 'senha123', 'admin123', 'qwerty') THEN
         SIGNAL SQLSTATE '45001'
