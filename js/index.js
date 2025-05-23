@@ -1,13 +1,30 @@
-// ======= Variável do usuário logado (ajuste conforme seu sistema) =======
-const userIdAtual = 2;
-// const token = localStorage.getItem("token");
-// fetch("http://localhost:3000/rota-protegida", {
-//   method: "GET",
-//   headers: {
-//     "Content-Type": "application/json",
-//     "authorization": token
-//   }
-// });
+// ======= Token ++++++++++++++++++++++++======================================= =======
+
+
+const token = localStorage.getItem("token");
+const decodedToken = decodeJwt(token);
+const userIdAtual = decodedToken ? decodedToken.id : null;
+
+ fetch("http://localhost:3000/rota-protegida", {
+   method: "GET",
+   headers: {
+     "Content-Type": "application/json",
+   "authorization": token
+  }
+ });
+
+ function decodeJwt(token) {
+  if (!token) return null;
+  const payload = token.split('.')[1];
+  if (!payload) return null;
+  try {
+    return JSON.parse(atob(payload));
+  } catch (e) {
+    console.error("Erro ao decodificar token:", e);
+    return null;
+  }
+}
+
 
 
 // ======= Contador de significados carregados =======
@@ -49,11 +66,16 @@ async function buscarLikesDislikes(wordId, meaningId) {
 // ======= Função para enviar like ou dislike =======
 async function enviarInteracao(wordId, meaningId, like, dislike) {
     try {
+        const token = localStorage.getItem("token");
         const response = await fetch(`http://localhost:3000/interactions/word/${wordId}/meaning/${meaningId}/interaction`, {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ userId: userIdAtual, like, dislike })
+            headers: { 
+                "Content-Type": "application/json",
+                "Authorization": token ? `Bearer ${token}` : ""
+            },
+            body: JSON.stringify({ like, dislike })
         });
+
         if (!response.ok) {
             if (response.status === 401) {
                 alert("Você precisa fazer login para dar likes ou dislikes.");
@@ -61,12 +83,15 @@ async function enviarInteracao(wordId, meaningId, like, dislike) {
             }
             throw new Error("Erro ao enviar interação");
         }
+
         return await response.json();
     } catch (error) {
         console.error("Erro ao enviar interação:", error);
         return null;
     }
 }
+
+
 
 // ======= Atualiza os contadores de likes/dislikes na div =======
 function atualizarLikesDislikes(div, likes, dislikes) {

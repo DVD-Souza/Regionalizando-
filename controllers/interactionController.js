@@ -7,7 +7,9 @@ const create = async (req, res) => {
   try {
     // Extract parameters – the meaning ID is the one that matters for the association
     const { meaningId } = req.params;
-    const { userId, like, dislike } = req.body;
+    const { like, dislike } = req.body;
+    const userId = req.user?.id;
+
 
     if (!userId || (like === undefined && dislike === undefined)) {
       return res.status(400).json({ message: 'Required fields not provided.' });
