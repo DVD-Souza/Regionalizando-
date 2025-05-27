@@ -197,7 +197,43 @@ async function criarDivPalavra(item, significado) {
   `;
 
   container.appendChild(div);
+
+  // Aqui busca os likes e dislikes do backend e atualiza os números na interface
+  const wordId = item.element_id;
+  const meaningId = significado.meaning_id;
+
+  const counts = await buscarLikesDislikes(wordId, meaningId);
+  atualizarLikesDislikes(div, counts.total_likes, counts.total_dislikes);
+
+  // Adiciona eventos para o like e dislike
+  const likeBtn = div.querySelector(".likeimagem");
+  const dislikeBtn = div.querySelector(".dislikeimagem");
+
+  likeBtn.addEventListener("click", async () => {
+    const result = await enviarInteracao(wordId, meaningId, 1, 0);
+    if (result) {
+      if (result.total_likes === undefined || result.total_dislikes === undefined) {
+        const counts = await buscarLikesDislikes(wordId, meaningId);
+        atualizarLikesDislikes(div, counts.total_likes, counts.total_dislikes);
+      } else {
+        atualizarLikesDislikes(div, result.total_likes, result.total_dislikes);
+      }
+    }
+  });
+
+  dislikeBtn.addEventListener("click", async () => {
+    const result = await enviarInteracao(wordId, meaningId, 0, 1);
+    if (result) {
+      if (result.total_likes === undefined || result.total_dislikes === undefined) {
+        const counts = await buscarLikesDislikes(wordId, meaningId);
+        atualizarLikesDislikes(div, counts.total_likes, counts.total_dislikes);
+      } else {
+        atualizarLikesDislikes(div, result.total_likes, result.total_dislikes);
+      }
+    }
+  });
 }
+
 
 
 

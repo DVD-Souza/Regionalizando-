@@ -1,57 +1,42 @@
 const token = localStorage.getItem("token");
-
-
-window.onload = async function() {
-  // Atualiza o título com o nome da palavra salvo no localStorage
-  
-const nome = localStorage.getItem("wordNameSelecionado");
-const titulo = document.querySelector(".Titulo");
-
-if (titulo) {
-  if (nome) {
-    titulo.textContent = nome; 
-  }
-}
-
-  const wordId = localStorage.getItem("wordIdSelecionado");
-  if (wordId) {
-    console.log("ID da palavra recebido:", wordId);
-  } else {
-    console.warn("Nenhum ID de palavra foi recebido.");
-  }
-
-  await carregarSignificados(0, 6);
-
-  // Modal
-  const modal = document.getElementById("myModal");
-  // btn de abrir modal já está com onclick no HTML
-  const span = document.getElementsByClassName("close")[0];
-  
-  if (span && modal) {
-    span.onclick = () => modal.style.display = "none";
-  }
-  
-  if (modal) {
-    window.onclick = (event) => {
-      if (event.target == modal) modal.style.display = "none";
-    };
-  }
-};
-
 let contadorSignificados = 0;
 
-async function criarDivSignificado(item) {
+window.onload = async function () {
+  const nome = localStorage.getItem("wordNameSelecionado") || "Palavra";
+  const titulo = document.querySelector(".Titulo");
+  if (titulo) titulo.textContent = nome;
+
+  await carregarSignificados(contadorSignificados, 6);
+};
+
+function buscarRegiao(location_id) {
+  const regioes = {
+    1: "Nordeste",
+    2: "Sul",
+    3: "Norte",
+    4: "Centro Oeste",
+    5: "Sudeste"
+  };
+
+  return regioes[location_id] || "Região desconhecida";
+}
+
+
+async function criarDivSignificado(meaning, wordName) {
   const container = document.getElementById("containerSignificados");
 
-  const likes = item.likes || 0;
-  const dislikes = item.dislikes || 0;
-  const tipo = item.type || "Tipo Significado";
-  const descricao = item.description || "Descrição significado";
-  const palavra = item.word || "Palavra";
-  const usuario = item.name || "Usuário";
-  const data = item.date || "Data";
-  const regiao = item.region || "Região";
+  const tipo = meaning.type || "Tipo Significado";
+  const descricao = meaning.description || "Descrição significado";
+  const palavra = wordName || "Palavra";
 
+  // Buscando nome da região
+  const regiao = buscarRegiao(meaning.location_id);
+
+
+  const usuario = "Usuário"; // Futuramente, buscar com meaning.user_id
+  const data = "Data"; // Futuramente pode ser adicionado
+  const likes = 0;
+  const dislikes = 0;
   const classeDiv = contadorSignificados % 2 === 0 ? "palavra" : "palavra1";
 
   const div = document.createElement("div");
@@ -80,7 +65,8 @@ async function criarDivSignificado(item) {
   const btn = div.querySelector("button.nomesignificado");
   if (btn) {
     btn.addEventListener("click", () => {
-      localStorage.setItem("nomePalavraSelecionada", palavra);
+      localStorage.setItem("wordNameSelecionado", wordName);
+      localStorage.setItem("wordIdSelecionado", meaning.meaning_id || localStorage.getItem("wordIdSelecionado"));
       window.location.href = "significado.html";
     });
   }
@@ -91,21 +77,25 @@ async function criarDivSignificado(item) {
 async function carregarSignificados(inicio, quantidade) {
   try {
     const wordId = localStorage.getItem("wordIdSelecionado");
-    const url = wordId ? `http://localhost:3000/words/word/${wordId}` : "http://localhost:3000/words/word";
-    
-    const response = await fetch(url);
-    if (!response.ok) throw new Error("Erro na requisição");
+    if (!wordId) {
+      alert("Nenhuma palavra selecionada para carregar os significados.");
+      return;
+    }
+
+    const response = await fetch(`http://localhost:3000/meanings/word/${wordId}/meaning`);
+    if (!response.ok) throw new Error("Erro na requisição dos significados");
+
     const data = await response.json();
-
-    const significados = data.data.slice(inicio, inicio + quantidade);
-
+    const significados = data.meanings.slice(inicio, inicio + quantidade);
     if (significados.length === 0) {
       alert("Não há mais significados para mostrar.");
       return;
     }
 
-    for (const item of significados) {
-      await criarDivSignificado(item);
+    const nome = localStorage.getItem("wordNameSelecionado") || "Palavra";
+
+    for (const meaning of significados) {
+      await criarDivSignificado(meaning, nome);
     }
   } catch (error) {
     console.error("Erro ao carregar significados:", error);
@@ -126,7 +116,7 @@ function telaIndex() {
   window.location.href = "Index.html";
 }
 
-// Verifica se o botão existe antes de adicionar evento
+// Evento do botão "Ver Mais"
 const btnVerMais = document.getElementById("btnVerMais");
 if (btnVerMais) {
   btnVerMais.addEventListener("click", async () => {
