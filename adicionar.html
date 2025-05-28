@@ -7,6 +7,7 @@
     <title>Regionalizando: Seu dicionário informal regional</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="shortcut icon" href="./assets/Regionalizando_logo 1.png" type="image/x-icon">
+    <script src="./js/adicionar.js" defer></script>
 </head>
 <body>
 
@@ -29,7 +30,7 @@
         <h2 class="titulo">ADICIONAR TERMO</h2>
         <p class="informacao"> Todas as palavras do Regionalizando foram adicionadas por pessoas como você. Agora é a sua chance de adicionar a sua própria palavra! </p>
 
-        <form action="">
+        <form id="formAdicionar">
             <input type="text" name="escreverTermo" class="escreverTermo" placeholder="Palavra" id="termo">
             
             <h3> Escreva a definição da palavra abaixo.</h3>
@@ -37,9 +38,9 @@
             <p class="atencao"> Atenção!! </p>
             <p class="informacao">Todas as pessoas poderão ver a definição escrita por você, então não coloque informações privadas ou de seus amigos e familiares. </p>
             
-            <textarea maxlength="500" cols="30" rows="3" class="escreverSignificado" name="escreverSignificado" placeholder="Escreva o significado da palavra aqui" id="significado"></textarea>
+            <textarea maxlength="500" cols="30" rows="3" class="escreverSignificado" name="significado" placeholder="Escreva o significado da palavra aqui" id="significado"></textarea>
 
-            <textarea maxlength="500" cols="30" rows="5" class="escreverSignificado" name="escreverSignificado" placeholder="Escreva aqui informações adicionais (casos de uso ou alguma informação relevante)" id="significado"></textarea>
+            <textarea maxlength="500" cols="30" rows="5" class="escreverSignificado" name="info" placeholder="Escreva aqui informações adicionais (casos de uso ou alguma informação relevante)" id="info"></textarea>
 
             <div class="container_classe_regiao">
                 <div class="classe_regiao"> 
@@ -80,25 +81,26 @@
                 <p>Significados estão sujeitos aos nossos <a href="#" class="termosepolitica"> termos de serviço</a> e <a href="#" class="termosepolitica"> políticas de privacidade.</a></p>
             </div>
                 
-                
-            <button class="enviar">Enviar</button>
+            <button type="submit" class="enviar">Enviar</button>
 
+            <div id="loading" style="display: none; margin-top: 10px;">
+                <i class="fas fa-spinner fa-spin"></i> Enviando...
+            </div>
         </form>
-
     </div>
 
-    </body>
+</body>
 
-    <script>
-    function telaLogin(){
-        window.location.href = "login.html";
-    }
-    function telaPrincipal(){
-        window.location.href = "index.html";
-    }
-    function telaIndex(){
-        window.location.href = "Index.html";
-    }
-    </script>
+<script>
+function telaLogin(){
+    window.location.href = "login.html";
+}
+function telaPrincipal(){
+    window.location.href = "index.html";
+}
+function telaIndex(){
+    window.location.href = "Index.html";
+}
+</script>
 
-    </html>
+</html>

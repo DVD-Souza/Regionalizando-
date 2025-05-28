@@ -27,9 +27,14 @@ const create = async (req, res) => {
     res.status(201).send("Word added successfully.");
   } catch (err) {
     console.error(err);
+    // Tratamento específico para erro de duplicidade no banco
+    if (err.code === 'ER_DUP_ENTRY') {
+      return res.status(409).json({ message: 'Palavra já existe no banco de dados.' });
+    }
     res.status(400).json({ message: 'Error while adding word', error: err.message });
   }
 };
+
 
 const getSix = async (req, res) => {
   try {
