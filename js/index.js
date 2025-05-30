@@ -176,10 +176,12 @@ async function criarDivPalavra(item, significado) {
   // Agora usa location_id do significado (não do item)
   const regionId = Number(significado.location_id);
   const nomeRegiao = regioes[regionId] || "Região desconhecida";
+  const exemploUso = significado.additional_info || "";
 
   div.innerHTML += `
     <p class="tiposignificado">${significado.type || "Tipo Significado"}</p>
     <p class="descricaosignificado">${significado.description || "Descrição significado"}</p>
+    <p class="exemplouso">${exemploUso}</p>
     <p> Significado de "${item.word}" por 
         <button class="nomeusuario" onclick="telaPerfil()">${item.name || "Usuário"}</button>.
     </p>
@@ -198,40 +200,42 @@ async function criarDivPalavra(item, significado) {
 
   container.appendChild(div);
 
-  // Aqui busca os likes e dislikes do backend e atualiza os números na interface
-  const wordId = item.element_id;
-  const meaningId = significado.meaning_id;
+  // Pega wordId e meaningId
+const wordId = item.element_id;
+const meaningId = significado.meaning_id;
 
-  const counts = await buscarLikesDislikes(wordId, meaningId);
-  atualizarLikesDislikes(div, counts.total_likes, counts.total_dislikes);
+// Busca e atualiza likes/dislikes
+const counts = await buscarLikesDislikes(wordId, meaningId);
+atualizarLikesDislikes(div, counts.total_likes, counts.total_dislikes);
 
-  // Adiciona eventos para o like e dislike
-  const likeBtn = div.querySelector(".likeimagem");
-  const dislikeBtn = div.querySelector(".dislikeimagem");
+// Adiciona eventos para like e dislike
+const likeBtn = div.querySelector(".likeimagem");
+const dislikeBtn = div.querySelector(".dislikeimagem");
 
-  likeBtn.addEventListener("click", async () => {
-    const result = await enviarInteracao(wordId, meaningId, 1, 0);
-    if (result) {
-      if (result.total_likes === undefined || result.total_dislikes === undefined) {
-        const counts = await buscarLikesDislikes(wordId, meaningId);
-        atualizarLikesDislikes(div, counts.total_likes, counts.total_dislikes);
-      } else {
-        atualizarLikesDislikes(div, result.total_likes, result.total_dislikes);
-      }
+likeBtn.addEventListener("click", async () => {
+  const result = await enviarInteracao(wordId, meaningId, 1, 0);
+  if (result) {
+    if (result.total_likes === undefined || result.total_dislikes === undefined) {
+      const counts = await buscarLikesDislikes(wordId, meaningId);
+      atualizarLikesDislikes(div, counts.total_likes, counts.total_dislikes);
+    } else {
+      atualizarLikesDislikes(div, result.total_likes, result.total_dislikes);
     }
-  });
+  }
+});
 
-  dislikeBtn.addEventListener("click", async () => {
-    const result = await enviarInteracao(wordId, meaningId, 0, 1);
-    if (result) {
-      if (result.total_likes === undefined || result.total_dislikes === undefined) {
-        const counts = await buscarLikesDislikes(wordId, meaningId);
-        atualizarLikesDislikes(div, counts.total_likes, counts.total_dislikes);
-      } else {
-        atualizarLikesDislikes(div, result.total_likes, result.total_dislikes);
-      }
+dislikeBtn.addEventListener("click", async () => {
+  const result = await enviarInteracao(wordId, meaningId, 0, 1);
+  if (result) {
+    if (result.total_likes === undefined || result.total_dislikes === undefined) {
+      const counts = await buscarLikesDislikes(wordId, meaningId);
+      atualizarLikesDislikes(div, counts.total_likes, counts.total_dislikes);
+    } else {
+      atualizarLikesDislikes(div, result.total_likes, result.total_dislikes);
     }
-  });
+  }
+});
+
 }
 
 

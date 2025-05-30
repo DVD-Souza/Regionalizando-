@@ -97,8 +97,10 @@ try {
 
     alert(resultado.message);
 
-    // Armazena o token no localStorage (sem Bearer)
     localStorage.setItem("token", resultado.token);
+    localStorage.setItem("userId", resultado.userId);
+    console.log("ID salvo:", resultado.userId);
+
 
     // Redireciona para a página inicial
     window.location.href = "Index.html";

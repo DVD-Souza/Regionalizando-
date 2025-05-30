@@ -1,30 +1,24 @@
-// controllers/meaningController.js
 const db = require('../config/db');
 const Meaning = require('../models/Meaning');
 
 const create = async (req, res) => {
   try {
-    const { wordId } = req.params; // Word ID
-    const { addedBy ,region, description, info, type } = req.body; // Sent data
+    const { wordId } = req.params;
+    const { addedBy, region, description, info, type } = req.body;
 
-    // Validate required fields
-   if (!addedBy || !region || !description || !info || !type) {
-  return res.status(400).json({
-    message: 'All fields (addedBy, region, description, info, and type) are required to create the meaning.'
-  });
-}
+    console.log('Payload recebido:', { wordId, addedBy, region, description, info, type });
 
+    // Validação básica
+    if (!addedBy || !region || !description || !type) {
+      return res.status(400).json({
+        message: 'Fields addedBy, region, description, and type are required.'
+      });
+    }
 
-    // Create the meaning object – note that the constructor maps:
-    // region → region_id, description → description, info → additional_info, and type → type
-    const newMeaning = new Meaning(null,addedBy ,region, description, info, type);
-    await Meaning.create(newMeaning);
+    const newMeaning = new Meaning(null, addedBy, region, description, info, type);
+    const { id: meaningId } = await Meaning.create(newMeaning); // Pegando insertId diretamente
 
-    // Retrieve the ID of the newly created meaning
-    const [result] = await db.execute('SELECT LAST_INSERT_ID() AS id');
-    const meaningId = result[0].id;
-
-    // Associate the meaning with the word in the relationship table (e.g., words_meanings)
+    // Associação com a palavra
     const associationQuery = 'INSERT INTO meaning_logs (element_id, meaning_id) VALUES (?, ?)';
     await db.execute(associationQuery, [wordId, meaningId]);
 
@@ -61,7 +55,6 @@ const getByWord = async (req, res) => {
 const remove = async (req, res) => {
   try {
     const { wordId, meaningId } = req.params;
-
     const result = await Meaning.delete(wordId, meaningId);
 
     if (result.affectedRows === 0) {
@@ -82,10 +75,9 @@ const remove = async (req, res) => {
 
 const update = async (req, res) => {
   try {
-    const { wordId, meaningId } = req.params; // wordId is here in case you want to do additional validation
+    const { wordId, meaningId } = req.params;
     const { region, description, info, type } = req.body;
 
-    // Check if at least one field was sent to update
     if (!region && !description && !info && !type) {
       return res.status(400).json({
         message: 'No fields for update were provided.'

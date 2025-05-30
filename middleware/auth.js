@@ -4,7 +4,7 @@ const protect = (req, res, next) => {
     const authHeader = req.headers.authorization;
 
     if (!authHeader || !authHeader.startsWith("Bearer ")) {
-        return res.status(401).json({ message: 'Acesso negado. Token não fornecido ou mal formatado.' });
+        return res.status(401).json({ message: 'Acesso negado. Token não fornecido ou mal formatado. Por favor, faça login.' });
     }
 
     const token = authHeader.split(" ")[1];
@@ -17,9 +17,9 @@ const protect = (req, res, next) => {
         console.error('Erro ao verificar token:', error);
 
         if (error.name === 'TokenExpiredError') {
-            return res.status(401).json({ message: 'Token expirado.' });
+            return res.status(401).json({ message: 'Token expirado. Por favor, faça login novamente.' });
         } else if (error.name === 'JsonWebTokenError') {
-            return res.status(400).json({ message: 'Token inválido.' });
+            return res.status(401).json({ message: 'Token inválido. Por favor, faça login novamente.' });
         }
 
         res.status(500).json({ message: 'Erro ao verificar o token.' });

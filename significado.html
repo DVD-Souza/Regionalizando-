@@ -71,7 +71,9 @@
       id="buscar"
     />
     <img class="buscarimg" src="./assets/Vector.png" alt="imagem lupa" />
-    <img class="maisimg" src="./assets/Add@2x.png" alt="Imagem mais" />
+    <button type="button" class="adicionarTermo" onclick="telaAdicionar()">
+            <img class="maisimg" src="./assets/Add@2x.png" alt="Imagem mais">
+        </button>
   </div>
 
   <div class="texto_addcomentario">
@@ -94,70 +96,19 @@
     <button type="button" id="btnVerMais">Ver mais</button>
   </div>
 
-  <div id="myModal" class="modal">
-    <div class="modal-content">
-      <button class="fechar" onclick="fecharModal()">X</button>
-      <div class="modal_background">
-        <h2 class="titulo">ESCREVER NOVA DEFINIÇÃO</h2>
 
-        <form action="">
-          <textarea
-            maxlength="500"
-            cols="30"
-            rows="5"
-            class="escreverSignificado"
-            name="escreverSignificado"
-            placeholder="Comente aqui adicionando seu próprio significado."
-            id="significado"
-          ></textarea>
-
-          <div class="container_classe_regiao">
-            <div class="classe_regiao">
-              <label for="classeGramatical" class="label_classe_regiao">
-                Adicione a classe gramatical da palavra:
-              </label>
-              <select id="tipo" name="classeGramatical">
-                <option value="Todos">Todos</option>
-                <option value="Substantivo">Substantivo</option>
-                <option value="Adjetivo">Adjetivo</option>
-                <option value="Artigo">Artigo</option>
-                <option value="Pronome">Pronome</option>
-                <option value="Numeral">Numeral</option>
-                <option value="Verbo">Verbo</option>
-                <option value="Advérbio">Advérbio</option>
-                <option value="Preposição">Preposição</option>
-                <option value="Conjunção">Conjunção</option>
-                <option value="Interjeição">Interjeição</option>
-              </select>
-            </div>
-
-            <div class="classe_regiao">
-              <label for="regiao" class="label_classe_regiao">
-                Qual a região que utiliza essa gíria:
-              </label>
-              <select id="regiao" name="regiao">
-                <option value="Todos">Todos</option>
-                <option value="Nordeste">Nordeste</option>
-                <option value="Norte">Norte</option>
-                <option value="Sul">Sul</option>
-                <option value="Sudeste">Sudeste</option>
-                <option value="Centro-Oeste">Centro-Oeste</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="termos">
-            <p>
-              Significados estão sujeitos aos nossos
-              <a href="#" class="termosepolitica"> termos de serviço</a> e
-              <a href="#" class="termosepolitica"> políticas de privacidade.</a>
-            </p>
-          </div>
-
-          <button class="enviar">Enviar</button>
-        </form>
-      </div>
-    </div>
+  <!-- Modal -->
+<div id="modalSignificado" class="modal" style="display: none;">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2 id="modalPalavra">Palavra</h2>
+    <p><strong>Tipo:</strong> <span id="modalTipo"></span></p>
+    <p><strong>Descrição:</strong> <span id="modalDescricao"></span></p>
+    <p><strong>Região:</strong> <span id="modalRegiao"></span></p>
+    <p><strong>Usuário:</strong> <span id="modalUsuario"></span></p>
   </div>
+</div>
+
+
 </body>
 </html>

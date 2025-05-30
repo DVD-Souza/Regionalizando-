@@ -1,21 +1,24 @@
-// models/Meaning.js
-
 const db = require('../config/db');
 
 class Meaning {
   constructor(id, addedBy, region, description, additional_info, type) {
     this.id = id;
     this.user_id = addedBy;
-    this.region_id = region;             // Value received as "region"
-    this.description = description;         // Value received as "description"
-    this.additional_info = additional_info; // Value received as "info"
-    this.type = type || 'empty';            // Value received as "type", with default if not provided
+    this.region_id = region;
+    this.description = description;
+    this.additional_info = additional_info;
+    this.type = type || 'empty';
   }
 
   static async create(newMeaning) {
     const query = 'INSERT INTO meanings (user_id, location_id, description, additional_info, type) VALUES (?, ?, ?, ?, ?)';
-    // Here we use the properties of the newMeaning object as defined in the constructor
-    const [result] = await db.execute(query, [newMeaning.user_id, newMeaning.region_id, newMeaning.description, newMeaning.additional_info, newMeaning.type]);
+    const [result] = await db.execute(query, [
+      newMeaning.user_id,
+      newMeaning.region_id,
+      newMeaning.description,
+      newMeaning.additional_info,
+      newMeaning.type
+    ]);
     return { id: result.insertId };
   }
 
@@ -40,7 +43,6 @@ class Meaning {
   }
 
   static async update(meaningId, { region, description, info, type }) {
-    // If no fields are provided, return an object simulating no affected rows
     if (!region && !description && !info && !type) {
       return { affectedRows: 0 };
     }
@@ -65,10 +67,7 @@ class Meaning {
       values.push(type);
     }
 
-    // Remove the last comma and space
-    query = query.slice(0, -2);
-
-    // Add the WHERE clause filtering by the meaning ID
+    query = query.slice(0, -2); // remove última vírgula
     query += ' WHERE meaning_id = ?';
     values.push(meaningId);
 
@@ -78,4 +77,3 @@ class Meaning {
 }
 
 module.exports = Meaning;
-
