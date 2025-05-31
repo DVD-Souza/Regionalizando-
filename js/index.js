@@ -76,6 +76,7 @@ let contadorSignificados = 0;
 // ======= Funções de navegação =======
 function mostrarMensagem() { alert("Em Breve"); }
 function telaLogin() { window.location.href = "login.html"; }
+function telaCadastro() { window.location.href = "Registro.html"; }
 function telaSignificado() { window.location.href = "significado.html"; }
 function telaPerfil() { window.location.href = "perfil.html"; }
 function telaAdicionar() { window.location.href = "adicionar.html"; }

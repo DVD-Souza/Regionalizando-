@@ -278,6 +278,11 @@ function mostrarMensagem() {
 function telaLogin() {
   window.location.href = "login.html";
 }
+
+function telaCadastro() {
+  window.location.href = "Registro.html";
+}
+
 function telaPerfil() {
   window.location.href = "perfil.html";
 }
@@ -301,43 +306,46 @@ if (btnVerMais) {
         <div class="modal-content">
           <div class="modal_background">
             <button class="fechar" onclick="fecharmodal(this)">X</button>
-            <h2 class="titulo">Adicionar Comentário</h2>
+            <h2 class="titulo">Adicionar novo significado</h2>
 
             <textarea
               id="comentarioInput"
               class="escreverSignificado"
               rows="3"
+              col="3"
               maxlength="300"
               placeholder="Digite seu comentário (máximo 300 caracteres)"
             ></textarea>
 
-            <input
-              type="text"
+              
+            <textarea
               id="exemploUsoInput"
               name="exemploUso"
               placeholder="Digite um exemplo de uso"
+              rows="3"
+              col="3"
               maxlength="200"
               class="escreverSignificado"
-            />
+            ></textarea>
+
 
             <div class="container_classe_regiao">
               <div class="classe_regiao">
                 <label class="label_classe_regiao" for="classeGramaticalSelect">Classe gramatical:</label>
                 <select id="classeGramaticalSelect" name="classeGramatical">
-                        <option value="">Selecione</option>
-                        <option value="noun">Substantivo</option>
-                        <option value="verb">Verbo</option>
-                        <option value="adjective">Adjetivo</option>
-                        <option value="adverb">Advérbio</option>
-                        <option value="pronoun">Pronome</option>
-                        <option value="preposition">Preposição</option>
-                        <option value="conjunction">Conjunção</option>
-                        <option value="interjection">Interjeição</option>
-                        <option value="article">Artigo</option>
-                      </select>
-
-
+                  <option value="">Selecione</option>
+                  <option value="noun">Substantivo</option>
+                  <option value="verb">Verbo</option>
+                  <option value="adjective">Adjetivo</option>
+                  <option value="adverb">Advérbio</option>
+                  <option value="pronoun">Pronome</option>
+                  <option value="preposition">Preposição</option>
+                  <option value="conjunction">Conjunção</option>
+                  <option value="interjection">Interjeição</option>
+                  <option value="article">Artigo</option>
+                </select>
               </div>
+            
 
               <div class="classe_regiao">
                 <label class="label_classe_regiao" for="regiaoSelect">Região:</label>
@@ -356,9 +364,9 @@ if (btnVerMais) {
               <p>Ao clicar em “Enviar” você aceita os <a href="#">Termos de uso</a></p>
             </div>
 
-            <div class="botoes">
+
               <button class="enviar" id="btnEnviarComentario">Enviar</button>
-            </div>
+
           </div>
         </div>
       `;

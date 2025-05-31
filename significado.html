@@ -5,29 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="./css/significado.css" />
     <title>Regionalizando: Seu dicionário informal regional</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <link
-      rel="shortcut icon"
-      href="./assets/Regionalizando_logo 1.png"
-      type="image/x-icon"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="shortcut icon" href="./assets/Regionalizando_logo 1.png" type="image/x-icon"/>
     <script src="./js/significado.js" defer></script>
 </head>
 <body>
   <div class="container_logo_botoes">
     <div class="container_logo">
       <button class="voltarIndex" onclick="telaIndex()">
-        <img
-          class="imagemLogo"
-          src="./assets/Regionalizando_logo 1.png"
-          alt="Logo Regionalizando"
-        />
+        <img class="imagemLogo" src="./assets/Regionalizando_logo 1.png" alt="Logo Regionalizando"/>
       </button>
 
       <button class="voltarIndex" onclick="telaIndex()">
@@ -37,53 +23,34 @@
     </div>
 
     <div class="botoes">
-      <button
-        type="button"
-        class="botoes_header"
-        id="botaoLogin"
-        onclick="telaLogin()"
-      >
+      <button type="button" class="botoes_header" id="botaoLogin" onclick="telaLogin()">
         Login
         <img class="userImage" src="./assets/User.png" />
       </button>
-      <button
-        type="button"
-        class="botoes_header"
-        id="botaoPerfil"
-        onclick="mostrarMensagem()"
-      >
-        Menu
-        <img
-          class="menuImage"
-          src="./assets/Hamburguer.png"
-          alt="3 tracinhos menu"
-        />
+      <button type="button" class="botoes_header" id="botaoPerfil" onclick="telaCadastro()">
+        Cadastrar
+        <img class="menuImage" src="./assets/badge.png" alt="Cadastrar"/>
       </button>
     </div>
+
   </div>
 
   <div class="container_pesquisa_add" id="barraDePesquisa">
-    <input
-      class="input_buscar"
-      placeholder="Procure um termo"
-      type="text"
-      name="buscar"
-      id="buscar"
-    />
+    <input class="input_buscar" placeholder="Procure um termo" type="text" name="buscar" id="buscar"/>
+
     <img class="buscarimg" src="./assets/Vector.png" alt="imagem lupa" />
+
     <button type="button" class="adicionarTermo" onclick="telaAdicionar()">
-            <img class="maisimg" src="./assets/Add@2x.png" alt="Imagem mais">
-        </button>
+      <img class="maisimg" src="./assets/Add@2x.png" alt="Imagem mais">
+    </button>
+
   </div>
 
   <div class="texto_addcomentario">
     <p class="Titulo"></p>
-    <button
-      type="button"
-      class="addcomentario"
-      onclick="abrirmodal()"
-    >
-      Adicionar Comentario
+
+    <button type="button" class="addcomentario" onclick="abrirmodal()">
+      Adicionar novo significado
     </button>
   </div>
 
@@ -98,17 +65,22 @@
 
 
   <!-- Modal -->
-<div id="modalSignificado" class="modal" style="display: none;">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <h2 id="modalPalavra">Palavra</h2>
-    <p><strong>Tipo:</strong> <span id="modalTipo"></span></p>
-    <p><strong>Descrição:</strong> <span id="modalDescricao"></span></p>
-    <p><strong>Região:</strong> <span id="modalRegiao"></span></p>
-    <p><strong>Usuário:</strong> <span id="modalUsuario"></span></p>
-  </div>
-</div>
+  <div id="modalSignificado" class="modal" style="display: none;">
+    <div class="modal-content">
+      <span class="close">&times;</span>
 
+      <h2 id="modalPalavra">Palavra</h2>
+
+      <p><strong>Tipo:</strong> <span id="modalTipo"></span></p>
+
+      <p><strong>Descrição:</strong> <span id="modalDescricao"></span></p>
+
+      <p><strong>Região:</strong> <span id="modalRegiao"></span></p>
+
+      <p><strong>Usuário:</strong> <span id="modalUsuario"></span></p>
+
+    </div>
+  </div>
 
 </body>
 </html>
