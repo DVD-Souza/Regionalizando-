@@ -41,7 +41,7 @@ class Meaning {
     let query = 'SELECT * FROM meanings WHERE 1=1';
     const values = [];
     if (region) {
-      query += ' AND region = ?';
+      query += ' AND location_id = ?';
       values.push(region);
     }
     if (type) {
