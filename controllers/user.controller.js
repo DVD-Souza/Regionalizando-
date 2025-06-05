@@ -25,28 +25,28 @@ const create = async (req, res) => {
 const update = async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, email, password } = req.body;
+    let { name, email, password } = req.body;
     const tokenData = req.user;
-
-    console.log("ID no token:", tokenData.id);
-    console.log("ID na URL:", id);
 
     if (tokenData.id !== parseInt(id)) {
       return res.status(403).send("Você não tem permissão para editar outro usuário.");
     }
 
-    let hashedPassword;
-    if (password) {
-      hashedPassword = await bcrypt.hash(password, 10); // 🔐 Atualiza senha com hash
+    // Se password for vazio ou só espaços, ignore
+    if (password && password.trim() !== '') {
+      password = await bcrypt.hash(password, 10);
+    } else {
+      password = undefined; // não atualiza senha
     }
 
-    await User.update(id, { name, email, password: hashedPassword });
+    await User.update(id, { name, email, password });
     res.send('User successfully updated.');
   } catch (error) {
     console.error(error);
     res.status(500).send('Internal server error.');
   }
 };
+
 
 const remove = async (req, res) => {
   try {
