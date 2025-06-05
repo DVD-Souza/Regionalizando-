@@ -63,6 +63,31 @@ const getSix = async (req, res) => {
   }
 };
 
+const getByParams = async (req, res) => {
+  try {
+    const {name, page } = req.query; // Get query string parameters
+
+    // Call the model search method that filters based on provided parameters
+    const results = await Word.byParams({ name });
+
+    if (!results || results.length === 0) {
+      return res.status(404).json({ message: 'No words found with the provided filters.' });
+    }
+
+    res.status(200).json({
+      currentPage: page || 1,
+      results: results.length,
+      data: results,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      message: 'Error while fetching words',
+      error: error.message,
+    });
+  }
+};
+
 
 const remove = async (req, res) => {
   try {
@@ -111,4 +136,4 @@ const update = async (req, res) => {
   }
 };
 
-module.exports = { create, getSix, remove, update };
+module.exports = { create, getSix, getByParams, remove, update };

@@ -10,6 +10,8 @@ router.post('/word/create', protect, wordController.create);
 // Route to fetch all words with pagination
 router.get('/word', wordController.getSix);
 
+router.get('/word/search', wordController.getByParams);
+
 // Route to delete a word (only the creator can delete)
 router.delete('/word/:id', protect, wordController.remove);
 

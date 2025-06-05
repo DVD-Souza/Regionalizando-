@@ -24,9 +24,20 @@ class Word {
 
   // Find a word by ID
   static async findById(id) {
-    const query = 'SELECT * FROM words WHERE id = ?';
+    const query = 'SELECT * FROM textual_elements WHERE id = ?';
     const [rows] = await db.execute(query, [id]);
     return rows[0];
+  }
+
+  static async byParams({name}) {
+    let query = 'SELECT * FROM textual_elements WHERE 1=1';
+    const values = [];
+    if (name) {
+      query += ' AND word LIKE ?';
+      values.push(`%${name}%`);
+    }
+    const [rows] = await db.execute(query, values);
+    return rows;
   }
 
   // Word update (field "word")
