@@ -284,6 +284,14 @@ function exibirModal({ palavra, tipo, descricao, regiao, usuario }) {
 function mostrarMensagem() {
   alert("Você clicou no botão!");
 }
+document.getElementById('botaoLogin').addEventListener('click', () => {
+  const token = localStorage.getItem('token');
+  if (!token) {
+    telaLogin();
+  } 
+  // se tiver token, não faz nada
+});
+
 function telaLogin() {
   window.location.href = "login.html";
 }
@@ -590,3 +598,56 @@ function atualizarEstadoBotoes(div, userReaction) {
     dislikeBtn.classList.remove("selecionado");
   }
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+    const botao = document.getElementById('botaoPerfil');
+    const menu = document.getElementById('menuPerfil');
+    const token = localStorage.getItem('token'); // ou sessionStorage.getItem()
+
+    if (token) {
+        // Muda o texto do botão e a imagem
+        botao.innerHTML = `Menu <img class="menuImage" src="./assets/Hamburguer.png" alt="Menu" />`;
+
+        // Adiciona opções no menu
+        const opcoes = [
+            { texto: "Atualizar Conta", acao: () => window.location.href = "atualizarUsuario.html" },
+            { texto: "Sair", acao: () => {
+                localStorage.removeItem('token');
+                localStorage.removeItem('userId');
+                localStorage.removeItem('name');
+                location.reload();
+            }}
+        ];
+
+        opcoes.forEach(op => {
+            const li = document.createElement('li');
+            const btn = document.createElement('button');
+            btn.textContent = op.texto;
+            btn.onclick = op.acao;
+            li.appendChild(btn);
+            menu.appendChild(li);
+        });
+
+        // Toggle de exibição do menu
+        botao.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Fechar o menu ao clicar fora
+        document.addEventListener('click', (e) => {
+            if (!menu.contains(e.target) && !botao.contains(e.target)) {
+                menu.classList.add('hidden');
+            }
+        });
+
+    } else {
+        // Usuário não está logado → redireciona ao clicar
+        botao.addEventListener('click', () => {
+            window.location.href = "Registro.html";
+        });
+    }
+});
+
+
+
+

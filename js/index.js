@@ -69,7 +69,19 @@ let contadorSignificados = 0;
 
 // ======= Funções de navegação =======
 function mostrarMensagem() { alert("Em Breve"); }
-function telaLogin() { window.location.href = "login.html"; }
+
+document.getElementById('botaoLogin').addEventListener('click', () => {
+  const token = localStorage.getItem('token');
+  if (!token) {
+    telaLogin();
+  } 
+  // se tiver token, não faz nada
+});
+
+function telaLogin() {
+  window.location.href = "login.html";
+}
+
 function telaSignificado() { window.location.href = "significado.html"; }
 function telaPerfil() { window.location.href = "perfil.html"; }
 function telaAdicionar() { window.location.href = "adicionar.html"; }
