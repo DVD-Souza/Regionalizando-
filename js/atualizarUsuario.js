@@ -66,3 +66,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+function olhoAtual() {
+const olho = document.getElementById("olho");
+
+    if (olho.src.includes("olhofechado.png")) {
+        olho.src = "./assets/olho.png";
+        mudarVisibilidade();
+    } else {
+        olho.src = "./assets/olhofechado.png";
+        mudarVisibilidade();
+    }  
+}
+
+function mudarVisibilidade(){
+    const senha = document.getElementById("inputsenha")
+    if (senha.type === "password") {
+    senha.type = "text";
+} else {
+    senha.type = "password";      
+}
+}
