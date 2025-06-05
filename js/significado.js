@@ -1,6 +1,8 @@
+const { name } = require("ejs");
 
 const token = localStorage.getItem("token");
 const userId = localStorage.getItem("userId");
+const name = localStorage.getItem("name");
 
 
 let contadorSignificados = 0;// Supondo que a resposta contenha o ID do usuário
@@ -32,7 +34,7 @@ function criarMeaning() {
   }
 
   const payload = {
-    addedBy: Number(userId), // substitua pelo id real do usuário logado, se tiver
+    addedBy: name, // substitua pelo id real do usuário logado, se tiver
     region: 3,
     description: 'teste',
     info: 'exemplo de uso',

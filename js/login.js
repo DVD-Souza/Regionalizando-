@@ -99,6 +99,7 @@ try {
 
     localStorage.setItem("token", resultado.token);
     localStorage.setItem("userId", resultado.userId);
+    localStorage.setItem("name", resultado.name);
     console.log("ID salvo:", resultado.userId);
 
 
