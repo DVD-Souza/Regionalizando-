@@ -41,16 +41,34 @@ const getSix = async (req, res) => {
     const page = parseInt(req.query.page) || 1;
     const limit = 100;
     const offset = (page - 1) * limit;
+    const { element_id } = req.query;
 
-    const query = `
-      SELECT p.*, u.name 
-      FROM textual_elements p 
-      JOIN users u ON p.user_id = u.user_id 
-      ORDER BY RAND() 
-      LIMIT ${limit} OFFSET ${offset}
-    `;
+    let query;
+    let params = [];
 
-    const [rows] = await db.execute(query);
+    if (element_id) {
+      // Consulta para um element_id específico — mantém placeholders normais
+      query = `
+        SELECT p.*, u.name
+        FROM textual_elements p
+        JOIN users u ON p.user_id = u.user_id
+        WHERE p.element_id = ?
+        LIMIT 1
+      `;
+      params = [element_id];
+    } else {
+      // Consulta padrão, interpolando LIMIT e OFFSET direto na string
+      query = `
+        SELECT p.*, u.name
+        FROM textual_elements p
+        JOIN users u ON p.user_id = u.user_id
+        ORDER BY RAND()
+        LIMIT ${limit} OFFSET ${offset}
+      `;
+      params = []; // não usa mais placeholders para limit e offset
+    }
+
+    const [rows] = await db.execute(query, params);
 
     res.status(200).json({
       currentPage: page,
@@ -59,9 +77,10 @@ const getSix = async (req, res) => {
     });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ message: 'Error while fetching words', error: err.message });
+    res.status(500).json({ message: 'Erro ao buscar palavras', error: err.message });
   }
 };
+
 
 const getByParams = async (req, res) => {
   try {
@@ -136,4 +155,31 @@ const update = async (req, res) => {
   }
 };
 
-module.exports = { create, getSix, getByParams, remove, update };
+const getMeaningLogs = async (req, res) => {
+  try {
+    const { meaning_id } = req.query;
+
+    let query = 'SELECT * FROM meaning_logs';
+    const params = [];
+
+    if (meaning_id) {
+      query += ' WHERE meaning_id = ?';
+      params.push(meaning_id);
+    }
+
+    const [rows] = await db.execute(query, params);
+
+    res.status(200).json({
+      count: rows.length,
+      data: rows
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Erro ao buscar registros de meaning_logs', error: err.message });
+  }
+};
+
+
+
+module.exports = { create, getSix, getByParams, remove, update, getMeaningLogs };
+

@@ -4,13 +4,7 @@ const token = localStorage.getItem("token");
 const decodedToken = decodeJwt(token);
 const userIdAtual = decodedToken ? decodedToken.id : null;
 
-fetch("http://localhost:3000/rota-protegida", {
-  method: "GET",
-  headers: {
-    "Content-Type": "application/json",
-    "authorization": token
-  }
-});
+
 
 function decodeJwt(token) {
   if (!token) return null;
@@ -86,14 +80,15 @@ function telaIndex() { window.location.href = "Index.html"; }
 async function buscarSignificadoPorPalavraId(wordId) {
   try {
     const response = await fetch(`http://localhost:3000/meanings/word/${wordId}/meaning`);
-    if (!response.ok) throw new Error("Erro ao buscar significados");
+    if (!response.ok) return null; // Sem log, apenas ignora
     const data = await response.json();
     return data.meanings?.[0] || null;
   } catch (error) {
-    console.error("Erro ao buscar significado:", error);
-    return null;
+    return null; // Silenciosamente ignora qualquer erro
   }
 }
+
+
 
 // ======= Função para buscar likes e dislikes =======
 async function buscarLikesDislikes(wordId, meaningId) {
@@ -270,6 +265,10 @@ async function preencherSignificados(inicio = 0) {
       if (!item) break;
 
       const significado = await buscarSignificadoPorPalavraId(item.element_id);
+      
+      // Se não houver significado, pula esta iteração
+      if (!significado) continue;
+
       await criarDivPalavra(item, significado);
       contadorSignificados++;
     }
@@ -281,6 +280,7 @@ async function preencherSignificados(inicio = 0) {
     console.error("Erro ao preencher os significados:", error);
   }
 }
+
 
 // ======= Botão Ver Mais =======
 document.getElementById("btnVerMais").addEventListener("click", async function () {
@@ -335,3 +335,71 @@ function abrirSignificado(botao) {
     localStorage.setItem("wordNameSelecionado", wordName);
     window.location.href = "significado.html";
 }
+
+document.querySelector('.container_filtros form').addEventListener('submit', async function (e) {
+  e.preventDefault();
+
+  const regiao = document.getElementById('regiao').value;
+  const tipo = document.getElementById('tipo').value;
+
+  contadorSignificados = 0;
+  const container = document.getElementById("containerSignificados");
+  container.innerHTML = "";
+
+  try {
+    let url = 'http://localhost:3000/meanings/meaning/search?';
+    const params = [];
+    if (tipo && tipo !== '0') params.push(`type=${encodeURIComponent(tipo)}`);
+    if (regiao && regiao !== '0') params.push(`region=${encodeURIComponent(regiao)}`);
+    url += params.join('&');
+
+    const resMeanings = await fetch(url);
+    if (!resMeanings.ok) throw new Error('Erro ao buscar significados filtrados');
+    const dataMeanings = await resMeanings.json();
+
+    if (!dataMeanings.data || dataMeanings.data.length === 0) {
+      container.innerHTML = "<p>Nenhum resultado encontrado para os filtros selecionados.</p>";
+      return;
+    }
+
+    let encontrouAlgum = false;
+
+    for (const meaning of dataMeanings.data) {
+      const meaningId = meaning.meaning_id;
+
+      const resLogs = await fetch(`http://localhost:3000/words/word/logs?meaning_id=${meaningId}`);
+      if (!resLogs.ok) continue;
+      const dataLogs = await resLogs.json();
+
+      if (!dataLogs.data || dataLogs.data.length === 0) continue;
+
+      for (const log of dataLogs.data) {
+        const elementId = log.element_id;
+
+        const resWords = await fetch(`http://localhost:3000/words/word?element_id=${elementId}`);
+        if (!resWords.ok) continue;
+        const dataWords = await resWords.json();
+
+        if (!dataWords.data || dataWords.data.length === 0) continue;
+
+        const palavra = dataWords.data[0];
+        await criarDivPalavra(palavra, meaning);
+        contadorSignificados++;
+        encontrouAlgum = true;
+      }
+    }
+
+    if (!encontrouAlgum) {
+      container.innerHTML = "<p>Nenhum significado válido encontrado para os filtros selecionados.</p>";
+    } else {
+      adicionarEventosClique();
+    }
+
+  } catch (error) {
+    const container = document.getElementById("containerSignificados");
+    container.innerHTML = "<p>Ainda não existem palavras para esses filtros. Tente novamente mais tarde.</p>";
+    console.error('Erro ao aplicar filtro:', error);
+  }
+});
+
+

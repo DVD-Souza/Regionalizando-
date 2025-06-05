@@ -12,10 +12,13 @@ router.get('/word', wordController.getSix);
 
 router.get('/word/search', wordController.getByParams);
 
+router.get('/word/logs', wordController.getMeaningLogs);
+
 // Route to delete a word (only the creator can delete)
 router.delete('/word/:id', protect, wordController.remove);
 
 // Route to update a word (only the creator can update)
 router.put('/word/:id', protect, wordController.update);
+
 
 module.exports = router;
