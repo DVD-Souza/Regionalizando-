@@ -123,7 +123,7 @@ async function criarDivSignificado(meaning, wordName) {
     <p class="tiposignificado">${tipo}</p>
     <p class="descricaosignificado">${descricao}</p>
     <p class="exemplouso">Exemplo: ${exemploUso}</p>
-    <p> Significado de "${palavra}" por <button class="nomeusuario" onclick="telaPerfil()">${usuario}</button> em ${data}</p>
+    <p> Significado de "${palavra}" por <button class="nomeusuario" onclick="telaPerfil()">${usuario}<a style="color: black; text-decoration: none;">.</a></button></p>
     <div class="likedislike">
       <button class="likeimagem">
         <img src="./assets/Like.png" alt="Imagem Like">
@@ -648,6 +648,98 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
+// Função que faz a requisição ao backend com o texto digitado
+let contadorSignificados2 = 2; // Variável global para controle de paginação/limite
+
+// Função principal para buscar palavra + significado
+async function buscarTermo() {
+  const termo = document.getElementById("buscar").value.trim();
+
+  if (!termo) {
+    alert("Digite um termo para buscar.");
+    return;
+  }
+
+  try {
+    const response = await fetch(`http://localhost:3000/words/word/search?name=${encodeURIComponent(termo)}`);
+    if (!response.ok) throw new Error("Erro ao buscar termo");
+
+    const data = await response.json();
+
+    console.log("Resultado da busca:", data);
+
+    // Limpa container e reseta contador
+    const container = document.getElementById("containerSignificados");
+    container.innerHTML = "";
+    contadorSignificados2 = 2;
+
+    // Para cada palavra, buscar significado e criar div
+    for (const item of data.data) {
+      const significado = await buscarSignificadoPorPalavraId(item.element_id);
+      await criarDivPalavra(item, significado);
+      contadorSignificados2++;
+    }
+
+    // Adiciona eventos aos elementos recém criados, se necessário
+    adicionarEventosClique();
+
+  } catch (error) {
+    console.error("Erro ao buscar no backend:", error);
+    alert("Erro ao buscar a palavra. Tente novamente mais tarde.");
+  }
+}
+
+// Função simulada para buscar significado pelo id da palavra
+async function buscarSignificadoPorPalavraId(palavraId) {
+  try {
+    const response = await fetch(`http://localhost:3000/meanings/word/${palavraId}/meaning`);
+    if (!response.ok) throw new Error("Erro ao buscar significado");
+    const data = await response.json();
+    return data.data; // Ajuste conforme a estrutura do seu backend
+  } catch (error) {
+    console.error("Erro ao buscar significado:", error);
+    return null; // Retorna null ou objeto vazio caso falhe
+  }
+}
+
+// Função para criar a div da palavra e significado dentro do container
+async function criarDivPalavra(palavra, significado) {
+  const container = document.getElementById("containerSignificados");
+
+  const div = document.createElement("div");
+  div.classList.add("significado-item");
+
+  const titulo = document.createElement("h3");
+  titulo.textContent = palavra.name || "Palavra sem nome";
+
+  const desc = document.createElement("p");
+  desc.textContent = significado?.description || "Sem significado disponível";
+
+  div.appendChild(titulo);
+  div.appendChild(desc);
+
+  container.appendChild(div);
+}
+
+// Função para adicionar eventos aos elementos dinamicamente criados
+function adicionarEventosClique() {
+  // Exemplo: adiciona clique para abrir modal ou salvar palavra clicada
+  const items = document.querySelectorAll(".significado-item");
+  items.forEach(item => {
+    item.addEventListener("click", () => {
+      console.log("Palavra clicada:", item.querySelector("h3").textContent);
+      // Sua lógica aqui...
+    });
+  });
+}
+
+// Eventos para disparar a busca
+document.getElementById("btnBuscar").addEventListener("click", buscarTermo);
+document.getElementById("buscar").addEventListener("keydown", function(event) {
+  if(event.key === "Enter") {
+    buscarTermo();
+  }
+});
 
 
 

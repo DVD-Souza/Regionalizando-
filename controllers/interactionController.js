@@ -3,32 +3,56 @@
 const db = require('../config/db');
 const Interaction = require('../models/Interaction');
 
+// controllers/interactionController.js
+
+// controllers/interactionController.js
+
 const create = async (req, res) => {
   try {
-    // Extract parameters – the meaning ID is the one that matters for the association
     const { meaningId } = req.params;
     const { like, dislike } = req.body;
     const userId = req.user?.id;
-
 
     if (!userId || (like === undefined && dislike === undefined)) {
       return res.status(400).json({ message: 'Required fields not provided.' });
     }
 
-    // Create the interaction using the model
-    const newInteraction = new Interaction(null,userId, like, dislike);
-    const result = await Interaction.create(newInteraction);
+    const existingInteraction = await Interaction.byUser(meaningId, userId);
 
-    // Associate the interaction with the meaning (relationship table)
-    const associationQuery = `INSERT INTO meaning_interactions (interaction_id, meaning_id) VALUES (?, ?)`;
-    await db.execute(associationQuery, [result.insertId, meaningId]);
+    if (existingInteraction) {
+      // Se like e dislike forem zero ou falsos, remove a interação
+      if ((like === 0 || like === false) && (dislike === 0 || dislike === false)) {
+        await Interaction.remove(existingInteraction.interaction_id);
+        return res.status(200).json({ message: 'Interaction removed successfully.' });
+      }
 
-    res.status(201).json({ message: 'Interaction successfully recorded.', id: result.insertId });
+      // Caso contrário, atualiza a interação existente
+      await Interaction.update(existingInteraction.interaction_id, like, dislike);
+      return res.status(200).json({ message: 'Interaction updated successfully.' });
+
+    } else {
+      // Se like e dislike forem zero, não cria interação (não faz sentido criar sem reação)
+      if ((like === 0 || like === false) && (dislike === 0 || dislike === false)) {
+        return res.status(400).json({ message: 'No reaction to create.' });
+      }
+
+      // Cria nova interação
+      const newInteraction = new Interaction(null, userId, like, dislike);
+      const result = await Interaction.create(newInteraction);
+
+      const associationQuery = `INSERT INTO meaning_interactions (interaction_id, meaning_id) VALUES (?, ?)`;
+      await db.execute(associationQuery, [result.insertId, meaningId]);
+
+      return res.status(201).json({ message: 'Interaction created successfully.', id: result.insertId });
+    }
+
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Error creating interaction.', error: error.message });
+    res.status(500).json({ message: 'Error processing interaction.', error: error.message });
   }
 };
+
+
 
 const getByUser = async (req, res) => {
   try {

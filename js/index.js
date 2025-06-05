@@ -294,36 +294,52 @@ async function preencherSignificados(inicio = 0) {
 
 
 // ======= Botão Ver Mais =======
+// Variáveis globais para controle
+let contadorSignificados1 = 0;
+const idsMostrados = new Set();
+
 document.getElementById("btnVerMais").addEventListener("click", async function () {
   try {
     const response = await fetch("http://localhost:3000/words/word");
     if (!response.ok) throw new Error("Erro na requisição");
     const data = await response.json();
 
-    let divsRestantes = 96 - contadorSignificados;
+    let divsRestantes = 96 - contadorSignificados1;
     if (divsRestantes <= 0) {
       alert("Limite de resultados atingido");
       return;
     }
 
-    let divsParaCriar = Math.min(6, divsRestantes);
+    let divsParaCriar = 0;
 
-    for (let i = 0; i < divsParaCriar; i++) {
-      const item = data.data[contadorSignificados];
+    for (let i = 0; i < data.data.length && divsParaCriar < 6 && divsRestantes > 0; i++) {
+      const item = data.data[i];
       if (!item) break;
+
+      if (idsMostrados.has(item.element_id)) {
+        continue;  // já apareceu, pula
+      }
 
       const significado = await buscarSignificadoPorPalavraId(item.element_id);
       await criarDivPalavra(item, significado);
-      contadorSignificados++;
+
+      idsMostrados.add(item.element_id);
+      contadorSignificados1++;
+      divsRestantes--;
+      divsParaCriar++;
     }
 
-    // Após criar os botões, adiciona evento de clique para eles
+    if (divsParaCriar === 0) {
+      alert("Não há mais palavras para mostrar");
+    }
+
     adicionarEventosClique();
 
   } catch (error) {
     console.error("Erro ao buscar os dados:", error);
   }
 });
+
 
 // ======= Ao carregar a página =======
 window.onload = function () {
@@ -408,7 +424,7 @@ document.querySelector('.container_filtros form').addEventListener('submit', asy
 
   } catch (error) {
     const container = document.getElementById("containerSignificados");
-    container.innerHTML = "<p>Ainda não existem palavras para esses filtros. Tente novamente mais tarde.</p>";
+    container.innerHTML = `<p style="text-align: center; font-size: 24px; color: white">Ainda não existem palavras para esses filtros. Tente novamente mais tarde.</p>`;
     console.error('Erro ao aplicar filtro:', error);
   }
 });

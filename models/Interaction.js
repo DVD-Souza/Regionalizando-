@@ -21,7 +21,7 @@ class Interaction {
   // Retrieves the interaction of a user for a specific meaning
   static async byUser(meaningId, user_id) {
     const query = `
-      SELECT i.*
+      SELECT i.interaction_id, i.user_id, i.likes, i.dislike
       FROM interactions AS i
       INNER JOIN meaning_interactions AS im ON i.interaction_id = im.interaction_id
       WHERE im.meaning_id = ? AND i.user_id = ?`;
@@ -42,6 +42,27 @@ class Interaction {
     const [rows] = await db.execute(query, [meaningId]);
     return rows[0];
   }
+
+  // models/Interaction.js
+
+// Atualiza a interação pelo interaction_id
+static async update(interactionId, like, dislike) {
+  const query = `UPDATE interactions SET likes = ?, dislike = ? WHERE interaction_id = ?`;
+  const [result] = await db.execute(query, [like, dislike, interactionId]);
+  return result;
 }
+
+
+// models/Interaction.js
+
+// Remove interação pelo interaction_id
+static async remove(interactionId) {
+  const query = `DELETE FROM interactions WHERE interaction_id = ?`;
+  const [result] = await db.execute(query, [interactionId]);
+  return result;
+}
+
+}
+
 
 module.exports = Interaction;
