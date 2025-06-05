@@ -22,26 +22,6 @@ class Word {
     return result;
   }
 
-  // Search by parameter (filtering by name, region, etc.) — adapt according to table structure
-  static async byParams({ name, region, type }) {
-    let query = 'SELECT * FROM textual_elements WHERE 1=1';
-    const values = [];
-    if (name) {
-      query += ' AND word LIKE ?';
-      values.push(`%${name}%`);
-    }
-    if (region) {
-      query += ' AND region = ?';
-      values.push(region);
-    }
-    if (type) {
-      query += ' AND type = ?';
-      values.push(type);
-    }
-    const [rows] = await db.execute(query, values);
-    return rows;
-  }
-
   // Find a word by ID
   static async findById(id) {
     const query = 'SELECT * FROM words WHERE id = ?';

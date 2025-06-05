@@ -10,6 +10,10 @@ router.post('/word/:wordId/meaning/create', protect, meaningController.create);
 // Fetch meanings of a word
 router.get('/word/:wordId/meaning', meaningController.getByWord);
 
+// Route to search by parameters (by name, region or type) via query string
+// Example: GET /word/search?name=someName&region=someRegion
+router.get('/meaning/search', meaningController.getByParams);
+
 // Remove a meaning associated with the word
 router.delete('/word/:wordId/meaning/:meaningId', protect, meaningController.remove);
 

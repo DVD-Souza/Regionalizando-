@@ -37,6 +37,21 @@ class Meaning {
   return rows;
   }
 
+  static async byParams({region, type }) {
+    let query = 'SELECT * FROM meanings WHERE 1=1';
+    const values = [];
+    if (region) {
+      query += ' AND region = ?';
+      values.push(region);
+    }
+    if (type) {
+      query += ' AND type = ?';
+      values.push(type);
+    }
+    const [rows] = await db.execute(query, values);
+    return rows;
+  }
+
 
   static async delete(wordId, meaningId) {
     const query = `
