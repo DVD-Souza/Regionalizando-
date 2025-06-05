@@ -1,8 +1,6 @@
-const { name } = require("ejs");
-
 const token = localStorage.getItem("token");
 const userId = localStorage.getItem("userId");
-const name = localStorage.getItem("name");
+const name2 = localStorage.getItem("name");
 
 
 let contadorSignificados = 0;// Supondo que a resposta contenha o ID do usuário
@@ -34,7 +32,7 @@ function criarMeaning() {
   }
 
   const payload = {
-    addedBy: name, // substitua pelo id real do usuário logado, se tiver
+    addedBy: Number(userId),
     region: 3,
     description: 'teste',
     info: 'exemplo de uso',
@@ -91,7 +89,6 @@ async function criarDivSignificado(meaning, wordName) {
   const meaningId = meaning.meaning_id;
   const exemploUso = meaning.additional_info || "";
 
-
   const total = await buscarTotalLikesDislikes(wordId, meaningId);
   const likes = total.total_likes || 0;
   const dislikes = total.total_dislikes || 0;
@@ -103,7 +100,8 @@ async function criarDivSignificado(meaning, wordName) {
   const palavra = wordName || "Palavra";
 
   const regiao = buscarRegiao(meaning.location_id);
-  const usuario = meaning.user_id || "Usuário";
+  // const usuario = meaning.name || "Usuário";
+  const usuario = meaning.author_name || "Usuário";
   const data = meaning.createdAt ? new Date(meaning.createdAt).toLocaleDateString() : "Data";
 
   const classeDiv = contadorSignificados % 2 === 0 ? "palavra" : "palavra1";

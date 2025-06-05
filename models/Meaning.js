@@ -23,14 +23,20 @@ class Meaning {
   }
 
   static async getByWordId(wordId) {
-    const query = `
-      SELECT m.*
-      FROM meanings m
-      JOIN meaning_logs wm ON m.meaning_id = wm.meaning_id
-      WHERE wm.element_id = ?`;
-    const [rows] = await db.execute(query, [wordId]);
-    return rows;
+  const query = `
+    SELECT 
+      m.*,
+      u.name AS author_name,  -- <- Nome do criador do significado
+      u.user_id AS author_id  -- <- ID do criador, se quiser usar também
+    FROM meanings m
+    JOIN meaning_logs wm ON m.meaning_id = wm.meaning_id
+    JOIN users u ON m.user_id = u.user_id
+    WHERE wm.element_id = ?`;
+    
+  const [rows] = await db.execute(query, [wordId]);
+  return rows;
   }
+
 
   static async delete(wordId, meaningId) {
     const query = `

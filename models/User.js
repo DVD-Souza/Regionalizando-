@@ -85,6 +85,7 @@ class User {
   
     return {
       id: user.user_id,         // Renomeia aqui
+      name: user.name,
       email: user.email,
       password: user.password   // Inclui se for necessário comparar com bcrypt
     };
