@@ -316,6 +316,13 @@ document.getElementById("btnVerMais").addEventListener("click", async function (
 
 // ======= Ao carregar a página =======
 window.onload = function () {
+
+   const btnLogin = document.getElementById("botaoLogin");
+  const nomeUsuario = localStorage.getItem("name");
+
+  if (btnLogin && nomeUsuario) {
+    btnLogin.innerHTML = `${nomeUsuario} <img class="userImage" src="./assets/User.png" />`;
+  }
   contadorSignificados = 0;
   document.getElementById("containerSignificados").innerHTML = ""; // limpa conteúdo antes de preencher
   preencherSignificados(0);

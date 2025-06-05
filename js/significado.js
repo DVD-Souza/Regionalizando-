@@ -7,12 +7,21 @@ let contadorSignificados = 0;// Supondo que a resposta contenha o ID do usuário
 
 
 window.onload = async function () {
+  const btnLogin = document.getElementById("botaoLogin");
+  const nomeUsuario = localStorage.getItem("name");
+
+  if (btnLogin && nomeUsuario) {
+    btnLogin.innerHTML = `${nomeUsuario} <img class="userImage" src="./assets/User.png" />`;
+  }
+
   const nome = localStorage.getItem("wordNameSelecionado") || "Palavra";
   const titulo = document.querySelector(".Titulo");
   if (titulo) titulo.textContent = nome;
 
   await carregarSignificados(contadorSignificados, 6);
 };
+
+
 
 function telaAdicionar() { window.location.href = "adicionar.html"; }
 
