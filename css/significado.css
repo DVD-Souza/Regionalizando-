@@ -1,0 +1,666 @@
+@import url('https://fonts.cdnfonts.com/css/source-serif-pro');
+/* font-family: 'Source Serif Pro', sans-serif; */
+                                                
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    --primary: #F2D027;
+    --secondary: #F2B705;
+    --terciary: #D98E04;
+    --quartenary:#A66D03;
+    --quintenary:#8C4E03;
+    --branco:#f8f8f8;
+}
+
+body {
+    background-color: var(--quintenary);
+}
+
+button:hover{
+    cursor: pointer;
+}
+
+.imagemLogo{
+    margin-top: 0.5%;
+    margin-left: 3%;
+}
+
+.container_logo_botoes {
+    display:flex;
+    justify-content: space-between;
+    
+}
+
+
+.container_logo{
+    display: flex;
+    gap: 8px;
+}
+
+.textoLogo1{
+    color: #F2D027;
+    font-size: 64px;
+    font-family: 'Source Serif Pro', sans-serif;                                      
+    font-weight: bold;
+    }
+
+.textoLogo2{
+    position: absolute;
+    color: #F2B705;
+    font-size: 24px;
+    font-family: 'Source Serif Pro', sans-serif;                          
+    left: 140px;
+    top: 90px;
+}
+
+.botoes{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    gap:10px;
+    margin-right: 5%;
+
+    & .botoes_header{
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0.5rem;
+        color: #F2B705;
+        font-size: 32px;
+        font-weight: bold;
+        font-family: 'Source Serif Pro', sans-serif;
+        border-radius: 45px;
+        border: none;
+        background-color: #A66D03;
+    }
+
+    & .botoes_header:hover{
+        background-color: #A35D00;
+        cursor: pointer;
+    }
+}
+
+.userImage{
+ margin-left: 5px;
+}
+
+.menuImage{
+margin-left: 5px;
+}
+
+.buscarimg{
+    position: absolute;
+    left: 4%;
+    width: 30px;
+}
+
+.maisimg{
+    width: 60px;
+    height: auto;
+}
+
+.maisimg:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.container_pesquisa_add{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3%;
+    background-color: var(--primary);
+    border-radius: 50px;
+    height: 75px;
+    width: 90%;
+    padding:0% 2% 0% 2%;
+    margin: 0% 5%;
+}
+
+.input_buscar{
+    border-radius:0 50px 50px 0;
+    width: 100%;
+    height: 50px;
+    text-align: left;
+    font-family: 'Source Serif Pro', sans-serif;
+    border-radius: 100px;
+    border:2px solid black;
+    padding-left: 80px;
+    font-size: 30px;
+    outline: none;
+}
+
+.container_significados{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: auto;
+    background-color: #8C4E03;
+    margin: 3% 5% 0% 5%;
+}
+
+.palavra{
+    position: relative;
+    display: flex;
+    gap: 8px;
+    padding-left: 48px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    align-self: center;
+    justify-self: center;
+    border-radius: 15px;
+    font-family: 'Source Serif Pro', sans-serif;
+    background-color: var(--secondary);
+
+    & button{
+        font-family: 'Source Serif Pro', sans-serif;
+    }
+
+    & button:hover{
+        cursor: pointer;
+    }
+}
+
+
+.palavra1{
+    position: relative;
+    display: flex;
+    gap: 8px;
+    padding-left: 48px;
+    padding-top: 16px;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    align-self: center;
+    justify-self: center;
+    border-radius: 15px;
+    font-family: 'Source Serif Pro', sans-serif;
+    background-color: var(--terciary);
+
+    & button{
+        font-family: 'Source Serif Pro', sans-serif;
+    }
+
+    & button:hover{
+        cursor: pointer;
+    }
+}
+
+
+.nomesignificado{
+    font-size: clamp(32px, 4vw, 60px);   
+    font-weight: bold;
+    text-align: left;
+    background-color: transparent;
+    border: none;
+    
+}
+
+.tiposignificado{
+    font-size: 24px;
+    color: #F8F8F8;
+}
+
+.descricaosignificado{
+    font-size: 20px;
+    color: #FFFFFF;
+    font-weight: bold;
+  max-width: 100%;     
+  word-wrap: break-word; 
+  overflow-wrap: break-word; 
+  white-space: normal; 
+}
+
+.exemplouso{
+  font-size: 20px;
+    color: #FFFFFF;
+    font-weight: bold;
+  max-width: 100%;     
+  word-wrap: break-word; 
+  overflow-wrap: break-word; 
+  white-space: normal; 
+}
+
+
+.criadorsignificado{
+    font-size: 36.5px;
+    font-weight: 600;
+    font-style: italic;
+}
+
+.nomeusuario{
+    color: white;
+    font: Source Serif Pro;
+    background-color: transparent;
+    border: none;
+    font-size: 18px;
+}
+
+.likedislike{
+    display: flex;
+    flex-direction: row;
+    height: 60px;
+    margin-bottom: 56px;
+}
+
+.likeimagem{
+    border: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #8C4E03;
+    border-radius: 45px 0px 0px 45px;
+    width: 90px;
+
+    & img{
+        width: 36px;
+        height: 32px;
+    }
+}
+
+.likeimagem:hover{
+    border: 2px solid #000;
+}
+
+.dislikeimagem{
+    border: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #A66D03;
+    border-radius: 0px 45px 45px 0px;
+    width: 90px;
+
+    & img{
+        width: 36px;
+        height: 32px;
+    }
+}
+
+.dislikeimagem:hover{
+    border: 2px solid #000;
+}
+
+.contarLikes{
+    background-color: red;
+    display: flex;
+    flex-direction: row;
+    margin-left: 3.2%;
+    gap :10px;
+}
+
+.adicionarTermo {
+    all: unset; /* Remove todos os estilos padrão do botão */
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    width: auto;
+    height: auto;
+    cursor: pointer;
+}
+
+.adicionarTermo img {
+    display: block;
+    width: 60px; /* ou qualquer tamanho desejado */
+    height: auto;
+}
+
+.regiaonome {
+  color: white;
+  font-size: 32px; 
+  font-weight: 600;
+  font-style: italic;
+  text-align: right;
+  font-family: 'Source Serif Pro', sans-serif;
+  position: absolute;
+  bottom: 16px;
+  right: 32px;
+}
+
+.container_botao_vermais{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & button{
+        padding: 20px 60px 20px 60px;
+        font-family: 'Source Serif Pro', sans-serif;
+        font-weight: bold;
+        font-size: 32px;
+        background-color: var(--quartenary);
+        border-radius: 15px;
+        border: none;
+        margin-bottom: 40px;
+    }
+
+    & button:hover{
+    background-color: var(--terciary);
+    color: var(--branco);
+    cursor: pointer;
+    }
+}
+
+.texto_addcomentario{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin:5% 5% 0% 5%;
+    gap: 1%;
+}
+
+.Titulo{
+    font-size: 80px;
+    font-weight: bold;
+    font-family: 'Source Serif Pro', sans-serif;
+    text-align: left;
+    border: none;
+    color: white;
+    text-decoration: underline;
+}
+
+.addcomentario{
+    align-self: end;
+    height: 1%;
+    padding: 5px 20px;
+    border-radius: 15px;
+    font-size: 32px;
+    border: 2px solid black;
+    background-color: var(--terciary);
+    font-family: 'Source Serif Pro', sans-serif;
+}
+
+.addcomentario:hover{
+    background-color: var(--quartenary);
+    border-color: var(--terciary);
+    color: var(--branco);
+    cursor: pointer;
+}
+
+/* O modal em si */
+.modal {
+  display: none; /* escondido por padrão */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;  
+  align-items: center;      
+  z-index: 1000;
+}
+  
+  /* Conteúdo do modal */
+.modal-content {
+    justify-self: center;
+    background-color: var(--quintenary);
+    padding: 20px;
+    border-radius: 15px;
+    justify-self: center;
+    border: 3px solid black;
+    width: clamp(300px, 70vw, 1000px); /* melhor leitura e controle */
+}
+
+  
+  
+.modal_background{
+    background-color: var(--quartenary);
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.titulo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: underline;
+    color: black;
+    font-size: 36px;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 5%;
+}
+
+.escreverSignificado{
+    width: 100%;
+    padding: 2%;
+    margin-bottom: 2%;
+    font-family: 'Roboto Serif', sans-serif;
+    font-weight: bolder;
+    font-size: 20px;
+    border-radius: 15px;
+    border: 1px solid black;
+    border-bottom: 3px solid black;
+    resize: none;
+}
+
+.escreverSignificado:hover{
+    cursor: pointer;
+}
+
+.escreverSignificado:focus{
+    outline: none;
+    cursor: text;
+}
+
+.atencao{
+    color: black;
+    font-weight: 900;
+    font-size: 20px;
+    font-family: 'Roboto Serif', sans-serif;
+    margin-bottom: 5px;
+}
+
+.classeGramatical{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: auto;
+}
+
+select{
+    align-self: center;
+    background-color: #A35D00; 
+    color: black;
+    border: none;
+    padding: 6px;
+    border-radius: 4px;
+    font-family: 'Source Serif Pro', sans-serif;
+    cursor: pointer;
+    font-size: 16px;
+    width: auto;
+    outline: none;
+    border: 1px solid black;
+    font-weight: bold;
+}
+
+select:after{
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: black;
+}
+
+option{
+    background-color: var(--quintenary);
+    color:black;
+    font-family: 'Source Serif Pro', sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.label_classe_regiao {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    color: white;
+    font-family: 'Roboto Serif', sans-serif;
+    font-weight: lighter;
+    white-space: nowrap;  /* evita quebra do texto */
+    
+}
+
+
+.classe_regiao {
+  display: flex;
+  justify-content: flex-start; /* ou center, mas não space-between */
+  align-items: center;
+  gap: 8px;
+}
+
+.container_classe_regiao{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.termos{
+    display: flex;
+    justify-content: center;
+    font-size: 18px;
+    margin-top: 5%;
+    margin-bottom: 5px;
+}
+
+.enviar{
+    display: flex;
+    background-color: var(--primary);
+    justify-content: center;
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+    padding-left: 50px;
+    padding-right: 50px;
+    border-radius: 15px;
+    border: 1px solid black;
+    border-bottom: 3px solid black;
+    font-size: 48px;
+    font-weight: bold;
+    font-family: 'Source Serif Pro', sans-serif;
+
+}
+
+.enviar:hover{
+    cursor: pointer;
+    background-color: var(--secondary);
+    border: 1px solid var(--branco);
+    border-bottom: 3px solid var(--branco);
+    color: var(--branco);
+
+}
+
+.enviar:focus{
+    cursor: default;
+    outline: none;
+}
+
+a{
+    color: black;
+    text-decoration: underline;
+}
+
+.termos p{
+    color: white;
+}
+
+
+.fechar {
+    display: flex;
+    justify-self: right;
+
+    margin-right: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #aaa;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    background: transparent;
+    border: none;
+
+}
+  
+.fechar:hover {
+    color: black;
+}
+  
+.voltarIndex{
+    position: relative;
+    background: transparent;
+    border: none;
+}
+
+
+.hidden {
+  display: none;
+}
+
+
+#menuPerfil {
+    top: 100%;
+    background-color: var(--quartenary);
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    list-style: none;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    z-index: 100;
+    min-width: 160px;
+}
+
+#menuPerfil li {
+    margin-bottom: 8px;
+}
+
+#menuPerfil li:last-child {
+    margin-bottom: 0;
+}
+
+#menuPerfil li button {
+    width: 100%;
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    padding: 8px;
+    font-size: 14px;
+}
+
+#menuPerfil button:hover {
+    background-color: #D9980A;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.perfil-container {
+  position: relative; /* contexto pro menu */
+  display: inline-block;
+}
+
+#menuPerfil {
+  position: absolute; /* sai do fluxo e flutua */
+  top: 100%; /* logo abaixo do botão */
+  left: 0;
+  background-color: var(--quartenary);
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  list-style: none;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  z-index: 9999; /* bem alto pra sobrepor */
+  min-width: 160px;
+}
+
+#menuPerfil.hidden {
+  display: none;
+}
+

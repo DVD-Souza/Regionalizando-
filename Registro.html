@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/registro.css">
+    <link rel="shortcut icon" href="./assets/Regionalizando_logo 1.png" type="image/x-icon">
+    <title>Cadastro</title>
+    <script src="./js/registro.js" defer></script>
+</head>
+
+<body>
+    <div class="background">
+        <div class="containerForm">
+            <h1 class="mensagemRegistro">Cadastrar</h1>
+            <form id="form">
+                <div>
+                    <img src="./assets/registeruser.png" alt="Imagem usuario">
+                    <label class="labels" for="usuario">Nome de usuário*</label></br>
+                    <input type="text" name="usuario" id="inputuser" class="inputs">
+                </div>
+                <div>
+                    <img src="./assets/email.png" alt="Imagem usuario">
+                    <label class="labels" for="usuario">Email*</label></br>
+                    <input type="email" name="" id="inputemail" class="inputs">
+                </div>
+                <div>
+                    <img src="./assets/chave.png" alt="Imagem usuario">
+                    <label class="labels" for="usuario">Senha*</label></br>
+                    <input type="password" name="senha" id="inputsenha" class="inputs">
+                    <button type="button" class="icone_olho_fechado" id="iconeolho" onclick="olhoAtual()">
+                        <img id="olho" src="./assets/olhofechado.png" title="Aperte para mostrar a senha" alt="Ícone olho fechado">
+                    </button>
+                </div>
+                <div>
+                    <img src="./assets/chave.png" alt="Imagem usuario">
+                    <label class="labels" for="usuario">Confirme sua senha*</label></br>
+                    <input type="password" name="confimar_senha" id="inputconfirmarsenha" class="inputs">
+                    <button type="button" class="icone_olho_fechado" id="iconeolho1" onclick="olhoAtual1()">
+                        <img id="olho1" src="./assets/olhofechado.png" title="Aperte para mostrar a senha" alt="Ícone olho fechado">
+                    </button>
+                </div>
+                <button type="submit" class="enviar" id="enviar">Enviar</button>
+            </form>
+            
+            <button class="jatemconta" onclick="telaLogin()">Ja tem uma conta?</button>
+        </div>
+    </div>
+</body>
+
+</html>

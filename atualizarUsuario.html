@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/registro.css">
+    <link rel="shortcut icon" href="./assets/Regionalizando_logo 1.png" type="image/x-icon">
+    <title>Atualizar Dados da Conta</title>
+    <script src="./js/atualizarUsuario.js" defer></script>
+</head>
+
+<body>
+    <div class="background">
+        <div class="containerForm">
+            <h1 class="mensagemRegistro">Atualize seus dados</h1>
+            <form id="form">
+                <div>
+                    <label class="labels" for="inputnome">
+                        <img src="./assets/registeruser.png" alt="Ícone usuário" class="icone"> Nome
+                    </label><br>
+                    <input type="text" id="inputnome" class="inputs">
+                </div>
+                <div>
+                    <label class="labels" for="inputemail">
+                        <img src="./assets/email.png" alt="Ícone email" class="icone"> Email
+                    </label><br>
+                    <input type="email" id="inputemail" class="inputs">
+                </div>
+                <div>
+                    <label class="labels" for="inputsenha">
+                        <img src="./assets/chave.png" alt="Ícone chave" class="icone"> Senha
+                    </label><br>
+                    <input type="password" id="inputsenha" class="inputs">
+                    <button type="button" class="icone_olho_fechado" id="iconeolho" onclick="olhoAtual()">
+                        <img id="olho" src="./assets/olhofechado.png" title="Aperte para mostrar a senha" alt="Ícone olho fechado">
+                    </button>
+                </div>
+                <button type="submit" class="enviar" id="enviar">Enviar</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

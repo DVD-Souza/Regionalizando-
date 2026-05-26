@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/index.css">
+    <title>Regionalizando: Seu dicionário informal regional</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="shortcut icon" href="./assets/Regionalizando_logo 1.png" type="image/x-icon">
+    <script src="./js/index.js" defer></script>
+</head>
+
+<body>
+
+    <div class="container_logo_botoes">
+        <div class="container_logo">
+            <button class="voltarIndex" onclick="telaIndex()">
+                <img class="imagemLogo" src="./assets/Regionalizando_logo 1.png" alt="Logo Regionalizando">
+            </button>
+
+            <button class="voltarIndex" onclick="telaIndex()">
+                <p class="textoLogo1"> Regionalizando </p>
+                <p class="textoLogo2">Dicionário Informal Regional</p>
+            </button>
+
+        </div>
+
+        <div class="botoes">
+           <button type="button" class="botoes_header" id="botaoLogin">
+  Login
+  <img class="userImage" src="./assets/User.png">
+</button>
+
+            <div class="perfil-container">
+    <button type="button" class="botoes_header" id="botaoPerfil">
+        Cadastrar
+        <img class="menuImage" src="./assets/badge.png" alt="Cadastrar" />
+    </button>
+
+    <ul id="menuPerfil" class="menu-dropdown hidden"></ul>
+</div>
+
+        </div>
+    </div>
+
+    <div class="container_pesquisa_add" id="barraDePesquisa">
+        <input class="input_buscar" placeholder="Procure uma palavra" type="text" name="buscar" id="buscar">
+        <img class="buscarimg" src="./assets/Vector.png" alt="imagem lupa">
+        <button type="button" class="adicionarTermo" onclick="telaAdicionar()">
+            <img class="maisimg" src="./assets/Add@2x.png" alt="Imagem mais">
+        </button>
+    </div>
+
+    <div class="container_significados_filtros">
+
+        <div class="container_significados" id="containerSignificados">
+
+            <div class="palavra bc-secondary" data-word-id="3" data-meaning-id="5">
+                <button id="btnSignificado1" class="nomesignificado" onclick="abrirSignificado(this)" data-word-id="3"></button>
+                <p class="tiposignificado"> "Tipo Significado"</p>
+                <p class="descricaosignificado"> "Descrição significado"</p>
+                <p> Significado de por <button class="nomeusuario" onclick="telaPerfil()"></button>.</p>
+                <div class="likedislike">
+                    <button class="likeimagem">
+                        <img src="./assets/Like.png" alt="Imagem Like">
+                        <p>"Likes"</p>
+                    </button>
+                    <button class="dislikeimagem">
+                        <img src="./assets/Dislike.png" alt="Imagem Dislike">
+                        <p>"Dislikes"</p>
+                    </button>
+                </div>
+                <p class="regiaonome">${item.region_id || "Região desconhecida"}</p>
+
+            </div>
+
+            <div class="palavra bc-terciary" data-word-id="3" data-meaning-id="5">
+                <button id="btnSignificado2" class="nomesignificado" onclick="abrirSignificado(this)" data-word-id="3"></button>
+                <p class="tiposignificado"> "Tipo Significado"</p>
+                <p class="descricaosignificado"> "Descrição significado"</p>
+                <p> Significado de por <button class="nomeusuario" onclick="telaPerfil()"></button></p>
+                <div class="likedislike">
+                    <button class="likeimagem">
+                        <img src="./assets/Like.png" alt="Imagem Like">
+                        <p>"Likes"</p>
+                    </button>
+                    <button class="dislikeimagem">
+                        <img src="./assets/Dislike.png" alt="Imagem Dislike">
+                        <p>"Dislikes"</p>
+                    </button>
+                </div>
+               <p class="regiaonome">${item.region_id || "Região desconhecida"}</p>
+
+            </div>
+
+            <div class="palavra bc-secondary" data-word-id="3" data-meaning-id="5">
+                <button id="btnSignificado3" class="nomesignificado" onclick="abrirSignificado(this)" data-word-id="3"></button>
+                <p class="tiposignificado"> "Tipo Significado"</p>
+                <p class="descricaosignificado"> "Descrição significado"</p>
+                <p> Significado de por <button class="nomeusuario" onclick="telaPerfil()"></button></p>
+                <div class="likedislike">
+                    <button class="likeimagem">
+                        <img src="./assets/Like.png" alt="Imagem Like">
+                        <p>"Likes"</p>
+                    </button>
+                    <button class="dislikeimagem">
+                        <img src="./assets/Dislike.png" alt="Imagem Dislike">
+                        <p>"Dislikes"</p>
+                    </button>
+                </div>
+                <p class="regiaonome">${item.region_id || "Região desconhecida"}</p>
+
+            </div>
+
+            <div class="palavra bc-terciary" data-word-id="3" data-meaning-id="5">
+                <button id="btnSignificado4" class="nomesignificado" onclick="abrirSignificado(this)" data-word-id="3"></button>
+                <p class="tiposignificado"> "Tipo Significado"</p>
+                <p class="descricaosignificado"> "Descrição significado"</p>
+                <p> Significado de por <button class="nomeusuario" onclick="telaPerfil()"></button></p>
+                <div class="likedislike">
+                    <button class="likeimagem">
+                        <img src="./assets/Like.png" alt="Imagem Like">
+                        <p>"Likes"</p>
+                    </button>
+                    <button class="dislikeimagem">
+                        <img src="./assets/Dislike.png" alt="Imagem Dislike">
+                        <p>"Dislikes"</p>
+                    </button>
+                </div>
+                <p class="regiaonome">${item.region_id || "Região desconhecida"}</p>
+
+            </div>
+
+            <div class="palavra bc-secondary" data-word-id="3" data-meaning-id="5">
+            <button id="btnSignificado5" class="nomesignificado" onclick="abrirSignificado(this)" data-word-id="3"></button>
+                <p class="tiposignificado"> "Tipo Significado"</p>
+                <p class="descricaosignificado"> "Descrição significado"</p>
+                <p> Significado de por <button class="nomeusuario" onclick="telaPerfil()"></button></p>
+                <div class="likedislike">
+                    <button class="likeimagem">
+                        <img src="./assets/Like.png" alt="Imagem Like">
+                        <p>"Likes"</p>
+                    </button>
+                    <button class="dislikeimagem">
+                        <img src="./assets/Dislike.png" alt="Imagem Dislike">
+                        <p>"Dislikes"</p>
+                    </button>
+                </div>
+                <p class="regiaonome">${item.region_id || "Região desconhecida"}</p>
+
+            </div>
+
+            <div class="palavra bc-terciary" data-word-id="3" data-meaning-id="5">
+                <button id="btnSignificado6" class="nomesignificado" onclick="abrirSignificado(this)" data-word-id="3"></button>
+                <p class="tiposignificado"> "Tipo Significado"</p>
+                <p class="descricaosignificado"> "Descrição significado"</p>
+                <p> Significado de por <button class="nomeusuario" onclick="telaPerfil()"></button></p>
+                <div class="likedislike">
+                    <button class="likeimagem">
+                        <img src="./assets/Like.png" alt="Imagem Like">
+                        <p>"Likes"</p>
+                    </button>
+                    <button class="dislikeimagem">
+                        <img src="./assets/Dislike.png" alt="Imagem Dislike">
+                        <p>"Dislikes"</p>
+                    </button>
+                </div>
+                <p class="regiaonome">${item.region_id || "Região desconhecida"}</p>
+
+            </div>
+
+        </div>
+
+
+        <div class="container_filtros">
+
+            <div class="filtros">
+
+                <h3>Filtros:</h3>
+
+                <form action="" method="get">
+
+                    <div class="campos_filtros">
+                        <label for="regiao">Região:</label>
+                        <select id="regiao" name="regiao">
+                            <option value="0">Todas</option>
+                            <option value="3">Norte</option>
+                            <option value="1">Nordeste</option>
+                            <option value="4">Centro Oeste</option>
+                            <option value="5">Sudeste</option>
+                            <option value="2">Sul</option>
+                        </select>
+                    </div>
+
+                    <div class="campos_filtros">
+                        <label for="tipo">Tipo:</label>
+                        <select id="tipo" name="tipo">
+                            <option value="0">Todos</option>
+                            <option value="noun">Substantivo</option>
+                            <option value="adjective">Adjetivo</option>
+                            <option value="article">Artigo</option>
+                            <option value="pronoun">Pronome</option>
+                            <option value="numeral">Numeral</option>
+                            <option value="verb">Verbo</option>
+                            <option value="adverb">Advérbio</option>
+                            <option value="preposition">Preposição</option>
+                            <option value="conjunction">Conjunção</option>
+                            <option value="interjection">Interjeição</option>
+                        </select>
+                    </div>
+
+                    <button type="submit">Aplicar</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="container_botao_vermais">
+        <button id="btnVerMais">Ver mais</button>
+    </div>
+
+
+    
+
+    
+</body>
+
+
+</html>
